@@ -142,7 +142,7 @@ const SignUpPage = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/login`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/signup`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -181,7 +181,7 @@ const SignUpPage = () => {
             <FormControl required>
             <Label>Username</Label>
             <StyledInput
-              placeholder="Enter your email here"
+              placeholder="Enter your username here"
               value={username}
               onChange={handleUsernameChange}
             />
@@ -212,7 +212,7 @@ const SignUpPage = () => {
             className="w-[100%] bg-slate-900 p-2 rounded-md"
             onClick={handleSubmit}
           >
-            Login
+            SignUp
           </Button>
           <hr />
           <p>Already have an account <Link to='/login'>Sigin</Link></p>
