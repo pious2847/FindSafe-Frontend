@@ -6,7 +6,6 @@ import clsx from "clsx";
 import { Button } from '@mui/base/Button';
 import TextAnimation from "@/components/animations/textanimation";
 import { Link , useNavigate} from 'react-router-dom';
-import Checkbox from '@mui/material/Checkbox';
 
 const StyledInput = styled(Input)(
   ({ theme }) => `
@@ -115,14 +114,17 @@ const grey = {
   900: '#1C2025',
 };
 
-const LoginPage = () => {
+const SignUpPage = () => {
+  const [username, setUsername] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
-  const [rememberMe, setRememberMe] = React.useState(false);
   const [errorMessage, setErrorMessage] = React.useState('');
 
   const navigate = useNavigate();
 
+  const handleUsernameChange = (event) => {
+    setUsername(event.target.value);
+  };
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
   };
@@ -131,9 +133,7 @@ const LoginPage = () => {
     setPassword(event.target.value);
   };
 
-  const handleRememberMeChange = (event) => {
-    setRememberMe(event.target.checked);
-  };
+
 
   const handleDismissError = () => {
     setErrorMessage('');
@@ -147,11 +147,11 @@ const LoginPage = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, password, rememberMe }),
+        body: JSON.stringify({ username ,email, password }),
       });
 
       if (response.status === 200) {
-        navigate('/dashboard');
+        navigate('/login');
         console.log('Login successful');
       } else {
         const errorData = await response.json();
@@ -178,7 +178,15 @@ const LoginPage = () => {
               <button onClick={handleDismissError} className="ml-4 text-xl font-bold">&times;</button>
             </div>
           )}
-         
+            <FormControl required>
+            <Label>Username</Label>
+            <StyledInput
+              placeholder="Enter your email here"
+              value={username}
+              onChange={handleUsernameChange}
+            />
+            <HelperText />
+          </FormControl>
           <FormControl required>
             <Label>Email</Label>
             <StyledInput
@@ -198,20 +206,7 @@ const LoginPage = () => {
             />
             <HelperText />
           </FormControl>
-          <div className="flex justify-between">
-            <div className="flex items-center">
-              <Checkbox
-                checked={rememberMe}
-                onChange={handleRememberMeChange}
-                inputProps={{ 'aria-label': 'Remember Me' }}
-                style={{ color: 'white' }}
-              />
-              <span className="text-white">Remember Me</span>
-            </div>
-            <Link to="/forgot-password">
-              <p className="text-white">Forgot Password?</p>
-            </Link>
-          </div>
+
           <Button
             variant="contained"
             className="w-[100%] bg-slate-900 p-2 rounded-md"
@@ -219,13 +214,12 @@ const LoginPage = () => {
           >
             Login
           </Button>
-          <br />
           <hr />
-          <p>Don’t have an account?  <Link to='/signup'>Sign Up</Link></p>
+          <p>Already have an account <Link to='/login'>Sigin</Link></p>
         </div>
       </div>
     </div>
   );
 };
 
-export default LoginPage;
+export default SignUpPage;
