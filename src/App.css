@@ -49,6 +49,9 @@
   width: 45%;
   height: auto;
 }
+.captioncontianer{
+  width: 45%;
+}
 
 @keyframes logo-spin {
   from {
@@ -154,6 +157,14 @@
    .mainhero{
     flex-wrap: wrap-reverse;
     gap: 10px;
+   }
+   .boldercontainer{
+    flex-wrap: wrap;
+    width: 100%;
+   }
+   .width_100{
+    flex-wrap: wrap;
+    width: 100%;
    }
 
 }
