@@ -2,6 +2,7 @@ import * as React from "react";
 import { useState } from 'react';
 // import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import { Link } from 'react-router-dom';
 
 import {
   NavigationMenu,
@@ -100,8 +101,9 @@ function AppBar() {
           <div className="flex align-middle gap-5 ModeToggle ">
             <ModeToggle />
             <Button>
-              {/* <Link href="/login"></Link> */}
-              Get Started - it’s Free
+              <Link href="/login">
+              Get Started - it’s Free</Link>
+              
             </Button>
           </div>
         </div>
