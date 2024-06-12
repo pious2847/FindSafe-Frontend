@@ -170,7 +170,7 @@ const LoginPage = () => {
       <br />
       <TextAnimation />
       <br />
-      <div className="formContainer max-w-md w-full bg-slate-950 rounded-lg shadow-md p-8">
+      <div className="formContainer max-w-md w-full  rounded-lg shadow-sm  shadow-black p-8">
         <div className="flex flex-col gap-6">
           {errorMessage && (
             <div className="flex justify-between items-center bg-red-500 text-white p-2 rounded">
@@ -201,15 +201,15 @@ const LoginPage = () => {
           <div className="flex justify-between">
             <div className="flex items-center">
               <Checkbox
+              defaultChecked
                 checked={rememberMe}
                 onChange={handleRememberMeChange}
                 inputProps={{ 'aria-label': 'Remember Me' }}
-                style={{ color: 'white' }}
               />
-              <span className="text-white">Remember Me</span>
+              <span >Remember Me</span>
             </div>
             <Link to="/forgot-password">
-              <p className="text-white">Forgot Password?</p>
+              <p >Forgot Password?</p>
             </Link>
           </div>
           <Button

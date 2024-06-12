@@ -101,8 +101,9 @@ function AppBar() {
           <div className="flex align-middle gap-5 ModeToggle ">
             <ModeToggle />
             <Button>
-              <Link href="/login">
-              Get Started - it’s Free</Link>
+              <Link to="/login">
+              Get Started - it’s Free
+              </Link>
               
             </Button>
           </div>
