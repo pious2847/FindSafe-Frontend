@@ -4,13 +4,15 @@ import { Input, inputClasses } from "@mui/base/Input";
 import { styled } from "@mui/system";
 import clsx from "clsx";
 import { Button } from '@mui/base/Button';
-import Stack from '@mui/material/Stack';
+import TextAnimation from "@/components/animations/textanimation";
+import { Link } from 'react-router-dom';
+import  Checkbox  from '@mui/material/Checkbox';
 
 const StyledInput = styled(Input)(
     ({ theme }) => `
   
     .${inputClasses.input} {
-      width: 320px;
+      width: 100%;
       font-family: 'IBM Plex Sans', sans-serif;
       font-size: 0.875rem;
       font-weight: 400;
@@ -112,29 +114,93 @@ const StyledInput = styled(Input)(
     800: '#303740',
     900: '#1C2025',
   };
-const LoginPage = () => {
-  return (
-    <>
-      <div className="w-[100%] h-[100%] flex align-middle justify-center "> 
-        <div className="formContainer flex flex-col gap-5">
-            <Stack spacing={3} direction="column">
-            <FormControl defaultValue="" required>
-            <Label>Email</Label>
-            <StyledInput placeholder="Write your mail here" />
-            <HelperText />
-          </FormControl>
-          <FormControl defaultValue="" required>
-            <Label>Email</Label>
-            <StyledInput placeholder="Write your mail here" />
-            <HelperText />
-            <Button>Button</Button>
-          </FormControl>
-            </Stack>
 
+  const LoginPage = () => {
+    const [email, setEmail] = React.useState('');
+    const [password, setPassword] = React.useState('');
+    const [rememberMe, setRememberMe] = React.useState(false);
+    const [errorMessage, setErrorMessage] = React.useState('');
+  
+    const handleEmailChange = (event) => {
+      setEmail(event.target.value);
+    };
+  
+    const handlePasswordChange = (event) => {
+      setPassword(event.target.value);
+    };
+  
+    const handleRememberMeChange = (event) => {
+      setRememberMe(event.target.checked);
+    };
+  
+    const handleSubmit = async (event) => {
+      event.preventDefault();
+      // eslint-disable-next-line no-undef
+      console.log('processenv',process.env.APIURL);
+      try {
+        // eslint-disable-next-line no-undef
+        const response = await fetch(`${process.env.APIURL}/login`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email, password, rememberMe }),
+        });
+  
+        if (response.status === 200) {
+          // Handle successful login
+          console.log('Login successful');
+        } else {
+          // Handle login error
+          const errorData = await response.json();
+          setErrorMessage(errorData.message || 'An error occurred during login');
+        }
+      } catch (error) {
+        console.log(error)
+        setErrorMessage('An error occurred during login');
+      }
+    }
+    return (
+      <div className="w-[100vw] h-[100vh] flex justify-center flex-col items-center">
+        <br />
+        <br />
+        <TextAnimation />
+        <br />
+        <div className="formContainer max-w-md w-full bg-slate-950 rounded-lg shadow-md p-8">
+          <div className="flex flex-col gap-6">
+          {errorMessage && <p className="text-red-500">{errorMessage}</p>}
+            <FormControl defaultValue="" required>
+              <Label>Email</Label>
+              <StyledInput placeholder="Enter your email here" value={email} onChange={handleEmailChange} />
+              <HelperText />
+            </FormControl>
+            <FormControl defaultValue="" required>
+              <Label>Password</Label>
+              <StyledInput type="password" placeholder="Enter your password here" value={password} onChange={handlePasswordChange} />
+              <HelperText />
+            </FormControl>
+            <div className="flex justify-between">
+              <div className="flex items-center">
+                <Checkbox
+                  checked={rememberMe}
+                  onChange={handleRememberMeChange}
+                  inputProps={{ 'aria-label': 'Remember Me' }}
+                  style={{ color: 'white' }}
+                />
+                <span className="text-white">Remember Me</span>
+              </div>
+              <Link href="/login">
+                <p className="text-white">Forgot Password?</p>
+              </Link>
+            </div>
+            
+            <Button variant="contained" className=" w-[100%] bg-slate-900 p-2 rounded-md" onClick={handleSubmit}>
+              Login
+            </Button>
+          </div>
         </div>
       </div>
-    </>
-  );
-};
-
-export default LoginPage;
+    );
+  };
+  
+  export default LoginPage;
