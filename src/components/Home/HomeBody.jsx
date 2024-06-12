@@ -24,13 +24,13 @@ function HomeBody() {
           </div>
           <img
             src="livetracking.jpg"
-            className="shadow-lg shadow-black cardimg  rounded-lg object-cover  h-[350px]"
+            className="shadow-md shadow-black cardimg  rounded-lg object-cover  h-[350px]"
           />
         </div>
         <div className="container  flex gap-10  w-[95%] p-8 align-middle rounded-lg shadow-sm shadow-black  boldercontainer">
         <img
-            src="livetracking.jpg"
-            className="shadow-lg shadow-black cardimg  rounded-lg object-cover  h-[350px]"
+            src="security.jpg"
+            className="shadow-md shadow-black cardimg  rounded-lg object-cover  h-[350px]"
           />
           <div className="flex flex-col gap-2 width_100 captioncontianer">
             <h2
