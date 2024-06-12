@@ -52,7 +52,9 @@
 .captioncontianer{
   width: 45%;
 }
-
+.cardimg{
+  width: 70%;
+}
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);
@@ -87,6 +89,7 @@
 @media (max-width: 768px) {
   .appBar {
     position: fixed;
+    top: 0;
     backdrop-filter: blur(2px);
     z-index: 30;
    }
@@ -152,11 +155,12 @@
     font-size: 35px;
    }
    .boldmessage h2{
-    font-size: 50px;
+    font-size: 34px;
    }
    .mainhero{
     flex-wrap: wrap-reverse;
-    gap: 10px;
+    gap: 5px;
+    margin-top: 90px;
    }
    .boldercontainer{
     flex-wrap: wrap;
@@ -164,6 +168,9 @@
    }
    .width_100{
     flex-wrap: wrap;
+    width: 100%;
+   }
+   .cardimg{
     width: 100%;
    }
 
