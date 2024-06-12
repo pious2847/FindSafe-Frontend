@@ -1,0 +1,159 @@
+
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.appBar{
+  padding: 0;
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+}
+.neon {
+  position: relative;
+  animation: neoneffect 2s infinite;
+  z-index: -1;
+}
+
+@keyframes neoneffect {
+  0% {
+    filter: drop-shadow(0 0 0.3rem #646cffaa);
+  }
+  25% {
+    filter: drop-shadow(0 0 0.5rem #c664ffaa);
+  }
+  50% {
+    filter: drop-shadow(0 0 0.8rem #64c1ffaa);
+  }
+  75% {
+    filter: drop-shadow(0 0 1rem #ff64b1aa);
+  }
+  100% {
+    filter: drop-shadow(0 0 1.5rem #64a2ffaa);
+  }
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+.heroimg{
+  flex: 1;
+  width: 45%;
+  height: auto;
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+.disabled {
+  display: none;
+}
+.menuicon {
+  display: none; 
+  cursor: pointer;
+}
+
+
+@media (max-width: 768px) {
+  .appBar {
+    position: fixed;
+    backdrop-filter: blur(2px);
+    z-index: 30;
+   }
+   .heroscreen{
+    position: relative;
+    top: 70px;
+   }
+  .mobileNav {
+    position: fixed;
+    height: 100vh;
+    flex-direction: column;
+    width: 80%;
+    background: #020817;
+    left: -500px;
+    top: 0;
+    z-index: 1;
+    backdrop-filter: blur(2px);
+    overflow: scroll;
+    padding: 10px;
+  }
+  .mobileNav.active {
+    left: 0; /* Show the mobile navigation menu when active */
+  }
+  .mobileNav::-webkit-scrollbar{
+   width: 5px;
+  }
+  
+  .nav-conent{
+    flex-direction: column;
+    gap: 10;
+    align-items: start;
+    justify-content: flex-start;
+    gap: 20px;
+    width: 100%
+    /* z-index: 20; */
+
+   }
+   .NavigationMenuContent{
+    width: 300px;
+   }
+   .navconimg{
+    width: 10px;
+   }
+   .ModeToggle{
+    align-content: center;
+    padding: 10px;
+
+   }
+   .menubarin{
+    width: 100%;
+
+   }
+   .menuicon {
+    display: block; 
+    cursor: pointer;
+  }
+   .menuicon.active {
+    display: block; 
+    cursor: pointer;
+  }
+
+   .boldermessage h2{
+    font-size: 35px;
+   }
+   .boldmessage h2{
+    font-size: 50px;
+   }
+   .mainhero{
+    flex-wrap: wrap-reverse;
+    gap: 10px;
+   }
+
+}
