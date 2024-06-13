@@ -1,16 +1,16 @@
 function HomeBody() {
   return (
     <>
-      <div className="flex flex-col gap-32 policiescard">
-        <div className="container  flex gap-10  w-[95%] p-8 align-middle rounded-lg shadow-sm shadow-black  boldercontainer">
-          <div className="flex flex-col gap-2 width_100 captioncontianer">
+      <div className="flex flex-col  gap-32 policiescard">
+        <div className="container  flex gap-10  w-[95%] p-8 align-middle rounded-lg shadow-sm shadow-black   boldercontainers">
+          <div className="flex flex-wrap">
             <h2
               className="text-4xl flex-1 font-extrabold tracking-tight"
               style={{ textAlign: "left" }}
             >
               Live Tracking
             </h2>
-            <p className="text-justify">
+            <p className="text-justify ">
               FindSafe mobile app allows you to live track your mobile device
               connected to your user account. With the app’s real-time location
               tracking feature, you can monitor the whereabouts of your device

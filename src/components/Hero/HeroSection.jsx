@@ -5,7 +5,7 @@ import { CiSaveDown1 } from "react-icons/ci";
 function HeroSection() {
   return (
     <>
-    <div className="flex mainhero justify-center align-middle w-full">
+    <div className="flex mainhero justify-center relative top-[60px] align-middle w-full">
       <div className="h-screen heroscreen max-w-screen-md justify-start p-10  flex-col align-middle ">
         <div className=" boldmessage flex flex-col gap-4">
           <h2 className="text-5xl flex-1 font-extrabold">

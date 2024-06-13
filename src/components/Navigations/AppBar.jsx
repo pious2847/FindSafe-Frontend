@@ -30,8 +30,8 @@ function AppBar() {
 
   return (
     <>
-      <div className="appBar max-h-20 shadow-sm shadow-black  w-full justify-between flex   align-middle p-5">
-        <h4 className=" text-lg font-medium">Webify Pro</h4>
+      <div className="appBar max-h-20 shadow-sm shadow-black fixed backdrop-blur-md z-[2]  w-full justify-between flex   align-middle p-5">
+        <h4 className=" text-lg font-medium">FindSafe</h4>
         <div className= {`flex justify-between mobileNav ${isMenuOpen ? 'active' : ''} gap-32`}>
           <NavigationMenu className="nav-conent flex">
             <NavigationMenuList className="nav-conent flex">
