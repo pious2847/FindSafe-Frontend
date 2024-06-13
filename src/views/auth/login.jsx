@@ -7,7 +7,6 @@ import { Button } from '@mui/base/Button';
 import TextAnimation from "@/components/animations/textanimation";
 import { Link , useNavigate} from 'react-router-dom';
 import Checkbox from '@mui/material/Checkbox';
-import showToastMessage  from "../../components/toastmsg";
 
 const StyledInput = styled(Input)(
   ({ theme }) => `
@@ -122,7 +121,7 @@ const LoginPage = () => {
   const [rememberMe, setRememberMe] = React.useState(false);
   const [errorMessage, setErrorMessage] = React.useState('');
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -153,7 +152,7 @@ const LoginPage = () => {
 
       if (response.status === 200) {
        
-        // navigate('/dashboard');
+        navigate('/dashboard');
         console.log('Login successful');
       } else {
         const errorData = await response.json();
