@@ -31,13 +31,15 @@ function AppBar() {
   return (
     <>
       <div className="appBar max-h-20 shadow-sm shadow-black fixed backdrop-blur-md z-[2]  w-full justify-between flex   align-middle p-5">
+        <Link to='/'>
         <h4 className=" text-lg font-medium">FindSafe</h4>
-        <div className= {`flex justify-between mobileNav ${isMenuOpen ? 'active' : ''} gap-32`}>
+        </Link>
+        <div className= {`flex justify-between mobileNav ${isMenuOpen ? 'active' : ''} backdrop-blur-md gap-32`}>
           <NavigationMenu className="nav-conent flex">
             <NavigationMenuList className="nav-conent flex">
-              <NavigationMenuItem className="menubarin">
-                <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
-                <NavigationMenuContent className='NavigationMenuContent'>
+              <NavigationMenuItem className="menubarin ">
+                <NavigationMenuTrigger >Getting started</NavigationMenuTrigger>
+                <NavigationMenuContent className='NavigationMenuContainer'>
                   <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr] NavigationMenuContent">
                     <li className="row-span-3">
                       <NavigationMenuLink asChild>
@@ -72,8 +74,8 @@ function AppBar() {
                     </ListItem>
                   </ul>
                 </NavigationMenuContent>
+                
               </NavigationMenuItem>
-
               <NavigationMenuItem className="menubarin">
                 <a href="/docs">
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>
@@ -99,7 +101,7 @@ function AppBar() {
           </NavigationMenu>
           <br />
           <div className="flex align-middle gap-5 ModeToggle ">
-            <ModeToggle />
+            <ModeToggle  id='modebtn' />
             <Button>
               <Link to="/login">
               Get Started - it’s Free

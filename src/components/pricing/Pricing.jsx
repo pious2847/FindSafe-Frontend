@@ -25,7 +25,7 @@ function PriceWrapper(props) {
       borderWidth="1px"
       alignSelf={{ base: 'center', lg: 'flex-start' }}
       borderColor={useColorModeValue('gray.200', 'gray.500')}
-      borderRadius={'xl'}>
+      className='rounded-2xl  shadow-sm shadow-slate-900'>
       {children}
     </Box>
   );
@@ -38,8 +38,8 @@ PriceWrapper.propTypes = {
 
 export default function ThreeTierPricing() {
   return (
-    <Box py={12} className='w-full flex justify-evenly flex-col' >
-      <VStack spacing={2} textAlign="center">
+    <Box py={12} className='w-full flex justify-evenly flex-col pricetags' >
+      <VStack spacing={2} textAlign="center" className='p-6'>
         <Heading as="h1"  className='text-4xl '>
           Plans that fit your need
         </Heading>
@@ -55,7 +55,7 @@ export default function ThreeTierPricing() {
         spacing={{ base: 4, lg: 10 }}
         className='flex gap-14 py-10 flex-wrap'
         >
-        <PriceWrapper className='border-x-0 rounded-xl overflow-hidden '>
+        <PriceWrapper className='  overflow-hidden '>
           <Box className='py-5' px={12}>
             <Text  className='font-extrabold text-2xl'>
               Free
@@ -74,7 +74,7 @@ export default function ThreeTierPricing() {
           </Box>
           <VStack
             bg={useColorModeValue('gray.50', 'gray.700')}
-            className='bg-slate-600 w-72 min-h-60 p-4  justify-between'
+            className='bg-slate-600  w-72 min-h-60 p-4 rounded-xl  justify-between '
             py={4}
             borderBottomRadius={'xl'}>
             <List spacing={3} textAlign="start" px={12} className='px-10 gap-5 flex flex-col items-start  '  >
@@ -95,7 +95,7 @@ export default function ThreeTierPricing() {
                 Color and Ui Customization.
               </ListItem>
             </List>
-            <Box w="80%" pt={7}>
+            <Box w="80%" padding={10}>
               <Button className='w-full ' colorScheme="red" variant="outline" >
                 Start trial
               </Button>
@@ -120,14 +120,14 @@ export default function ThreeTierPricing() {
             </Box>
             <Box className='py-5 px-10' px={12}>
             <Text  className='font-extrabold text-2xl'>
-            Premium
+            Freemium
             </Text>
             <HStack justifyContent="center" className='h-28'>
               <Text  className='font-extrabold text-3xl'>
                 $
               </Text>
               <Text className='font-extrabold text-5xl'>
-                579
+                10
               </Text>
               <Text className='font-extrabold text-3xl'>
                 /month
@@ -136,7 +136,7 @@ export default function ThreeTierPricing() {
           </Box>
             <VStack
               bg={useColorModeValue('gray.50', 'gray.700')}
-            className='bg-slate-600 w-72  min-h-60  p-4  justify-between'
+            className='bg-slate-600 w-72  min-h-60  p-4 rounded-xl justify-between'
               py={4}
               borderBottomRadius={'xl'}>
               <List spacing={3} textAlign="start" px={12} className='px-10 gap-5 flex flex-col items-start  '  >
@@ -157,7 +157,7 @@ export default function ThreeTierPricing() {
                 Color and Ui Customization.
               </ListItem>
             </List>
-            <Box w="80%" pt={7}>
+            <Box w="80%"  padding={10}>
               <Button className='w-full neon z-0 ' colorScheme="red" variant="outline">
                 Start trial
               </Button>
@@ -169,14 +169,14 @@ export default function ThreeTierPricing() {
         <PriceWrapper >
           <Box className='py-5' px={12}>
             <Text  className='font-extrabold text-2xl'>
-              Scale
+              Premuim
             </Text>
             <HStack justifyContent="center" className='h-28'>
               <Text  className='font-extrabold text-3xl'>
                 $
               </Text>
               <Text className='font-extrabold text-5xl'>
-                349
+                30
               </Text>
               <Text className='font-extrabold text-3xl'>
                 /month
@@ -185,7 +185,7 @@ export default function ThreeTierPricing() {
           </Box>
           <VStack
             bg={useColorModeValue('gray.50', 'gray.700')}
-            className='bg-slate-600 w-72 min-h-60  p-4  justify-between'
+            className='bg-slate-600 w-72 min-h-60  p-4 rounded-xl justify-between'
             py={4}
             borderBottomRadius={'xl'}>
             <List spacing={3} textAlign="start" px={12} className='px-10 gap-5 flex flex-col items-start  '  >
@@ -206,7 +206,7 @@ export default function ThreeTierPricing() {
                 Color and Ui Customization.
               </ListItem>
             </List>
-            <Box w="80%" pt={7}>
+            <Box w="80%"  padding={10}>
               <Button className='w-full' colorScheme="red" variant="outline">
                 Start trial
               </Button>

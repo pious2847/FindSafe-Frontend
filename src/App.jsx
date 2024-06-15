@@ -4,6 +4,7 @@ import MainPanel from "./views/Home/home";
 import LoginPage from "./views/auth/login";
 import SignupPage from "./views/auth/signup";
 import UserDashboard from "./views/Home/userDashboard";
+import PricingPage from "./views/pricing/Pricing";
 import "./App.css";
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
       <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
         <Router>
           <Routes>
+            <Route path="/pricing" element={<PricingPage />} />
             <Route path="/dashboard" element={<UserDashboard />} />
             <Route path="/signup" element={<SignupPage />} />
             <Route path="/login" element={<LoginPage />} />

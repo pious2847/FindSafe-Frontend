@@ -98,6 +98,7 @@
 @media (max-width: 768px) {
   .appBar {
     position: fixed;
+    top: 0;
     backdrop-filter: blur(2px);
     z-index: 30;
    }
@@ -114,10 +115,14 @@
     left: -500px;
     top: 0;
     z-index: 1;
-    backdrop-filter: blur(2px);
+    backdrop-filter: blur(20px);
     overflow: scroll;
     padding: 10px;
   }
+  .menubarin{
+      color: aliceblue;
+  }
+
   .mobileNav.active {
     left: 0; /* Show the mobile navigation menu when active */
   }
@@ -135,8 +140,13 @@
     /* z-index: 20; */
 
    }
+   .NavigationMenuContainer{
+    position: relative;
+    top: -180px;
+    right: 0;
+   }
    .NavigationMenuContent{
-    width: 300px;
+    width: 350px;
    }
    .navconimg{
     width: 10px;
@@ -147,8 +157,13 @@
 
    }
    .menubarin{
+    /* position: relative; */
     width: 100%;
-
+   }
+   .menubarin .NavigationMenuContainer{
+    position: absolute;
+    width: 100%;
+    top: -200px;
    }
    .menuicon {
     display: block; 
@@ -180,5 +195,12 @@
    }
    .boldercontainers{
     flex-wrap: wrap-reverse;
+   }
+   .pricetags{
+    margin-top: 140px;
+   }
+   .pricingtag{
+    position: absolute;
+    top: 2rem;
    }
 }
