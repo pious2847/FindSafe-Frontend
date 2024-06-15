@@ -47,26 +47,26 @@ function AppBar() {
                         >
                           <img src="vite.svg" alt="" className="h-20 w-20" />
                           <div className="mb-2 mt-4 text-lg font-medium">
-                            Webify Pro
+                            FindSafe
                           </div>
                           <p className="text-sm leading-tight text-muted-foreground">
-                            WebifyPro simplifies website development with an
-                            intuitive interface, customizable themes, and
+                            FindSafe simplifies security and fast development with an
+                            intuitive user interface, customizable themes, and
                             advanced SEO tools..
                           </p>
                         </a>
                       </NavigationMenuLink>
                     </li>
                     <ListItem href="/docs" title="Introduction">
-                      WebifyPro: Your gateway to effortless website creation and
+                      FindSafe: Your gateway to effortless mobile tracking and
                       management.
                     </ListItem>
                     <ListItem href="/docs/installation" title="Installation">
-                      How to install dependencies and structure your app.
+                      How to install App and set your app account.
                     </ListItem>
                     <ListItem
                       href="/docs/primitives/typography"
-                      title="Typography"
+                      title="Usage"
                     >
                       Styles for headings, paragraphs, lists...etc
                     </ListItem>
