@@ -2,7 +2,8 @@
 import AppBar from "@/components/Navigations/AppBar";
 import HeroSection from "@/components/Hero/HeroSection";
 import HomeBody from "@/components/Home/HomeBody";
-import ThreeTierPricing from "@/components/pricing/Pricing";
+import PricingCard from "@/components/pricing/pricingcard";
+import Footer from "@/components/footer/footer";
 
 function MainPanel() {
     return ( 
@@ -14,7 +15,11 @@ function MainPanel() {
         <HomeBody/>
         <br />
         <br />
-        <ThreeTierPricing/>
+        <PricingCard/>
+        <br />
+        <br />
+        <br />
+        <Footer/>
         </>
      );
 }

@@ -1,12 +1,12 @@
 import AppBar from "@/components/Navigations/AppBar";
+import Footer from "@/components/footer/footer";
 
 const AboutPage = () => {
   return (
     <>
       <AppBar />
       <br />
-      <br />
-      <div>
+      <div className="pricingtag relative top-20">
         {/* Hero Section */}
         <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
           <div className="max-w-xl sm:mx-auto lg:max-w-2xl">
@@ -269,6 +269,12 @@ const AboutPage = () => {
           </div>
         </div>
       </div>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+      <Footer/>
     </>
   );
 };

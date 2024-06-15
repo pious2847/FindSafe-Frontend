@@ -1,12 +1,12 @@
 import AppBar from "@/components/Navigations/AppBar";
+import Footer from "@/components/footer/footer";
 
 const DocumentationPage = () => {
   return (
     <>
       <AppBar />
       <br />
-      <br />
-      <div className="py-16">
+      <div className="pricingtag relative top-20 py-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-3xl font-extrabold tracking-tight  sm:text-4xl">
@@ -50,10 +50,7 @@ const DocumentationPage = () => {
                 </p>
               </div>
 
-              <h3 className="text-2xl font-bold  mb-4">
-                Features
-              </h3>
-
+                <br />
               <div className=" rounded-lg shadow-md p-6">
                 <h3 className="text-2xl font-bold  mb-4">
                   Features
@@ -114,6 +111,10 @@ const DocumentationPage = () => {
           </div>
         </div>
       </div>
+
+      <br />
+      <br />
+      <Footer/>
     </>
   );
 };

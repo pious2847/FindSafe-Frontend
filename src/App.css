@@ -200,7 +200,7 @@
     margin-top: 140px;
    }
    .pricingtag{
-    position: absolute;
+    /* position: absolute; */
     top: 2rem;
    }
 }

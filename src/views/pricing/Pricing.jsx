@@ -1,14 +1,16 @@
 
 import AppBar from "@/components/Navigations/AppBar";
-import ThreeTierPricing from "@/components/pricing/Pricing";
-       
+import PricingCard from "@/components/pricing/pricingcard";
+
+
 const PricingPage = () => {
     return (  
         <>
 
          <AppBar/>
          <div className="pricingtag relative top-20">
-        <ThreeTierPricing/>
+         <br />
+         <PricingCard/>
          </div>
         </>
     );
