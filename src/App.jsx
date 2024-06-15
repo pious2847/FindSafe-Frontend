@@ -5,6 +5,8 @@ import LoginPage from "./views/auth/login";
 import SignupPage from "./views/auth/signup";
 import UserDashboard from "./views/Home/userDashboard";
 import PricingPage from "./views/pricing/Pricing";
+import AboutPage from "./views/about/about";
+import DocumentationPage from "./views/docs/documentation";
 import "./App.css";
 
 function App() {
@@ -13,6 +15,8 @@ function App() {
       <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
         <Router>
           <Routes>
+            <Route path="/docs" element={<DocumentationPage />} />
+            <Route path="/about" element={<AboutPage />} />
             <Route path="/pricing" element={<PricingPage />} />
             <Route path="/dashboard" element={<UserDashboard />} />
             <Route path="/signup" element={<SignupPage />} />
