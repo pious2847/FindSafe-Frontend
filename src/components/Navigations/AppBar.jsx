@@ -1,9 +1,9 @@
+/* eslint-disable react/no-unknown-property */
 import * as React from "react";
 import { useState } from 'react';
 // import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { Link } from 'react-router-dom';
-
 import {
   NavigationMenu,
   NavigationMenuList,
@@ -19,15 +19,23 @@ import { cn } from "@/lib/utils";
 import { ModeToggle } from "../mode-toggle";
 import { Button } from "@/components/ui/button";
 import { CiMenuFries } from "react-icons/ci";
-import { isAuthenticated } from "@/auth/auth";
+import { isAuthenticated, handleLogout } from "@/auth/auth";
+
+import { useNavigate} from 'react-router-dom';
 
 function AppBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const onLogoutClick = () => {
+    handleLogout();
+    navigate('/login')
+
+  };
   return (
     <>
       <div className="appBar max-h-20 shadow-lg  fixed backdrop-blur-md z-[2]  w-full justify-between flex   align-middle p-5">
@@ -102,19 +110,26 @@ function AppBar() {
           <br />
           <div className="flex align-middle gap-5 ModeToggle ">
             <ModeToggle  id='modebtn' />
-            {!isAuthenticated ? 
-             <Button>
-              <Link to="/dashboard">
-              Dashboard
+            {!isAuthenticated() ? 
+              <Button>
+              <Link to="/login" >
+              Get Started - it’s Free
               </Link>   
             </Button>
             :
             <Button>
-              <Link to="/login">
-              Get Started - it’s Free
+              <Link to="/dashboard">
+              Dashboard
               </Link>   
             </Button>
+           
             }
+            <div onClick={onLogoutClick}>
+            <Button >
+              Logout
+            </Button>
+            </div >
+           
             
           </div>
         </div>
