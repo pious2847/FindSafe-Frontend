@@ -149,9 +149,13 @@ const LoginPage = () => {
         },
         body: JSON.stringify({ email, password, rememberMe }),
       });
-
+  
       if (response.status === 200) {
-       
+        const data = await response.json();
+        // Store the session token in localStorage or sessionStorage
+        localStorage.setItem('sessionToken', data.sessionToken);
+        localStorage.setItem('userId', data.userId);
+        // Navigate to dashboard
         navigate('/dashboard');
         console.log('Login successful');
       } else {

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const PricingCard = ({ plan, isPopular, features, price }) => {
   return (
-    <div className="w-full md:w-96 p-6 rounded-lg shadow-md shadow-black  relative">
+    <div className="w-full md:w-96 p-6 rounded-lg shadow-md  relative">
       {isPopular && (
         <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-red-600 text-white px-4 py-1 rounded-full text-sm font-semibold">
           Most Popular

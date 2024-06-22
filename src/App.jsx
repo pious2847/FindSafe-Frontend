@@ -8,6 +8,8 @@ import UserDashboard from "./views/Home/userDashboard";
 import PricingPage from "./views/pricing/Pricing";
 import AboutPage from "./views/about/about";
 import DocumentationPage from "./views/docs/documentation";
+import ProtectedRoute from "./auth/validator";
+
 import "./App.css";
 
 function App() {
@@ -20,7 +22,11 @@ function App() {
             <Route path="/docs" element={<DocumentationPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/pricing" element={<PricingPage />} />
-            <Route path="/dashboard" element={<UserDashboard />} />
+            <Route path="/dashboard" element={
+              <ProtectedRoute>
+                <UserDashboard />
+              </ProtectedRoute>
+              } />
             <Route path="/signup" element={<SignupPage />} />
             <Route path="/login" element={<LoginPage />} />
           </Routes>

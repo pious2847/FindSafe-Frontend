@@ -19,7 +19,7 @@ import { cn } from "@/lib/utils";
 import { ModeToggle } from "../mode-toggle";
 import { Button } from "@/components/ui/button";
 import { CiMenuFries } from "react-icons/ci";
-
+import { isAuthenticated } from "@/auth/auth";
 
 function AppBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -30,7 +30,7 @@ function AppBar() {
 
   return (
     <>
-      <div className="appBar max-h-20 shadow-sm shadow-black fixed backdrop-blur-md z-[2]  w-full justify-between flex   align-middle p-5">
+      <div className="appBar max-h-20 shadow-lg  fixed backdrop-blur-md z-[2]  w-full justify-between flex   align-middle p-5">
         <Link to='/'>
         <h4 className=" text-lg font-medium">FindSafe</h4>
         </Link>
@@ -102,12 +102,20 @@ function AppBar() {
           <br />
           <div className="flex align-middle gap-5 ModeToggle ">
             <ModeToggle  id='modebtn' />
+            {!isAuthenticated ? 
+             <Button>
+              <Link to="/dashboard">
+              Dashboard
+              </Link>   
+            </Button>
+            :
             <Button>
               <Link to="/login">
               Get Started - it’s Free
-              </Link>
-              
+              </Link>   
             </Button>
+            }
+            
           </div>
         </div>
         <div className={`menuicon   ${isMenuOpen ? 'active' : ''}`} onClick={toggleMenu}>
