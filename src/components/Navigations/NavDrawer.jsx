@@ -13,12 +13,14 @@ import {
 import UserDashboard from "@/views/Home/userDashboard";
 import Footer from "../footer/footer";
 import DropdownMenus from './dropdownmenu'
+import { getUser } from "@/auth/auth";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [content, setContent] = useState(UserDashboard());
 
   const toggleSidebar = () => setIsOpen(!isOpen);
+  const {user} = getUser();
 
   const menuItems = [
     { icon: HiHome, text: "Dashboard", section: "Home", page: UserDashboard() },
@@ -88,7 +90,8 @@ const Sidebar = () => {
               alt=""
               className="h-[25px] w-[25px] rounded-3xl shadow-xl"
             />
-            <h3 className="text-sm font-thin">Abdul Hafis Mohammed</h3>
+            {user ? <h3 className="text-sm font-thin">{user.name}</h3> : null}
+            {/* <h3 className="text-sm font-thin">Abdul Hafis Mohammed</h3> */}
             </div>
             
             <DropdownMenus/>

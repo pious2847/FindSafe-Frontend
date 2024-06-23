@@ -23,4 +23,5 @@ export const handleLogout = () => {
   console.log('logout');
     localStorage.removeItem('sessionToken');
     localStorage.removeItem('userId');
+    localStorage.removeItem('token');
   };
