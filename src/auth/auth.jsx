@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-
+import { jwtDecode } from "jwt-decode";
 
 export const isAuthenticated = () => {
     const sessionToken = localStorage.getItem('sessionToken');
@@ -14,7 +14,8 @@ export const isAuthenticated = () => {
     return localStorage.getItem('userId');
   };
   export const getUser = () => {
-    const user = localStorage.getItem('user');
+    const jwt = localStorage.getItem('token');
+    const user = jwtDecode(jwt)
     return user
   };
 

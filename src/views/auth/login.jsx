@@ -155,6 +155,7 @@ const LoginPage = () => {
         // Store the session token in localStorage or sessionStorage
         localStorage.setItem('sessionToken', data.sessionToken);
         localStorage.setItem('userId', data.userId);
+        localStorage.setItem('token', data.token);
         // Navigate to dashboard
         navigate('/dashboard');
         console.log('Login successful');
