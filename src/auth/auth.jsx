@@ -13,6 +13,10 @@ export const isAuthenticated = () => {
   export const getUserId = () => {
     return localStorage.getItem('userId');
   };
+  export const getUser = () => {
+    const user = localStorage.getItem('user');
+    return user
+  };
 
 export const handleLogout = () => {
   console.log('logout');
