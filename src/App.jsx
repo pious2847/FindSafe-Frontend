@@ -4,11 +4,11 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import MainPanel from "./views/Home/home";
 import LoginPage from "./views/auth/login";
 import SignupPage from "./views/auth/signup";
-import UserDashboard from "./views/Home/userDashboard";
 import PricingPage from "./views/pricing/Pricing";
 import AboutPage from "./views/about/about";
 import DocumentationPage from "./views/docs/documentation";
 import ProtectedRoute from "./auth/validator";
+import DashboardLayouts from "./views/layouts/dashboardlayout";
 
 import "./App.css";
 
@@ -24,7 +24,7 @@ function App() {
             <Route path="/pricing" element={<PricingPage />} />
             <Route path="/dashboard" element={
               <ProtectedRoute>
-                <UserDashboard />
+                <DashboardLayouts />
               </ProtectedRoute>
               } />
             <Route path="/signup" element={<SignupPage />} />

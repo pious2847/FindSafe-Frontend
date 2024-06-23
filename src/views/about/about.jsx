@@ -53,9 +53,8 @@ const AboutPage = () => {
                         height="24"
                       />
                     </svg>
-                    <span className="relative">About </span>
+                    <span className="relative">About -  FindSafe </span>
                   </span>
-                     FindSafe
                 </h2>
                 <p className="text-base text-gray-700 md:text-lg">
                   Discover the story behind FindSafe, a cutting-edge mobile

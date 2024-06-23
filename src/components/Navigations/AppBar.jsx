@@ -42,7 +42,7 @@ function AppBar() {
         <Link to='/'>
         <h4 className=" text-lg font-medium">FindSafe</h4>
         </Link>
-        <div className= {`flex justify-between mobileNav ${isMenuOpen ? 'active' : ''} backdrop-blur-md gap-32`}>
+        <div className= {`flex justify-between mobileNav ${isMenuOpen ? 'active' : ''} backdrop-blur-md  gap-32`}>
           <NavigationMenu className="nav-conent flex">
             <NavigationMenuList className="nav-conent flex">
               <NavigationMenuItem className="menubarin ">
@@ -117,19 +117,22 @@ function AppBar() {
               </Link>   
             </Button>
             :
-            <Button>
-              <Link to="/dashboard">
+            <div className="flex align-middle gap-5">
+               <Button>
+              <Link to="/dashboard" className="sm: p-2 ">
               Dashboard
               </Link>   
             </Button>
-           
-            }
             <div onClick={onLogoutClick}>
-            <Button >
+            <Button variant='danger' className="logoutbtn">
               Logout
             </Button>
             </div >
+            </div>
            
+           
+            }
+                   
             
           </div>
         </div>

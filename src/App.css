@@ -79,6 +79,9 @@
   display: none; 
   cursor: pointer;
 }
+.logoutbtn{
+  background-color: #b91c1c;
+}
 @keyframes blink {
   0% {
     opacity: 1;
@@ -108,8 +111,8 @@
    }
   .mobileNav {
     position: fixed;
-    height: 100vh;
     flex-direction: column;
+    height: 100vh;
     width: 80%;
     background: #020817;
     left: -500px;

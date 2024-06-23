@@ -14,6 +14,7 @@
     "@chakra-ui/react": "^2.8.2",
     "@fluentui/react": "^8.118.7",
     "@fluentui/react-components": "^9.54.1",
+    "@fluentui/react-nav-preview": "^0.4.1",
     "@mui/base": "^5.0.0-beta.40",
     "@mui/material": "^5.15.20",
     "@mui/system": "^5.15.20",
