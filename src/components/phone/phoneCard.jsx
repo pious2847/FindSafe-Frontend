@@ -31,7 +31,7 @@ const PhoneCards = () => {
       </div>
       <div {...getCollapseProps()}>
         <div className="content p-4 flex flex-col gap-1">
-          <Button className="devicetriggersbtn flex gap-3 text-left justify-start">
+          <Button className="devicetriggersbtn flex gap-3 text-left justify-start " >
           <BsSoundwave/> 
           <p className="text-sm">Play Alarm</p>
           </Button>
