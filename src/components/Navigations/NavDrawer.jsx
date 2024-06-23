@@ -37,8 +37,8 @@ const Sidebar = () => {
   return (
     <div className="flex overflow-hidden relative h-screen">
       <div
-        className={` shadow-lg text-white transition-all sticky duration-300 ${
-          isOpen ? "w-[350px]" : "w-16"
+        className={` sideNav shadow-sm shadow-slate-700 z-10 transition-all  duration-300 ${
+          isOpen ? "w-[350px] md: cancelSideNav " : "w-16"
         } flex flex-col`}
       >
         <div className="flex justify-between items-center p-4  ">
@@ -79,15 +79,18 @@ const Sidebar = () => {
         </nav>
       </div>
       <div className="flex flex-col overflow-auto p-5 w-[100%] ">
-        <div className="w-[100%] h-[60px]  bg-slate-900 align-middle items-center rounded-xl px-4 top-0 backdrop-blur-3xl flex justify-between shadow-lg p-2">
-          <h3 className="text-xl font-extrabold">FindSafe</h3>
-          <div className="flex items-center gap-2">
+        <div className="w-[100%] h-[60px] shadow-sm  shadow-slate-700 innerNavBar  align-middle items-center rounded-xl px-4 top-0  flex justify-between  p-2">
+          <h3 className="text-xl font-extrabold innernavicon">FindSafe</h3>
+          <div className="flex items-center gap-2 ">
+            <div className="innerNavUser flex items-center gap-2 ">
             <img
               src="herosection.png"
               alt=""
               className="h-[25px] w-[25px] rounded-3xl shadow-xl"
             />
             <h3 className="text-sm font-thin">Abdul Hafis Mohammed</h3>
+            </div>
+            
             <DropdownMenus/>
           </div>
         </div>

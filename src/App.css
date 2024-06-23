@@ -49,7 +49,15 @@
   width: 45%;
   height: auto;
 }
-
+.sideNav{
+  position: sticky;
+}
+.mapcard{
+  width: 70%;
+}
+.devicecard{
+  width: 30%;
+}
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);
@@ -205,5 +213,42 @@
    .pricingtag{
     /* position: absolute; */
     top: 2rem;
+   }
+   .dashboardContainer{
+    flex-wrap: wrap;
+   }
+   .mapcard{
+    width: 100%;
+   }
+   .devicecard{
+    width: 100%;
+   }
+   .innerNavBar{
+    position: sticky !important;
+    z-index: 3;
+    backdrop-filter: blur(60px) !important;
+   }
+   .innernavicon{
+    padding-left: 40px;
+   }
+   .innerNavUser{
+    display: none !important;
+   }
+   .sideNav{
+    position: fixed;
+    height: 40px;
+    overflow: hidden;
+    box-shadow: none !important;
+    left: 14px;
+    top: 22px;
+    backdrop-filter: blur(20px);
+   }
+   .cancelSideNav{
+    height: 100%;
+    backdrop-filter: blur(20px) !important;
+    overflow: auto;
+    /* box-shadow: -4px 0 6px -1px rgba(0, 0, 0, 0.507) !important; */
+    left: 0;
+    top: 0;
    }
 }

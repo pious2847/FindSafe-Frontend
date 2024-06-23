@@ -1,18 +1,17 @@
-/* eslint-disable react/no-children-prop */
+import GoogleMaps from "@/components/Maps/GoogleMaps";
+import PhoneCards from "@/components/phone/phoneCard";
 
 const UserDashboard = () => {
   return (
     <>
-      <div className="flex gap-5 w-[100%]">
-        <div className="card shadow-lg w-[70%] rounded-md ">
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic quae
-            minima temporibus dolorem, error sint maiores vero explicabo
-            voluptatum ducimus!
-          </p>
+      <div className="flex gap-5 w-[100%] dashboardContainer">
+        <div className="mapcard overflow-hidden  shadow-sm shadow-slate-700 h-[600px] p-0 rounded-md ">
+         <GoogleMaps />
         </div>
-        <div className="card shadow-lg w-[30%] rounded-md ">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam, vero.</p>
+        <div className="flex flex-col gap-4 devicecard shadow-sm shadow-slate-700 rounded-md p-2 ">
+           <PhoneCards/>
+           <PhoneCards/>
+           <PhoneCards/>
         </div>
       </div>
     </>
