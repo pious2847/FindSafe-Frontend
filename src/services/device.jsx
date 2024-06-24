@@ -1,19 +1,23 @@
-/* eslint-disable no-unused-vars */
 
 
-export const fetchUserDevices = async (userId)=>{
-    try{
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/mobiledevices/${userId}`, {
-            method: 'GET',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-        })
-        if(response.statusCode === 200){
-            return response.data['mobileDevices'];
-        }
-        else return alert('AnExpected Error Occured')
-    }catch (error){
-        alert(error.message)
+export const fetchUserDevices = async (userId) => {
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/mobiledevices/${userId}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      
+      if (response.status === 200) {
+        const data = await response.json();
+        console.log(data.mobileDevices);
+        return data.mobileDevices;
+      } else {
+        throw new Error('Unexpected Error Occurred');
+      }
+    } catch (error) {
+      console.error(error);
+      alert(error.message);
     }
-}
+  }

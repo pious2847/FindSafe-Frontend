@@ -1,11 +1,24 @@
+import { useState, useEffect } from 'react';
 import GoogleMaps from "@/components/Maps/GoogleMaps";
 import PhoneCards from "@/components/phone/phoneCard";
 import { fetchUserDevices } from "@/services/device";
 import { getUserId } from "@/auth/auth";
 
 const UserDashboard = () => {
-  const userId = getUserId()
-  const Phones = fetchUserDevices(userId)
+  const [phones, setPhones] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const userId = getUserId();
+      const fetchedPhones = await fetchUserDevices(userId);
+      console.log('Fetched phones:', fetchedPhones); // Log the fetched data
+      console.log('Fetched phones length:', fetchedPhones,length()); // Log the fetched data
+      setPhones(fetchedPhones || []); // Ensure we always set an array
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <>
       <div className="flex gap-5 w-[100%] dashboardContainer">
@@ -13,10 +26,13 @@ const UserDashboard = () => {
          <GoogleMaps />
         </div>
         <div className="flex flex-col gap-4 devicecard shadow-sm shadow-slate-700 rounded-md h-[600px] p-2 overflow-auto">
-           {Phones.map((phone)=> 
-           <PhoneCards key={phone._id} Phone={phone}/>
+           {phones.length > 0 ? (
+            phones.map((phone) => (
+              <PhoneCards key={phone._id} Phone={phone} />
+            ))
+          ) : (
+            <p>No phones found</p>
           )}
-          
         </div>
       </div>
     </>

@@ -12,6 +12,11 @@ const PhoneCards = ({Phone}) => {
   function handleOnClick() {
     setExpanded(!isExpanded);
   }
+
+    // Add this console log to verify the props
+    console.log('Phone prop:', Phone);
+
+    
   return (
     <div className="collapsible">
       <div
