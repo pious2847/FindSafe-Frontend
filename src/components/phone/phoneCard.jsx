@@ -6,17 +6,16 @@ import { GrSecure } from "react-icons/gr";
 import { IoMapOutline } from "react-icons/io5";
 import { Button } from "../ui/button";
 
-const PhoneCards = ({Phone}) => {
+const PhoneCards = (Phone) => {
   const [isExpanded, setExpanded] = useState(false);
   const { getCollapseProps, getToggleProps } = useCollapse({ isExpanded });
   function handleOnClick() {
     setExpanded(!isExpanded);
   }
 
-    // Add this console log to verify the props
-    console.log('Phone prop:', Phone);
+  console.log('Phone prop in PhoneCards:', Phone); // Add this log
 
-    
+
   return (
     <div className="collapsible">
       <div
