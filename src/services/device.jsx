@@ -10,8 +10,7 @@ export const fetchUserDevices = async (userId) => {
       });
       
       if (response.status === 200) {
-        const data = await response.body.json();
-        console.log(data.mobileDevices);
+        const data = await response.json();
         return data.mobileDevices;
       } else {
         throw new Error('Unexpected Error Occurred');

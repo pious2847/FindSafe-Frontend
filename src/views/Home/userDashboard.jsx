@@ -12,21 +12,23 @@ const UserDashboard = () => {
       const userId = getUserId();
       const fetchedPhones = await fetchUserDevices(userId);
       console.log('Fetched phones:', fetchedPhones); // Log the fetched data
-      console.log('Fetched phones length:', fetchedPhones,length()); // Log the fetched data
-      setPhones(fetchedPhones || []); // Ensure we always set an array
+      setPhones(fetchedPhones);
     };
 
     fetchData();
-  }, []);
+  }, []); 
+
+ 
+  
 
   return (
     <>
       <div className="flex gap-5 w-[100%] dashboardContainer">
-        <div className="mapcard overflow-hidden  shadow-sm shadow-slate-700 h-[600px] p-0 rounded-md ">
-         <GoogleMaps />
+        <div className="mapcard overflow-hidden shadow-sm shadow-slate-700 h-[600px] p-0 rounded-md">
+          <GoogleMaps />
         </div>
         <div className="flex flex-col gap-4 devicecard shadow-sm shadow-slate-700 rounded-md h-[600px] p-2 overflow-auto">
-           {phones.length > 0 ? (
+          {phones && phones.length > 0 ? (
             phones.map((phone) => (
               <PhoneCards key={phone._id} Phone={phone} />
             ))
