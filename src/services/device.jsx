@@ -10,7 +10,7 @@ export const fetchUserDevices = async (userId) => {
       });
       
       if (response.status === 200) {
-        const data = await response.json();
+        const data = await response.body.json();
         console.log(data.mobileDevices);
         return data.mobileDevices;
       } else {
