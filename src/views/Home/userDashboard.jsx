@@ -11,13 +11,13 @@ const UserDashboard = () => {
     const fetchData = async () => {
       const userId = getUserId();
       const fetchedPhones = await fetchUserDevices(userId);
-      console.log('Fetched phones:', fetchedPhones); // Log the fetched data
       setPhones(fetchedPhones);
     };
 
     fetchData();
   }, []); 
 
+  console.log('Fetched phones:', phones); // Log the fetched data
  
   
 
