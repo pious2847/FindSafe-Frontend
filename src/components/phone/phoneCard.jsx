@@ -6,15 +6,15 @@ import { GrSecure } from "react-icons/gr";
 import { IoMapOutline } from "react-icons/io5";
 import { Button } from "../ui/button";
 
-const PhoneCards = (Phone) => {
+const PhoneCards = ({ Phone }) => {
   const [isExpanded, setExpanded] = useState(false);
   const { getCollapseProps, getToggleProps } = useCollapse({ isExpanded });
+  
   function handleOnClick() {
     setExpanded(!isExpanded);
   }
 
   console.log('Phone prop in PhoneCards:', Phone); // Add this log
-
 
   return (
     <div className="collapsible">
@@ -22,7 +22,7 @@ const PhoneCards = (Phone) => {
         className="header shadow-sm shadow-slate-400 rounded-md"
         {...getToggleProps({ onClick: handleOnClick })}
       >
-        <div className="flex gap-3 w-[100%] p-2 ">
+        <div className="flex gap-3 w-[100%] p-2">
           <img
             src={Phone.image}
             alt=""
@@ -36,15 +36,14 @@ const PhoneCards = (Phone) => {
       </div>
       <div {...getCollapseProps()}>
         <div className="content p-4 flex flex-col gap-1">
-          <Button className="devicetriggersbtn flex gap-3 text-left justify-start " >
-          <BsSoundwave/> 
-          <p className="text-sm">Play Alarm</p>
+          <Button className="devicetriggersbtn flex gap-3 text-left justify-start">
+            <BsSoundwave />
+            <p className="text-sm">Play Alarm</p>
           </Button>
           <Button className="devicetriggersbtn flex gap-3 text-left justify-start">
             <GrSecure />
             <p className="text-sm">Secure Device</p>
           </Button>
-
           <Button className="devicetriggersbtn flex gap-3 text-left justify-start">
             <IoMapOutline />
             <p className="text-sm">Locate Device</p>

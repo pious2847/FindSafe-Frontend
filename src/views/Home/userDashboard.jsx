@@ -6,20 +6,28 @@ import { getUserId } from "@/auth/auth";
 
 const UserDashboard = () => {
   const [phones, setPhones] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       const userId = getUserId();
-      const fetchedPhones = await fetchUserDevices(userId);
-      console.log('Fetched phones:', fetchedPhones); // Log the fetched data
-      setPhones(fetchedPhones);
+      try {
+        const fetchedPhones = await fetchUserDevices(userId);
+        console.log('Fetched phones:', fetchedPhones); // Log the fetched data
+        setPhones(fetchedPhones);
+      } catch (error) {
+        console.error('Error fetching phones:', error);
+      } finally {
+        setLoading(false); // Set loading to false after fetching is done
+      }
     };
 
     fetchData();
-  }, []); 
+  }, []);
 
- 
-  
+  if (loading) {
+    return <p>Loading...</p>; // Display a loading message while data is being fetched
+  }
 
   return (
     <>
