@@ -1,3 +1,4 @@
+import axios from 'axios';
 
 
 export const fetchUserDevices = async (userId) => {
@@ -7,12 +8,7 @@ export const fetchUserDevices = async (userId) => {
       throw new Error('API URL is not defined');
     }
 
-    const response = await fetch(`${apiUrl}/mobiledevices/${userId}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
+    const response = await axios.get(`${apiUrl}/mobiledevices/${userId}`);
 
     if (!response.ok) {
       throw new Error(`Unexpected Error: ${response.statusText}`);
