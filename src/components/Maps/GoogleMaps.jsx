@@ -4,9 +4,9 @@ import { APIProvider,  Map, AdvancedMarker, Pin, InfoWindow} from "@vis.gl/react
 const GoogleMaps = () => {
     const position = {lat: 0, lng: 0};
     return ( 
-        <APIProvider apiKey='AIzaSyDOC1ilsKxlbVsYfPgO__Xy26LTJGA8Eaw'>
+        <APIProvider apiKey='AIzaSyBU7cuBHlqgsfW_wD2XrDgdQYzmdnm-_CM'>
             <div className="h-[100%] w-[100%]">
-                <Map zoom={50} tilt={15.0} center={position}>
+                <Map zoom={50}  center={position}>
 
                 </Map>
             </div>

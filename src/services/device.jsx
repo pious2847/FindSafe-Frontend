@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-
 export const fetchUserDevices = async (userId) => {
   try {
     const apiUrl = import.meta.env.VITE_API_URL;
