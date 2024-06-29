@@ -10,7 +10,7 @@ const UserDashboard = () => {
           <GoogleMaps />
         </div>
         <div className="flex flex-col gap-4 devicecard shadow-sm shadow-slate-700 rounded-md h-[600px] p-2 overflow-auto">
-              <PhoneCard />
+          <PhoneCard />
         </div>
       </div>
       <br/>
