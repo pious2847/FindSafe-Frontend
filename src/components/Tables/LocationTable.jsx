@@ -54,9 +54,9 @@ import {
   
     return (
       <div className="flex flex-col w-full gap-4">
-        <div className="w-1/2">
+        <div >
           <Select onValueChange={handleDeviceSelect}>
-            <SelectTrigger className="w-[60%]">
+            <SelectTrigger className="w-[40%] ">
               <SelectValue placeholder="Select a device" />
             </SelectTrigger>
             <SelectContent>
