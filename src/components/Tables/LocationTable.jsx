@@ -53,10 +53,10 @@ import {
     const totalPages = Math.ceil(locations.length / locationsPerPage);
   
     return (
-      <div className="flex flex-col w-full gap-2">
+      <div className="flex flex-col w-full gap-4">
         <div className="w-1/2">
           <Select onValueChange={handleDeviceSelect}>
-            <SelectTrigger className="w-full">
+            <SelectTrigger className="w-[60%]">
               <SelectValue placeholder="Select a device" />
             </SelectTrigger>
             <SelectContent>
@@ -81,9 +81,9 @@ import {
             <TableHeader>
               <TableRow>
                 <TableHead className="w-1/6">S/N</TableHead>
-                <TableHead className="w-1/4">Longitude</TableHead>
-                <TableHead className="w-1/4">Latitude</TableHead>
-                <TableHead className="w-1/3">Timestamp</TableHead>
+                <TableHead className="w-1/3">Longitude</TableHead>
+                <TableHead className="w-1/3">Latitude</TableHead>
+                <TableHead className="w-1/4">Timestamp</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
