@@ -48,15 +48,15 @@ const PhoneCard = () => {
             </AccordionTrigger>
           <AccordionContent>
           <div className="content p-4 flex flex-col gap-1">
-            <Button className="devicetriggersbtn flex gap-3 text-left justify-start">
+            <Button className="devicetriggersbtn flex gap-3 text-left justify-start" variant="link">
               <BsSoundwave />
               <p className="text-sm">Play Alarm</p>
             </Button>
-            <Button className="devicetriggersbtn flex gap-3 text-left justify-start">
+            <Button className="devicetriggersbtn flex gap-3 text-left justify-start" variant="link">
               <GrSecure />
               <p className="text-sm">Secure Device</p>
             </Button>
-            <Button className="devicetriggersbtn flex gap-3 text-left justify-start">
+            <Button className="devicetriggersbtn flex gap-3 text-left justify-start" variant="link">
               <IoMapOutline />
               <p className="text-sm">Locate Device</p>
             </Button>

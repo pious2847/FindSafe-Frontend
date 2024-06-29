@@ -1,15 +1,8 @@
 import React, { useState } from "react";
 import {
-  HiMenu,
   HiX,
-  HiHome,
-  HiSpeakerphone,
-  HiLightBulb,
-  HiSearch,
-  HiClipboardCheck,
-  HiChartBar,
-  HiDocumentReport,
 } from "react-icons/hi";
+import { CiMenuFries,CiHome,CiUser,CiMobile1,CiMap,CiSettings } from "react-icons/ci";
 import UserDashboard from "@/views/Home/userDashboard";
 import SettingsPage from "@/views/settings/settings";
 import Footer from "../footer/footer";
@@ -24,33 +17,22 @@ const Sidebar = () => {
   const { user } = getUser();
 
   const menuItems = [
-    { icon: HiHome, text: "Dashboard", section: "Home", page: UserDashboard() },
+    { icon: CiHome, text: "Dashboard", section: "Home", page: UserDashboard() },
     {
-      icon: HiSpeakerphone,
-      text: "Announcements",
+      icon: CiUser,
+      text: "Profile",
       section: "Home",
       page: UserDashboard(),
     },
     {
-      icon: HiLightBulb,
-      text: "Employee Spotlight",
+      icon: CiMobile1,
+      text: "Devices",
       section: "Home",
       page: UserDashboard(),
     },
-    {
-      icon: HiSearch,
-      text: "Profile Search",
-      section: "Home",
-      page: UserDashboard(),
-    },
-    {
-      icon: HiClipboardCheck,
-      text: "Performance Reviews",
-      section: "Home",
-      page: UserDashboard(),
-    },
-    { icon: HiChartBar, text: "Workforce Data", section: "Analytics" },
-    { icon: HiDocumentReport, text: "Settings", section: "Settings" , page: SettingsPage(),},
+
+    { icon: CiMap, text: "Location Data", section: "Analytics" },
+    { icon: CiSettings, text: "Settings", section: "Settings" , page: SettingsPage(),},
   ];
 
   const handleNavItemClick = (item) => {
@@ -67,7 +49,7 @@ const Sidebar = () => {
         <div className="flex justify-between items-center p-4  ">
           {isOpen && <span className="font-bold text-xl ">Menu</span>}
           <button onClick={toggleSidebar} className="text-2xl ">
-            {isOpen ? <HiX /> : <HiMenu />}
+            {isOpen ? <HiX /> : <CiMenuFries />}
           </button>
         </div>
         <nav className="flex-grow">

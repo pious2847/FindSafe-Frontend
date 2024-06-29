@@ -17,13 +17,23 @@ import {
     DropdownMenuShortcut,
     DropdownMenuTrigger,
   } from "@/components/ui/dropdown-menu"
-  import { HiAdjustmentsHorizontal } from "react-icons/hi2";
+  // import { HiAdjustmentsHorizontal } from "react-icons/hi2";
+  import { CiMenuKebab } from "react-icons/ci";
+  import { handleLogout } from "@/auth/auth";
+  import { useNavigate} from 'react-router-dom';
 
 export default function DropdownMenus() {
+  const navigate = useNavigate();
+
+  const onLogoutClick = () => {
+    handleLogout();
+    navigate('/login')
+
+  };
     return (
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="outline" className='outline-none border-none hover: bg-transparent'><HiAdjustmentsHorizontal className="size-6"/></Button>
+          <Button variant="outline" className='outline-none border-none hover: bg-transparent' ><CiMenuKebab className="size-6"/></Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-56">
           <DropdownMenuLabel>My Account</DropdownMenuLabel>
@@ -52,7 +62,7 @@ export default function DropdownMenus() {
               <span>Settings</span>
               <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
             </DropdownMenuItem>
-          <DropdownMenuItem>
+          <DropdownMenuItem onClick={onLogoutClick}>
             <LogOut className="mr-2 h-4 w-4" />
             <span>Log out</span>
             <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
