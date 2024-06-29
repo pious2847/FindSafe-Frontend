@@ -5,9 +5,11 @@ import {
 import { CiMenuFries,CiHome,CiUser,CiMobile1,CiMap,CiSettings } from "react-icons/ci";
 import UserDashboard from "@/views/Home/userDashboard";
 import SettingsPage from "@/views/settings/settings";
+import LocationsDataPage from "@/views/Locations/LocationsPage";
 import Footer from "../footer/footer";
 import DropdownMenus from "./dropdownmenu";
 import { getUser } from "@/auth/auth";
+
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,7 +33,7 @@ const Sidebar = () => {
       page: UserDashboard(),
     },
 
-    { icon: CiMap, text: "Location Data", section: "Analytics" },
+    { icon: CiMap, text: "Location Data", section: "Analytics", page: LocationsDataPage() },
     { icon: CiSettings, text: "Settings", section: "Settings" , page: SettingsPage(),},
   ];
 

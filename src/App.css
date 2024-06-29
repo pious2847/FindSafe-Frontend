@@ -226,7 +226,9 @@
    .innerNavBar{
     position: sticky !important;
     z-index: 3;
-    backdrop-filter: blur(60px) !important;
+    backdrop-filter: blur(30px);
+    background-color: transparent;
+    box-shadow: none !important;
    }
    .innernavicon{
     padding-left: 40px;
