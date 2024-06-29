@@ -5,12 +5,10 @@ import { styled } from "@mui/system";
 import clsx from "clsx";
 import { Button } from '@mui/base/Button';
 import TextAnimation from "@/components/animations/textanimation";
-import { Link , useNavigate} from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Checkbox from '@mui/material/Checkbox';
 
-const StyledInput = styled(Input)(
-  ({ theme }) => `
-  
+const StyledInput = styled(Input)(({ theme }) => `
   .${inputClasses.input} {
     width: 100%;
     font-family: 'IBM Plex Sans', sans-serif;
@@ -34,8 +32,7 @@ const StyledInput = styled(Input)(
       box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[600] : blue[200]};
     }
   }
-`,
-);
+`);
 
 const Label = styled(({ children, className }) => {
   const formControlContext = useFormControlContext();
@@ -120,6 +117,7 @@ const LoginPage = () => {
   const [password, setPassword] = React.useState('');
   const [rememberMe, setRememberMe] = React.useState(false);
   const [errorMessage, setErrorMessage] = React.useState('');
+  const [loading, setLoading] = React.useState(false);
 
   const navigate = useNavigate();
 
@@ -141,6 +139,7 @@ const LoginPage = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setLoading(true);
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/login`, {
         method: 'POST',
@@ -152,11 +151,9 @@ const LoginPage = () => {
   
       if (response.status === 200) {
         const data = await response.json();
-        // Store the session token in localStorage or sessionStorage
         localStorage.setItem('sessionToken', data.sessionToken);
         localStorage.setItem('userId', data.userId);
         localStorage.setItem('token', data.token);
-        // Navigate to dashboard
         navigate('/dashboard');
         console.log('Login successful');
       } else {
@@ -166,17 +163,18 @@ const LoginPage = () => {
     } catch (error) {
       console.log(error);
       setErrorMessage('An error occurred during login');
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div className="w-[100vw] h-[100vh] flex justify-center flex-col items-center">
       <br />
-
       <br />
       <TextAnimation />
       <br />
-      <div className="formContainer max-w-md w-full  rounded-lg shadow-sm  shadow-black p-8">
+      <div className="formContainer max-w-md w-full rounded-lg shadow-sm shadow-black p-8">
         <div className="flex flex-col gap-6">
           {errorMessage && (
             <div className="flex justify-between items-center bg-red-500 text-white p-2 rounded">
@@ -191,6 +189,7 @@ const LoginPage = () => {
               placeholder="Enter your email here"
               value={email}
               onChange={handleEmailChange}
+              disabled={loading}
             />
             <HelperText />
           </FormControl>
@@ -201,33 +200,35 @@ const LoginPage = () => {
               placeholder="Enter your password here"
               value={password}
               onChange={handlePasswordChange}
+              disabled={loading}
             />
             <HelperText />
           </FormControl>
           <div className="flex justify-between">
             <div className="flex items-center">
               <Checkbox
-              defaultChecked
                 checked={rememberMe}
                 onChange={handleRememberMeChange}
                 inputProps={{ 'aria-label': 'Remember Me' }}
+                disabled={loading}
               />
-              <span >Remember Me</span>
+              <span>Remember Me</span>
             </div>
             <Link to="/forgot-password">
-              <p >Forgot Password?</p>
+              <p>Forgot Password?</p>
             </Link>
           </div>
           <Button
             variant="contained"
             className="w-[100%] bg-slate-900 p-2 rounded-md"
             onClick={handleSubmit}
+            disabled={loading}
           >
-            Login
+            {loading ? 'Loading...' : 'Login'}
           </Button>
           <br />
           <hr />
-          <p>Don’t have an account?  <Link to='/signup'>Sign Up</Link></p>
+          <p>Don’t have an account? <Link to='/signup'>Sign Up</Link></p>
         </div>
       </div>
     </div>

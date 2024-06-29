@@ -119,6 +119,7 @@ const SignUpPage = () => {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [errorMessage, setErrorMessage] = React.useState('');
+  const [loading, setLoading] = React.useState(false);
 
   const navigate = useNavigate();
 
@@ -141,6 +142,7 @@ const SignUpPage = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setLoading(true);
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/signup`, {
         method: 'POST',
@@ -160,7 +162,9 @@ const SignUpPage = () => {
     } catch (error) {
       console.log(error);
       setErrorMessage('An error occurred during login');
-    }
+    }finally {
+    setLoading(false);
+  }
   };
 
   return (
@@ -184,6 +188,7 @@ const SignUpPage = () => {
               placeholder="Enter your username here"
               value={username}
               onChange={handleUsernameChange}
+              disabled={loading}
             />
             <HelperText />
           </FormControl>
@@ -193,6 +198,7 @@ const SignUpPage = () => {
               placeholder="Enter your email here"
               value={email}
               onChange={handleEmailChange}
+              disabled={loading}
             />
             <HelperText />
           </FormControl>
@@ -203,6 +209,7 @@ const SignUpPage = () => {
               placeholder="Enter your password here"
               value={password}
               onChange={handlePasswordChange}
+              disabled={loading}
             />
             <HelperText />
           </FormControl>
@@ -211,8 +218,9 @@ const SignUpPage = () => {
             variant="contained"
             className="w-[100%] bg-slate-900 p-2 rounded-md"
             onClick={handleSubmit}
+            disabled={loading}
           >
-            SignUp
+            {loading ? 'Loading...' : 'Register'}
           </Button>
           <hr />
           <p>Already have an account <Link to='/login'>Sigin</Link></p>
