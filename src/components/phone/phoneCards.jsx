@@ -31,7 +31,7 @@ const PhoneCard = () => {
   {phones && phones.length > 0 ?
   (
     phones.map((phone, index) => (
-        <Accordion type="single" collapsible key={phone._id} className="header shadow-sm shadow-slate-400 rounded-md">
+        <Accordion type="single" collapsible key={phone._id} className="header shadow-sm shadow-slate-400 rounded-md px-1">
         <AccordionItem value={`item-${index}`}>
           <AccordionTrigger>  
           <div className="flex gap-3 w-[100%] p-2 text-left">
