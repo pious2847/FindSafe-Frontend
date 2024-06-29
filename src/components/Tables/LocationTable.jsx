@@ -21,7 +21,8 @@ import {
   import { fetchUserDevices } from "@/services/device";
   import { getUserId } from "@/auth/auth";
   import { fetchDevicesLocations } from "@/services/locations";
-  
+  import { Skeleton } from "@/components/ui/skeleton"
+
   const LocationsTable = () => {
     const [phones, setPhones] = useState([]);
     const [locations, setLocations] = useState([]);
@@ -76,7 +77,7 @@ import {
         </div>
         <div className="w-full">
           <Table>
-            <TableCaption>A list of your device’s recent locations.</TableCaption>
+            <TableCaption>Select device’s for recent locations.</TableCaption>
             <TableHeader>
               <TableRow>
                 <TableHead className="w-1/6">S/N</TableHead>
@@ -97,8 +98,17 @@ import {
                 ))
               ) : (
                 <TableRow>
-                  <TableCell colSpan={4} className="text-center">
-                    No locations available.
+                  <TableCell>
+                  <Skeleton className="w-[100px] h-[20px] rounded-full" />
+                  </TableCell>
+                  <TableCell >
+                  <Skeleton className="w-[100px] h-[20px] rounded-full" />
+                  </TableCell>
+                  <TableCell >
+                  <Skeleton className="w-[100px] h-[20px] rounded-full" />
+                  </TableCell>
+                  <TableCell >
+                  <Skeleton className="w-[100px] h-[20px] rounded-full" />
                   </TableCell>
                 </TableRow>
               )}

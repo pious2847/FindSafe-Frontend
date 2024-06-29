@@ -86,7 +86,7 @@ const Sidebar = () => {
         </nav>
       </div>
       <div className="flex flex-col overflow-auto p-5 w-[100%] ">
-        <div className="w-[100%] h-[60px] shadow-sm  shadow-slate-700 innerNavBar  align-middle items-center rounded-xl px-4 top-0  flex justify-between  p-2">
+        <div className="w-[100%] h-[60px] shadow-xl innerNavBar  align-middle items-center rounded-xl px-4 top-0  flex justify-between  p-2">
           <h3 className="text-xl font-extrabold innernavicon">FindSafe</h3>
           <div className="flex items-center gap-2 ">
             <div className="innerNavUser flex items-center gap-2 ">
