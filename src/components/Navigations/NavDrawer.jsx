@@ -11,6 +11,7 @@ import {
   HiDocumentReport,
 } from "react-icons/hi";
 import UserDashboard from "@/views/Home/userDashboard";
+import SettingsPage from "@/views/settings/settings";
 import Footer from "../footer/footer";
 import DropdownMenus from "./dropdownmenu";
 import { getUser } from "@/auth/auth";
@@ -49,7 +50,7 @@ const Sidebar = () => {
       page: UserDashboard(),
     },
     { icon: HiChartBar, text: "Workforce Data", section: "Analytics" },
-    { icon: HiDocumentReport, text: "Reports", section: "Analytics" },
+    { icon: HiDocumentReport, text: "Settings", section: "Settings" , page: SettingsPage(),},
   ];
 
   const handleNavItemClick = (item) => {

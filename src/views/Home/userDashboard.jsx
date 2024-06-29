@@ -1,5 +1,6 @@
 import GoogleMaps from "@/components/Maps/GoogleMaps";
-import PhoneCards from "@/components/phone/phoneCard";
+// import PhoneCards from "@/components/phone/phoneCard";
+import PhoneCard from "@/components/phone/phoneCards";
 
 const UserDashboard = () => {
   return (
@@ -9,7 +10,7 @@ const UserDashboard = () => {
           <GoogleMaps />
         </div>
         <div className="flex flex-col gap-4 devicecard shadow-sm shadow-slate-700 rounded-md h-[600px] p-2 overflow-auto">
-              <PhoneCards />
+              <PhoneCard />
         </div>
       </div>
       <br/>
