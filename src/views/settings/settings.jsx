@@ -1,7 +1,7 @@
 import { FaPalette } from "react-icons/fa";
 import { ModeToggle } from "@/components/mode-toggle";
 import { CiUser } from "react-icons/ci";
-
+import { UserModal } from "../auth/usermodal";
 const SettingsPage = () => {
 
   return (
@@ -19,7 +19,7 @@ const SettingsPage = () => {
           <CiUser className="text-xl" />
           <span>Account</span>
         </div>
-        <button className="text-blue-500">Manage</button>
+        <UserModal/>
       </div>
     </div>
   );
