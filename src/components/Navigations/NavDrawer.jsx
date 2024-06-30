@@ -1,45 +1,41 @@
+/* eslint-disable react/prop-types */
 import React, { useState } from "react";
 import {
   HiX,
 } from "react-icons/hi";
 import { CiMenuFries,CiHome,CiUser,CiMobile1,CiMap,CiSettings } from "react-icons/ci";
-import UserDashboard from "@/views/Home/userDashboard";
-import SettingsPage from "@/views/settings/settings";
-import LocationsDataPage from "@/views/Locations/LocationsPage";
 import Footer from "../footer/footer";
 import DropdownMenus from "./dropdownmenu";
 import { getUser } from "@/auth/auth";
+import { NavLink} from "react-router-dom";
 
 
-const Sidebar = () => {
+const Sidebar = ({children}) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [content, setContent] = useState(UserDashboard());
 
   const toggleSidebar = () => setIsOpen(!isOpen);
   const { user } = getUser();
 
   const menuItems = [
-    { icon: CiHome, text: "Dashboard", section: "Home", page: UserDashboard() },
+    { icon: CiHome, text: "Dashboard", section: "Home", url: '/dashboard' },
     {
       icon: CiUser,
       text: "Profile",
       section: "Home",
-      page: UserDashboard(),
+      url: '/dashboard/profile'
     },
     {
       icon: CiMobile1,
       text: "Devices",
       section: "Home",
-      page: UserDashboard(),
+      url: '/dashboard/devices'
     },
 
-    { icon: CiMap, text: "Location Data", section: "Analytics", page: LocationsDataPage() },
-    { icon: CiSettings, text: "Settings", section: "Settings" , page: SettingsPage(),},
+    { icon: CiMap, text: "Location Data", section: "Analytics", url: '/dashboard/locations'},
+    { icon: CiSettings, text: "Settings", section: "Settings" , url: '/dashboard/settings'},
   ];
 
-  const handleNavItemClick = (item) => {
-    setContent(item);
-  };
+
 
   return (
     <div className="flex overflow-hidden relative h-screen">
@@ -66,9 +62,9 @@ const Sidebar = () => {
                   {isOpen ? item.section : "•"}
                 </div>
               ) : null}
+              <NavLink to={item.url}>
               <div
                 className="relative group py-2 px-4 hover:bg-gray-700 cursor-pointer flex items-center"
-                onClick={() => handleNavItemClick(item.page)}
               >
                 <item.icon
                   className={`text-2xl ${isOpen ? "mr-4" : "mx-auto"}`}
@@ -81,6 +77,7 @@ const Sidebar = () => {
                   </span>
                 )}
               </div>
+              </NavLink>
             </React.Fragment>
           ))}
         </nav>
@@ -103,7 +100,7 @@ const Sidebar = () => {
           </div>
         </div>
         <br />
-        {content}
+        {children}
         <br />
         <div className="w-[100%]">
           <Footer />

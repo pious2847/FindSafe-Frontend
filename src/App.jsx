@@ -1,3 +1,4 @@
+/* eslint-disable react/no-children-prop */
 import { ThemeProvider } from "./components/theme-provider";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
@@ -8,8 +9,10 @@ import PricingPage from "./views/pricing/Pricing";
 import AboutPage from "./views/about/about";
 import DocumentationPage from "./views/docs/documentation";
 import ProtectedRoute from "./auth/validator";
-import DashboardLayouts from "./views/layouts/dashboardlayout";
-
+import Sidebar from "./components/Navigations/NavDrawer";
+import SettingsPage from "./views/settings/settings";
+import LocationsDataPage from "./views/Locations/LocationsPage";
+import UserDashboard from "./views/Home/userDashboard";
 import "./App.css";
 
 function App() {
@@ -22,11 +25,29 @@ function App() {
             <Route path="/docs" element={<DocumentationPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/pricing" element={<PricingPage />} />
-            <Route path="/dashboard" element={
-              <ProtectedRoute>
-                <DashboardLayouts />
-              </ProtectedRoute>
-              } />
+         
+            <Route
+              path="/dashboard"
+              element={
+                <ProtectedRoute>
+                  <Sidebar children={<UserDashboard />}/>
+                </ProtectedRoute>
+              }
+            />
+              <Route
+              path="/dashboard/locations"
+              element={
+                <ProtectedRoute>
+                  <Sidebar children={<LocationsDataPage />} />
+                </ProtectedRoute>}
+            />
+            <Route
+              path="/dashboard/settings"
+              element={
+                <ProtectedRoute>
+                  <Sidebar children={<SettingsPage />} />
+                </ProtectedRoute>}
+            />
             <Route path="/signup" element={<SignupPage />} />
             <Route path="/login" element={<LoginPage />} />
           </Routes>
