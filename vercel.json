@@ -13,10 +13,6 @@
         "dest": "/"
       },
       {
-        "src": "/dashboard",
-        "dest": "/"
-      },
-      {
         "src": "/pricing",
         "dest": "/"
       },
@@ -29,7 +25,15 @@
         "dest": "/"
       },
       {
-        "src": "/*",
+        "src": "/dashboard",
+        "dest": "/"
+      },
+      {
+        "src": "/dashboard/locations",
+        "dest": "/"
+      },
+      {
+        "src": "/dashboard/settings",
         "dest": "/"
       }
     ]

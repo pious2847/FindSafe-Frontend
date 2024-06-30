@@ -1,7 +1,6 @@
 /* eslint-disable react/no-children-prop */
 import { ThemeProvider } from "./components/theme-provider";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-
 import MainPanel from "./views/Home/home";
 import LoginPage from "./views/auth/login";
 import SignupPage from "./views/auth/signup";
@@ -13,6 +12,8 @@ import Sidebar from "./components/Navigations/NavDrawer";
 import SettingsPage from "./views/settings/settings";
 import LocationsDataPage from "./views/Locations/LocationsPage";
 import UserDashboard from "./views/Home/userDashboard";
+import UserProfile from "./views/profile/userProfile";
+import UserDevices from "./views/devices.jsx/UserDevices";
 import "./App.css";
 
 function App() {
@@ -33,6 +34,20 @@ function App() {
                   <Sidebar children={<UserDashboard />}/>
                 </ProtectedRoute>
               }
+            />
+              <Route
+              path="/dashboard/profile"
+              element={
+                <ProtectedRoute>
+                  <Sidebar children={<UserProfile />} />
+                </ProtectedRoute>}
+            />
+                          <Route
+              path="/dashboard/devices"
+              element={
+                <ProtectedRoute>
+                  <Sidebar children={<UserDevices />} />
+                </ProtectedRoute>}
             />
               <Route
               path="/dashboard/locations"
