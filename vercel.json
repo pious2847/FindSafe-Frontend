@@ -28,6 +28,15 @@
         "src": "/dashboard",
         "dest": "/"
       },
+      
+      {
+        "src": "/dashboard/profile",
+        "dest": "/"
+      },
+      {
+        "src": "/dashboard/devices",
+        "dest": "/"
+      },
       {
         "src": "/dashboard/locations",
         "dest": "/"
