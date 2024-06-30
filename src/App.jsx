@@ -26,42 +26,46 @@ function App() {
             <Route path="/docs" element={<DocumentationPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/pricing" element={<PricingPage />} />
-         
+
             <Route
               path="/dashboard"
               element={
                 <ProtectedRoute>
-                  <Sidebar children={<UserDashboard />}/>
+                  <Sidebar children={<UserDashboard />} />
                 </ProtectedRoute>
               }
             />
-              <Route
+            <Route
               path="/dashboard/profile"
               element={
                 <ProtectedRoute>
                   <Sidebar children={<UserProfile />} />
-                </ProtectedRoute>}
+                </ProtectedRoute>
+              }
             />
-                          <Route
+            <Route
               path="/dashboard/devices"
               element={
                 <ProtectedRoute>
                   <Sidebar children={<UserDevices />} />
-                </ProtectedRoute>}
+                </ProtectedRoute>
+              }
             />
-              <Route
+            <Route
               path="/dashboard/locations"
               element={
                 <ProtectedRoute>
                   <Sidebar children={<LocationsDataPage />} />
-                </ProtectedRoute>}
+                </ProtectedRoute>
+              }
             />
             <Route
               path="/dashboard/settings"
               element={
                 <ProtectedRoute>
                   <Sidebar children={<SettingsPage />} />
-                </ProtectedRoute>}
+                </ProtectedRoute>
+              }
             />
             <Route path="/signup" element={<SignupPage />} />
             <Route path="/login" element={<LoginPage />} />
