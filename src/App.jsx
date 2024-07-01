@@ -1,4 +1,5 @@
 /* eslint-disable react/no-children-prop */
+
 import { ThemeProvider } from "./components/theme-provider";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import MainPanel from "./views/Home/home";

@@ -1,27 +1,47 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { jwtDecode } from "jwt-decode";
 
+const TOKEN_KEY = 'token';
+
+export const getToken = () => localStorage.getItem(TOKEN_KEY);
+
+export const setToken = (token) => localStorage.setItem(TOKEN_KEY, token);
+
+export const removeToken = () => localStorage.removeItem(TOKEN_KEY);
+
+
 export const isAuthenticated = () => {
-    const sessionToken = localStorage.getItem('sessionToken');
-    return !!sessionToken;
-  };
-  
-  export const getSessionToken = () => {
-    return localStorage.getItem('sessionToken');
-  };
-  
-  export const getUserId = () => {
-    return localStorage.getItem('userId');
-  };
-  export const getUser = () => {
-    const jwt = localStorage.getItem('token');
-    const user = jwtDecode(jwt)
-    return user
-  };
+  const token = getToken();
+  return token && !isTokenExpired(token);
+};
+export const getSessionToken = () => {
+  return localStorage.getItem("sessionToken");
+};
+
+export const getUserId = () => {
+  return localStorage.getItem("userId");
+};
+export const getUser = () => {
+  const jwt = localStorage.getItem("token");
+  const user = jwtDecode(jwt);
+  return user;
+};
 
 export const handleLogout = () => {
-  console.log('logout');
-    localStorage.removeItem('sessionToken');
-    localStorage.removeItem('userId');
-    localStorage.removeItem('token');
-  };
+  console.log("logout");
+  removeToken();
+  localStorage.removeItem("sessionToken");
+  localStorage.removeItem("userId");
+};
+
+
+
+export const isTokenExpired = (token) => {
+  try {
+    const decodedToken = jwtDecode(token);
+    return decodedToken.exp < Date.now() / 1000;
+  } catch {
+    return true;
+  }
+};
+
