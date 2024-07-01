@@ -42,10 +42,19 @@ import {
   
     const handleDeviceSelect = async (deviceId) => {
       setIsLoading(true)
-      const fetchedLocations = await fetchDeviceLocationsWithNames(deviceId);
-      console.log('Fetched Locations', fetchedLocations)
-      setLocations(fetchedLocations);
-      setCurrentPage(1);
+      
+      try {
+        const fetchedLocations = await fetchDeviceLocationsWithNames(deviceId);
+        console.log('Fetched Locations', fetchedLocations)
+        setLocations(fetchedLocations);
+        setCurrentPage(1);
+      } catch (error) {
+        console.error('Error fetching location name:', error);
+        throw error;
+      }finally{
+        setIsLoading(false)
+      }
+     
     };
   
     // Pagination logic
@@ -92,7 +101,31 @@ import {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {currentLocations.length > 0 ? (
+              {isloading ? 
+(
+                <TableRow>
+                <TableCell>
+                <Skeleton className="w-[100px] h-[20px] rounded-full" />
+                </TableCell>
+                <TableCell >
+                <Skeleton className="w-[100px] h-[20px] rounded-full" />
+                </TableCell>
+                <TableCell >
+                <Skeleton className="w-[100px] h-[20px] rounded-full" />
+                </TableCell>
+                <TableCell >
+                <Skeleton className="w-[100px] h-[20px] rounded-full" />
+                </TableCell>
+                <TableCell >
+                <Skeleton className="w-[100px] h-[20px] rounded-full" />
+                </TableCell>
+                <TableCell >
+                <Skeleton className="w-[100px] h-[20px] rounded-full" />
+                </TableCell>
+              </TableRow>
+              )  
+              :
+              currentLocations.length > 0 ? (
                 currentLocations.map((location, index) => (
                   <TableRow key={index}>
                     <TableCell>{indexOfFirstLocation + index + 1}</TableCell>
@@ -124,7 +157,9 @@ import {
                   <Skeleton className="w-[100px] h-[20px] rounded-full" />
                   </TableCell>
                 </TableRow>
-              )}
+              )
+            }
+              
             </TableBody>
           </Table>
           <div className="flex justify-around items-center mt-4">
