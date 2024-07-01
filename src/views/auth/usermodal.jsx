@@ -11,8 +11,11 @@ import {
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { getUser } from "@/auth/auth"
 
 export function UserModal() {
+  const { user } = getUser();
+  
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -27,22 +30,72 @@ export function UserModal() {
         </DialogHeader>
         <div className="grid gap-4 py-4">
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="name" className="text-right">
+            <Label htmlFor="username" className="text-right">
               Name
             </Label>
             <Input
-              id="name"
-              defaultValue="Pedro Duarte"
+              id="username"
+              defaultValue={user? user.name: null}
               className="col-span-3"
             />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="username" className="text-right">
-              Username
+            <Label htmlFor="email" className="text-right">
+              Email
             </Label>
             <Input
-              id="username"
-              defaultValue="@peduarte"
+              id="email"
+              defaultValue={user? user.email: null}
+              className="col-span-3"
+            />
+          </div>
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="phone" className="text-right">
+              Phone
+            </Label>
+            <Input
+              id="phone"
+              defaultValue={user? user.phone: null}
+              className="col-span-3"
+            />
+          </div>
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="area" className="text-right">
+              Area of Residence
+            </Label>
+            <Input
+              id="area"
+              defaultValue={user? user.addressinfo.area: null}
+              className="col-span-3"
+            />
+          </div>
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="houseNo" className="text-right">
+              Hse No
+            </Label>
+            <Input
+              id="houseNo"
+              defaultValue={user? user.addressinfo.houseNo: null}
+              className="col-span-3"
+            />
+          </div>
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="name" className="text-right">
+              Emergency Contact Name
+            </Label>
+            <Input
+              id="name"
+              defaultValue={user? user.emergencycontact.name: null}
+              className="col-span-3"
+            />
+          </div>
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="contact" className="text-right">
+              Contact
+            </Label>
+            <Input
+              id="contact"
+              defaultValue={user? user.emergencycontact.contact: null}
               className="col-span-3"
             />
           </div>
