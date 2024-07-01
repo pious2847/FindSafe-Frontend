@@ -20,7 +20,7 @@ import {
   import { useState, useEffect } from "react";
   import { fetchUserDevices } from "@/services/device";
   import { getUserId } from "@/auth/auth";
-  import { fetchDevicesLocations } from "@/services/locations";
+  import { fetchDeviceLocationsWithNames } from "@/services/locations";
   import { Skeleton } from "@/components/ui/skeleton"
 
   const LocationsTable = () => {
@@ -40,7 +40,7 @@ import {
     }, []);
   
     const handleDeviceSelect = async (deviceId) => {
-      const fetchedLocations = await fetchDevicesLocations(deviceId);
+      const fetchedLocations = await fetchDeviceLocationsWithNames(deviceId);
       setLocations(fetchedLocations);
       setCurrentPage(1);
     };

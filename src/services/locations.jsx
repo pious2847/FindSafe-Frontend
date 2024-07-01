@@ -8,34 +8,53 @@ export const fetchDevicesLocations = async (deviceId) => {
     }
 
     const response = await axios.get(`${apiUrl}/mobiledevices/${deviceId}/locations`);
-    console.log(response);
-    if (response.status != 200) {
+    if (response.status !== 200) {
       throw new Error(`Unexpected Error: ${response.statusText}`);
     }
-    const data = await response.data;
-
-    return data || [];
+    return response.data || [];
   } catch (error) {
-    console.error('Error fetching user devices:', error);
-    throw error; // Re-throw the error to handle it in the calling function
+    console.error('Error fetching device locations:', error);
+    throw error;
   }
 };
 
-export const getLocationNames = async(lat, lon )=>{
+export const getLocationNames = async (latitude, longitude) => {
   try {
-    const response = axios.get(`https://nominatim.openstreetmap.org/reverse.php?lat=${lat}&lon=${lon}&zoom=18&format=jsonv2`)
-    console.log(response);
+    const Token =await import.meta.env.POSITIONSTACK_API;
+    console.log('Fetched Resonse Token',Token)
 
-    if(await response.status != 200){
-
-      throw new Error(`Unexpected Error: ${response.statusText}`);
-      
+    if (!Token) {
+      throw new Error('API URL is not defined');
     }
-    const locationData = (await response).data.address.country
+    const response = await axios.get(`https://api.positionstack.com/v1/reverse?access_key=${Token}&query=${latitude},${longitude}`);
+    console.log('Fetched Resonse',response)
 
-      return locationData || []
+    if (response.status != 200) {
+      throw new Error(`Unexpected Error: ${response.statusText}`);
+    }
+    return response.data || {};
   } catch (error) {
-    console.error('Error fetching user devices:', error);
+    console.error('Error fetching location name:', error);
     throw error;
   }
-}
+};
+
+export const fetchDeviceLocationsWithNames = async (deviceId) => {
+  try {
+    const locations = await fetchDevicesLocations(deviceId);
+    
+    const locationsWithNames = await Promise.all(locations.map(async (location) => {
+      const locationData = await getLocationNames(location.latitude, location.longitude);
+      return {
+        ...location,
+        name: locationData.display_name || 'Unknown location',
+        // You can add more fields from locationData as needed
+      };
+    }));
+
+    return locationsWithNames;
+  } catch (error) {
+    console.error('Error fetching locations with names:', error);
+    throw error;
+  }
+};
