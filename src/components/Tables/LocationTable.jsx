@@ -27,6 +27,7 @@ import {
     const [phones, setPhones] = useState([]);
     const [locations, setLocations] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
+    const [isloading, setIsLoading] = useState(false);
     const [locationsPerPage] = useState(10);
   
     useEffect(() => {
@@ -40,7 +41,9 @@ import {
     }, []);
   
     const handleDeviceSelect = async (deviceId) => {
+      setIsLoading(true)
       const fetchedLocations = await fetchDeviceLocationsWithNames(deviceId);
+      console.log('Fetched Locations', fetchedLocations)
       setLocations(fetchedLocations);
       setCurrentPage(1);
     };
@@ -80,10 +83,12 @@ import {
             <TableCaption>Select device’s for recent locations.</TableCaption>
             <TableHeader>
               <TableRow>
-                <TableHead className="w-1/6">S/N</TableHead>
-                <TableHead className="w-1/3">Longitude</TableHead>
-                <TableHead className="w-1/3">Latitude</TableHead>
-                <TableHead className="w-1/4">Timestamp</TableHead>
+                <TableHead className="w-1/12">S/N</TableHead>
+                <TableHead className="w-1/5">City/Region</TableHead>
+                <TableHead className="w-1/5">Last Seen</TableHead>
+                <TableHead className="w-1/6">Longitude</TableHead>
+                <TableHead className="w-1/6">Latitude</TableHead>
+                <TableHead className="w-1/3">Timestamp</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -91,6 +96,8 @@ import {
                 currentLocations.map((location, index) => (
                   <TableRow key={index}>
                     <TableCell>{indexOfFirstLocation + index + 1}</TableCell>
+                    <TableCell>{location.name}</TableCell>
+                    <TableCell>{location.lastseen}</TableCell>
                     <TableCell>{location.longitude}</TableCell>
                     <TableCell>{location.latitude}</TableCell>
                     <TableCell>{new Date(location.timestamp).toLocaleString()}</TableCell>
@@ -99,6 +106,12 @@ import {
               ) : (
                 <TableRow>
                   <TableCell>
+                  <Skeleton className="w-[100px] h-[20px] rounded-full" />
+                  </TableCell>
+                  <TableCell >
+                  <Skeleton className="w-[100px] h-[20px] rounded-full" />
+                  </TableCell>
+                  <TableCell >
                   <Skeleton className="w-[100px] h-[20px] rounded-full" />
                   </TableCell>
                   <TableCell >

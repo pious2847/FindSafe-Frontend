@@ -20,19 +20,19 @@ export const fetchDevicesLocations = async (deviceId) => {
 
 export const getLocationNames = async (latitude, longitude) => {
   try {
-    const Token =await import.meta.env.POSITIONSTACK_API;
+    const Token = '2220506b0887c18d766a848e9818b703';
     console.log('Fetched Resonse Token',Token)
 
     if (!Token) {
       throw new Error('API URL is not defined');
     }
-    const response = await axios.get(`https://api.positionstack.com/v1/reverse?access_key=${Token}&query=${latitude},${longitude}`);
+    const response = await axios.get(`http://api.positionstack.com/v1/reverse?access_key=${Token}&query=${latitude},${longitude}`);
     console.log('Fetched Resonse',response)
 
     if (response.status != 200) {
       throw new Error(`Unexpected Error: ${response.statusText}`);
     }
-    return response.data || {};
+    return response.data.data[0] || {};
   } catch (error) {
     console.error('Error fetching location name:', error);
     throw error;
@@ -45,9 +45,11 @@ export const fetchDeviceLocationsWithNames = async (deviceId) => {
     
     const locationsWithNames = await Promise.all(locations.map(async (location) => {
       const locationData = await getLocationNames(location.latitude, location.longitude);
+      console.log('locationData',locationData)
       return {
         ...location,
-        name: locationData.display_name || 'Unknown location',
+        name: locationData.county || 'Unknown location',
+        lastseen: locationData.name || 'Unknown location',
         // You can add more fields from locationData as needed
       };
     }));
