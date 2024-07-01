@@ -61,6 +61,10 @@
 .settingspage{
   width: 50%;
 }
+.cardsubimg{
+  width: 35%;
+  aspect-ratio: 1;
+}
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);
@@ -258,5 +262,14 @@
    }
    .settingspage{
     width: 100%;
+   }
+   #maincardimg{
+    height: 300px;
+   }
+   #maincardimg img{
+    height: 300px;
+   }
+   .cardsubimg{
+    width: 75%;
    }
 }

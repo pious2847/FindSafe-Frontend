@@ -88,7 +88,7 @@ const Sidebar = ({children}) => {
           <div className="flex items-center gap-2 ">
             <div className="innerNavUser flex items-center gap-2 ">
               <img
-                src="herosection.png"
+                src="/herosection.png"
                 alt=""
                 className="h-[25px] w-[25px] rounded-3xl shadow-xl"
               />
