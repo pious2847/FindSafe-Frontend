@@ -3,7 +3,7 @@ import { FormControl, useFormControlContext } from "@mui/base/FormControl";
 import { Input, inputClasses } from "@mui/base/Input";
 import { styled } from "@mui/system";
 import clsx from "clsx";
-import { Button } from '@mui/base/Button';
+import { Button } from "@/components/ui/button"
 import TextAnimation from "@/components/animations/textanimation";
 import { Link, useNavigate } from 'react-router-dom';
 import Checkbox from '@mui/material/Checkbox';
@@ -219,7 +219,7 @@ const LoginPage = () => {
             </Link>
           </div>
           <Button
-            variant="contained"
+            variant="outline"
             className="w-[100%] bg-slate-900 p-2 rounded-md"
             onClick={handleSubmit}
             disabled={loading}
@@ -228,7 +228,7 @@ const LoginPage = () => {
           </Button>
           <br />
           <hr />
-          <p>Don’t have an account? <Link to='/signup'>Sign Up</Link></p>
+          <p>Don’t have an account? <Link to='/signup' className="text-blue-500">Sign Up</Link></p>
         </div>
       </div>
     </div>

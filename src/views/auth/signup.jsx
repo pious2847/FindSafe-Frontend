@@ -3,9 +3,10 @@ import { FormControl, useFormControlContext } from "@mui/base/FormControl";
 import { Input, inputClasses } from "@mui/base/Input";
 import { styled } from "@mui/system";
 import clsx from "clsx";
-import { Button } from '@mui/base/Button';
 import TextAnimation from "@/components/animations/textanimation";
 import { Link , useNavigate} from 'react-router-dom';
+import { Button } from "@/components/ui/button"
+
 
 const StyledInput = styled(Input)(
   ({ theme }) => `
@@ -174,7 +175,7 @@ const SignUpPage = () => {
       <br />
       <TextAnimation />
       <br />
-      <div className="formContainer max-w-md w-full bg-slate-950 rounded-lg shadow-md p-8">
+      <div className="formContainer max-w-md w-full  rounded-lg shadow-2xl p-8">
         <div className="flex flex-col gap-6">
           {errorMessage && (
             <div className="flex justify-between items-center bg-red-500 text-white p-2 rounded">
@@ -215,15 +216,15 @@ const SignUpPage = () => {
           </FormControl>
 
           <Button
-            variant="contained"
-            className="w-[100%] bg-slate-900 p-2 rounded-md"
+            variant="outline"
+            className="w-[100%] p-2  bg-slate-900 rounded-md"
             onClick={handleSubmit}
             disabled={loading}
           >
             {loading ? 'Loading...' : 'Register'}
           </Button>
           <hr />
-          <p>Already have an account <Link to='/login'>Sigin</Link></p>
+          <p>Already have an account <Link to='/login' className="text-blue-500" >Sigin</Link></p>
         </div>
       </div>
     </div>
