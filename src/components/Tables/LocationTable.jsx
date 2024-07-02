@@ -41,8 +41,8 @@ const LocationsTable = () => {
   }, []);
 
   const handleDeviceSelect = async (deviceId) => {
-    setIsLoading(true);
     try {
+      setIsLoading(true);
       const fetchedLocations = await fetchDeviceLocationsWithNames(deviceId);
       console.log("Fetched Locations", fetchedLocations);
       setLocations(fetchedLocations);

@@ -21,12 +21,13 @@ export const fetchDevicesLocations = async (deviceId) => {
 export const getLocationNames = async (latitude, longitude) => {
   try {
     const Token = '2220506b0887c18d766a848e9818b703';
+    const PROXY_URL = import.meta.env.VITE_API_URL
     console.log('Fetched Resonse Token',Token)
 
     if (!Token) {
       throw new Error('API URL is not defined');
     }
-    const response = await axios.get(`http://api.positionstack.com/v1/reverse?access_key=${Token}&query=${latitude},${longitude}`);
+    const response = await axios.get(`${PROXY_URL}/v1/reverse?access_key=${Token}&query=${latitude},${longitude}`);
     console.log('Fetched Resonse',response)
 
     if (response.status != 200) {
