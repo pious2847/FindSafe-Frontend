@@ -20,8 +20,7 @@ export const fetchDevicesLocations = async (deviceId) => {
 
 export const getLocationNames = async (latitude, longitude) => {
   try {
-    // const Token = '2220506b0887c18d766a848e9818b703';
-    const Token = import.meta.env.POSITIONSTACK_API
+    const Token = '2220506b0887c18d766a848e9818b703';
     const PROXY_URL = import.meta.env.VITE_API_PROXY_URL
     console.log('Fetched Resonse Token',Token)
 
