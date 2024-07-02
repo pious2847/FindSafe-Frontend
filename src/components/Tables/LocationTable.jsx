@@ -42,7 +42,6 @@ const LocationsTable = () => {
 
   const handleDeviceSelect = async (deviceId) => {
     setIsLoading(true);
-
     try {
       const fetchedLocations = await fetchDeviceLocationsWithNames(deviceId);
       console.log("Fetched Locations", fetchedLocations);
@@ -104,41 +103,7 @@ const LocationsTable = () => {
           </TableHeader>
           <TableBody>
             {isloading ? (
-              <TableRow>
-                <TableCell>
-                  <Skeleton className="w-[100px] h-[20px] rounded-full" />
-                </TableCell>
-                <TableCell>
-                  <Skeleton className="w-[100px] h-[20px] rounded-full" />
-                </TableCell>
-                <TableCell>
-                  <Skeleton className="w-[100px] h-[20px] rounded-full" />
-                </TableCell>
-                <TableCell>
-                  <Skeleton className="w-[100px] h-[20px] rounded-full" />
-                </TableCell>
-                <TableCell>
-                  <Skeleton className="w-[100px] h-[20px] rounded-full" />
-                </TableCell>
-                <TableCell>
-                  <Skeleton className="w-[100px] h-[20px] rounded-full" />
-                </TableCell>
-              </TableRow>
-            ) : currentLocations.length > 0 ? (
-              currentLocations.map((location, index) => (
-                <TableRow key={index}>
-                  <TableCell>{indexOfFirstLocation + index + 1}</TableCell>
-                  <TableCell>{location.name}</TableCell>
-                  <TableCell>{location.lastseen}</TableCell>
-                  <TableCell>{location.longitude}</TableCell>
-                  <TableCell>{location.latitude}</TableCell>
-                  <TableCell>
-                    {new Date(location.timestamp).toLocaleString()}
-                  </TableCell>
-                </TableRow>
-              ))
-            ) : (
-              <>
+                <>
                 <TableRow>
                   <TableCell>
                     <Skeleton className="w-[100px] h-[20px] rounded-full" />
@@ -180,6 +145,25 @@ const LocationsTable = () => {
                   </TableCell>
                 </TableRow>
               </>
+            ) : currentLocations.length > 0 ? (
+              currentLocations.map((location, index) => (
+                <TableRow key={index}>
+                  <TableCell>{indexOfFirstLocation + index + 1}</TableCell>
+                  <TableCell>{location.name}</TableCell>
+                  <TableCell>{location.lastseen}</TableCell>
+                  <TableCell>{location.longitude}</TableCell>
+                  <TableCell>{location.latitude}</TableCell>
+                  <TableCell>
+                    {new Date(location.timestamp).toLocaleString()}
+                  </TableCell>
+                </TableRow>
+              ))
+            ) : (
+              <TableRow>
+              <TableCell colSpan={6} className="text-center">
+                <p>No Record Found please select device</p>
+              </TableCell>
+            </TableRow>            
             )}
           </TableBody>
         </Table>
