@@ -3,7 +3,7 @@
 import { useEffect, useCallback } from 'react';
 import useWebSocket from 'react-use-websocket';
 
-const WEBSOCKET_URL = 'wss://findsafe-backend.onrender.com/6686b974ad00aa5f982fd855';
+const WEBSOCKET_URL = 'wss://findsafe-backend.onrender.com/666c6365db6047c5931510c0';
 
 export const useWebSocketCommand = () => {
   const {
@@ -11,7 +11,7 @@ export const useWebSocketCommand = () => {
     lastMessage,
     readyState,
     getWebSocket
-  } = useWebSocket(WEBSOCKET_URL, {
+  } = useWebSocket(WEBSOCKET_URL,{
     onOpen: () => console.log('WebSocket connection established.'),
     onClose: () => console.log('WebSocket connection closed.'),
     onError: (error) => console.error('WebSocket error:', error),
