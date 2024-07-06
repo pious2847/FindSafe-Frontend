@@ -21,14 +21,15 @@ const PhoneCard = () => {
     const handleSendCommand = (deviceId) => {
       if (readyState === WebSocket.OPEN) {
         sendCommandToDevice(deviceId, 'play_alarm');
+        alert('Alarm command sent successfully !!!')
       } else {
         console.log('WebSocket is not connected');
+        alert('Alarm command fail refresh the page !!!')
         // Provide user feedback that the connection is not ready
       }
     };
     useEffect(() => {
       if (lastMessage !== null) {
-        alert('Alarm command sent successfully !!!')
         // Handle incoming messages
         console.log('Received message:', lastMessage.data);
       }
