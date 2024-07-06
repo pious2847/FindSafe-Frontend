@@ -28,6 +28,7 @@ const PhoneCard = () => {
     };
     useEffect(() => {
       if (lastMessage !== null) {
+        alert('Alarm command sent successfully !!!')
         // Handle incoming messages
         console.log('Received message:', lastMessage.data);
       }
