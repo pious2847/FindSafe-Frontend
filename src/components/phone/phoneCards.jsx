@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import {
   Accordion,
   AccordionContent,
@@ -11,9 +12,26 @@ import { IoMapOutline } from "react-icons/io5";
 import { Button } from "../ui/button";
 import { fetchUserDevices } from "@/services/device";
 import { getUserId } from "@/auth/auth";
+import { useWebSocketCommand } from "@/services/websocketUtils";
 
 const PhoneCard = () => {
     const [phones, setPhones] = useState([]);
+    const { sendCommandToDevice, readyState,lastMessage } = useWebSocketCommand();
+
+    const handleSendCommand = (deviceId) => {
+      if (readyState === WebSocket.OPEN) {
+        sendCommandToDevice(deviceId, 'play_alarm');
+      } else {
+        console.log('WebSocket is not connected');
+        // Provide user feedback that the connection is not ready
+      }
+    };
+    useEffect(() => {
+      if (lastMessage !== null) {
+        // Handle incoming messages
+        console.log('Received message:', lastMessage.data);
+      }
+    }, [lastMessage]);
 
     useEffect(() => {
       const fetchData = async () => {
@@ -48,10 +66,13 @@ const PhoneCard = () => {
             </AccordionTrigger>
           <AccordionContent>
           <div className="content p-4 flex flex-col gap-1">
-            <Button className="devicetriggersbtn flex gap-3 text-left justify-start" variant="link">
+            <div>
+            <Button className="devicetriggersbtn flex gap-3 text-left justify-start" variant="link" onClick={()=> handleSendCommand(phone._id)} >
               <BsSoundwave />
               <p className="text-sm">Play Alarm</p>
             </Button>
+            </div>
+
             <Button className="devicetriggersbtn flex gap-3 text-left justify-start" variant="link">
               <GrSecure />
               <p className="text-sm">Secure Device</p>
