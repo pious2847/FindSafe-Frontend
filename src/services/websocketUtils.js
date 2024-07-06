@@ -10,16 +10,13 @@ export const useWebSocketCommand = () => {
   const {
     sendMessage,
     lastMessage,
-    readyState,
-    getWebSocket
-  } = useWebSocket(socketUrl,{
+    readyState  } = useWebSocket(socketUrl,{
     onOpen: () => console.log('WebSocket connection established.'),
     onClose: () => console.log('WebSocket connection closed.'),
     onError: (error) => console.error('WebSocket error:', error),
-    shouldReconnect: (closeEvent) => true, // Attempt to reconnect on all close events
+    shouldReconnect: () => true, // Attempt to reconnect on all close events
   });
 
-  const isConnected = readyState === ReadyState.OPEN;
   useEffect(() => {
     if (lastMessage !== null) {
       // Handle incoming messages here
