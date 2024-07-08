@@ -97,6 +97,9 @@
 .logoutbtn{
   background-color: #b91c1c;
 }
+.mobileNav{
+  width:70% ;
+}
 @keyframes blink {
   0% {
     opacity: 1;
@@ -124,12 +127,24 @@
     position: relative;
     top: 70px;
    }
+   .nav-conent{
+    display: flex;
+    flex-direction: column;
+    gap: 10;
+    align-items: start;
+    justify-content: start !important;
+   }
+   #NavigationMenuContainer{
+    position: absolute;
+    top: 10  !important;
+   }
+
   .mobileNav {
     position: fixed;
-    display: flex;
-    justify-content: flex-start;
     flex-direction: column;
-    height: 100vh;
+    justify-content: start;
+    height: 100dvh;
+    max-height: 100dvh;
     width: 80%;
     background: #020817;
     left: -500px;
@@ -139,9 +154,7 @@
     overflow: scroll;
     padding: 10px;
   }
-  .menubarin{
-      color: aliceblue;
-  }
+
 
   .mobileNav.active {
     left: 0; /* Show the mobile navigation menu when active */
@@ -150,21 +163,8 @@
    width: 5px;
   }
   
-  .nav-conent{
-    flex-direction: column;
-    gap: 10;
-    align-items: start;
-    justify-content: flex-start;
-    gap: 20px;
-    width: 100%
-    /* z-index: 20; */
 
-   }
-   .NavigationMenuContainer{
-    position: relative;
-    top: -180px;
-    right: 0;
-   }
+ 
    .NavigationMenuContent{
     width: 350px;
    }
@@ -177,13 +177,9 @@
 
    }
    .menubarin{
-    /* position: relative; */
+    position: relative;
+    color: aliceblue;
     width: 100%;
-   }
-   .menubarin .NavigationMenuContainer{
-    position: absolute;
-    width: 100%;
-    top: -200px;
    }
    .menuicon {
     display: block; 

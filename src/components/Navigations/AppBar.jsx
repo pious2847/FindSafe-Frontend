@@ -42,12 +42,13 @@ function AppBar() {
         <Link to='/'>
         <h4 className=" text-lg font-medium">FindSafe</h4>
         </Link>
-        <div className= {`flex justify-between mobileNav ${isMenuOpen ? 'active' : ''} backdrop-blur-md  gap-32`}>
+        <div className= {`flex justify-between mobileNav ${isMenuOpen ? 'active' : ''} backdrop-blur-md  `}>
           <NavigationMenu className="nav-conent flex">
             <NavigationMenuList className="nav-conent flex">
               <NavigationMenuItem className="menubarin ">
                 <NavigationMenuTrigger >Getting started</NavigationMenuTrigger>
-                <NavigationMenuContent className='NavigationMenuContainer'>
+               <div  id='NavigationMenuContainer'>
+               <NavigationMenuContent>
                   <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr] NavigationMenuContent">
                     <li className="row-span-3">
                       <NavigationMenuLink asChild>
@@ -82,7 +83,8 @@ function AppBar() {
                     </ListItem>
                   </ul>
                 </NavigationMenuContent>
-                
+               </div>
+
               </NavigationMenuItem>
               <NavigationMenuItem className="menubarin">
                 <a href="/docs">
