@@ -126,6 +126,8 @@
    }
   .mobileNav {
     position: fixed;
+    display: flex;
+    justify-content: flex-start;
     flex-direction: column;
     height: 100vh;
     width: 80%;
@@ -234,7 +236,6 @@
     position: sticky !important;
     z-index: 3;
     backdrop-filter: blur(30px);
-    background-color: transparent;
     box-shadow: none !important;
    }
    .innernavicon{
@@ -250,7 +251,8 @@
     box-shadow: none !important;
     left: 14px;
     top: 22px;
-    backdrop-filter: blur(20px);
+    /* background: none !important; */
+    backdrop-filter: none;
    }
    .cancelSideNav{
     height: 100%;
