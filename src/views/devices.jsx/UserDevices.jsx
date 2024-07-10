@@ -5,7 +5,7 @@ const UserDevices = () => {
         <>
         <div className="container w-full h-screen">
             <div className="div">
-                P
+                
             </div>
         </div>
         </>
