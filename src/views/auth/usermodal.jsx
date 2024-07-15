@@ -12,20 +12,20 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { getUser } from "@/auth/auth";
-
+import Toast from '@/components/toastmsg';
 
 
 export function UserModal() {
   const { user } = getUser();
 
   const [formData, setFormData] = useState({
-    name: user ? user.name : '',
+    username: user ? user.name : '',
     email: user ? user.email : '',
     phone: user ? user.phone : '',
     area: user ? user.addressinfo.area : '',
     houseNo: user ? user.addressinfo.houseNo : '',
-    emergencyContactName: user ? user.emergencycontact.name : '',
-    emergencyContact: user ? user.emergencycontact.contact : ''
+    name: user ? user.emergencycontact.name : '',
+    contact: user ? user.emergencycontact.contact : ''
   });
 
   const handleInputChange = (e) => {
