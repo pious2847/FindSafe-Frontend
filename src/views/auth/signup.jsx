@@ -7,7 +7,7 @@ import TextAnimation from "@/components/animations/textanimation";
 import { Link , useNavigate} from 'react-router-dom';
 import { Button } from "@/components/ui/button"
 import Toast from "@/components/toastmsg";
-
+import { Loader } from "@/components/loader";
 
 const StyledInput = styled(Input)(
   ({ theme }) => `
@@ -240,7 +240,7 @@ const SignUpPage = () => {
             onClick={handleSubmit}
             disabled={loading}
           >
-            {loading ? 'Loading...' : 'Register'}
+            {loading ? <p className="flex items-center gap-2"><Loader size={30}/> Loading...</p> : 'Register'}
           </Button>
           <hr />
           <p>Already have an account <Link to='/login' className="text-blue-500" >Login?</Link></p>
