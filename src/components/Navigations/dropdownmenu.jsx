@@ -20,7 +20,7 @@ import {
   // import { HiAdjustmentsHorizontal } from "react-icons/hi2";
   import { CiMenuKebab } from "react-icons/ci";
   import { handleLogout } from "@/auth/auth";
-  import { useNavigate} from 'react-router-dom';
+  import { useNavigate, NavLink} from 'react-router-dom';
 
 
 export default function DropdownMenus() {
@@ -29,8 +29,8 @@ export default function DropdownMenus() {
   const onLogoutClick = () => {
     handleLogout();
     navigate('/login')
-
   };
+
     return (
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
@@ -40,12 +40,13 @@ export default function DropdownMenus() {
           <DropdownMenuLabel>My Account</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuGroup>
+            <NavLink to='/dashboard/profile'>
             <DropdownMenuItem>
               <User className="mr-2 h-4 w-4" />
               <span>Profile</span>
               <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
             </DropdownMenuItem>   
-           
+            </NavLink>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
           <DropdownMenuSeparator />
