@@ -7,6 +7,8 @@ import { Button } from "@/components/ui/button"
 import TextAnimation from "@/components/animations/textanimation";
 import { Link, useNavigate } from 'react-router-dom';
 import Checkbox from '@mui/material/Checkbox';
+import Toast from "@/components/toastmsg";
+
 
 const StyledInput = styled(Input)(({ theme }) => `
   .${inputClasses.input} {
@@ -116,8 +118,16 @@ const LoginPage = () => {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [rememberMe, setRememberMe] = React.useState(false);
-  const [errorMessage, setErrorMessage] = React.useState('');
   const [loading, setLoading] = React.useState(false);
+  const [showToast, setShowToast] = React.useState(false);
+  const [toastMessage, setToastMessage] = React.useState('');
+  const [toastType, setToastType] = React.useState('success');
+
+   const triggerToast = (message, type) => {
+    setToastMessage(message);
+    setToastType(type);
+    setShowToast(true);
+  };
 
   const navigate = useNavigate();
 
@@ -133,13 +143,11 @@ const LoginPage = () => {
     setRememberMe(event.target.checked);
   };
 
-  const handleDismissError = () => {
-    setErrorMessage('');
-  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     setLoading(true);
+    setShowToast(false);
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/login`, {
         method: 'POST',
@@ -154,15 +162,18 @@ const LoginPage = () => {
         localStorage.setItem('sessionToken', data.sessionToken);
         localStorage.setItem('userId', data.userId);
         localStorage.setItem('token', data.token);
+        triggerToast(`${data.message || 'Account login successful'} `, 'success')
         navigate('/dashboard');
         console.log('Login successful');
       } else {
         const errorData = await response.json();
-        setErrorMessage(errorData.message || 'An error occurred during login');
+        triggerToast(`${errorData.message || 'An error occurred during login'} `, 'danger')
       }
     } catch (error) {
       console.log(error);
-      setErrorMessage('An error occurred during login');
+      triggerToast(`An error occurred during login `, 'danger')
+
+      // setErrorMessage('An error occurred during login');
     } finally {
       setLoading(false);
     }
@@ -170,18 +181,19 @@ const LoginPage = () => {
 
   return (
     <div className="w-[100vw] h-[100vh] flex justify-center flex-col items-center">
+       {showToast && (
+        <Toast 
+          message={toastMessage} 
+          type={toastType} 
+        />
+      )}
       <br />
       <br />
       <TextAnimation />
       <br />
       <div className="formContainer max-w-md w-full rounded-lg shadow-sm shadow-black p-8">
         <div className="flex flex-col gap-6">
-          {errorMessage && (
-            <div className="flex justify-between items-center bg-red-500 text-white p-2 rounded">
-              <p className="text-xs">{errorMessage}</p>
-              <button onClick={handleDismissError} className="ml-4 text-xl font-bold">&times;</button>
-            </div>
-          )}
+
          
           <FormControl required>
             <Label>Email</Label>

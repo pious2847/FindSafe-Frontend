@@ -13,15 +13,14 @@ import {
   NavigationMenuContent,
   NavigationMenuLink,
 } from "@/components/ui/navigation-menu";
-// import { Icons } from "@/components/icons";
 import { cn } from "@/lib/utils";
-
 import { ModeToggle } from "../mode-toggle";
 import { Button } from "@/components/ui/button";
 import { CiMenuFries } from "react-icons/ci";
 import { isAuthenticated, handleLogout } from "@/auth/auth";
-
 import { useNavigate} from 'react-router-dom';
+import { Logo } from "../logo";
+
 
 function AppBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -40,7 +39,7 @@ function AppBar() {
     <>
       <div className="appBar max-h-20 shadow-lg  fixed backdrop-blur-md z-[2]  w-full justify-between flex   align-middle p-5">
         <Link to='/'>
-        <h4 className=" text-lg font-medium">FindSafe</h4>
+        <h4 className=" text-lg font-medium flex gap-2 items-center"><Logo height={30} width={30}/> FindSafe</h4>
         </Link>
         <div className= {`flex justify-between mobileNav ${isMenuOpen ? 'active' : ''} backdrop-blur-md  `}>
           <NavigationMenu className="nav-conent flex">
@@ -56,7 +55,8 @@ function AppBar() {
                           className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
                           href="/"
                         >
-                          <img src="vite.svg" alt="" className="h-20 w-20" />
+                          {/* <img src="vite.svg" alt="" className="h-20 w-20" /> */}
+                          <Logo height={60} width={60}/>
                           <div className="mb-2 mt-4 text-lg font-medium">
                             FindSafe
                           </div>

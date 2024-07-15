@@ -6,6 +6,7 @@ import clsx from "clsx";
 import TextAnimation from "@/components/animations/textanimation";
 import { Link , useNavigate} from 'react-router-dom';
 import { Button } from "@/components/ui/button"
+import Toast from "@/components/toastmsg";
 
 
 const StyledInput = styled(Input)(
@@ -121,6 +122,15 @@ const SignUpPage = () => {
   const [password, setPassword] = React.useState('');
   const [errorMessage, setErrorMessage] = React.useState('');
   const [loading, setLoading] = React.useState(false);
+  const [showToast, setShowToast] = React.useState(false);
+  const [toastMessage, setToastMessage] = React.useState('');
+  const [toastType, setToastType] = React.useState('success');
+
+   const triggerToast = (message, type) => {
+    setToastMessage(message);
+    setToastType(type);
+    setShowToast(true);
+  };
 
   const navigate = useNavigate();
 
@@ -144,6 +154,7 @@ const SignUpPage = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     setLoading(true);
+    setShowToast(false);
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/signup`, {
         method: 'POST',
@@ -154,15 +165,18 @@ const SignUpPage = () => {
       });
 
       if (response.status === 200) {
+        const data = await response.json();
         navigate('/login');
-        console.log('Login successful');
+        triggerToast(`${data.message || 'Account registed successful please login'} `, 'success')
       } else {
         const errorData = await response.json();
-        setErrorMessage(errorData.message || 'An error occurred during login');
+        triggerToast(`${errorData.message || 'An error occurred during login'} `, 'danger')
+
       }
     } catch (error) {
       console.log(error);
-      setErrorMessage('An error occurred during login');
+      triggerToast(`An error occurred during login `, 'danger')
+      
     }finally {
     setLoading(false);
   }
@@ -170,8 +184,13 @@ const SignUpPage = () => {
 
   return (
     <div className="w-[100vw] h-[100vh] flex justify-center flex-col items-center">
+       {showToast && (
+        <Toast 
+          message={toastMessage} 
+          type={toastType} 
+        />
+      )}
       <br />
-
       <br />
       <TextAnimation />
       <br />
@@ -217,14 +236,14 @@ const SignUpPage = () => {
 
           <Button
             variant="outline"
-            className="w-[100%] p-2  bg-slate-900 rounded-md"
+            className="w-[100%] p-2  bg-slate-900 rounded-md text-white"
             onClick={handleSubmit}
             disabled={loading}
           >
             {loading ? 'Loading...' : 'Register'}
           </Button>
           <hr />
-          <p>Already have an account <Link to='/login' className="text-blue-500" >Sigin</Link></p>
+          <p>Already have an account <Link to='/login' className="text-blue-500" >Login?</Link></p>
         </div>
       </div>
     </div>
