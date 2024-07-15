@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -12,20 +12,31 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { getUser } from "@/auth/auth";
-import Toast from '@/components/toastmsg';
-
+import Toast from "@/components/toastmsg";
+import { Loader } from "@/components/loader";
 
 export function UserModal() {
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
+  const [toastType, setToastType] = useState("success");
+  const [loading, setLoading] = useState(false);
+
+  const triggerToast = (message, type) => {
+    setToastMessage(message);
+    setToastType(type);
+    setShowToast(true);
+  };
+
   const { user } = getUser();
 
   const [formData, setFormData] = useState({
-    username: user ? user.name : '',
-    email: user ? user.email : '',
-    phone: user ? user.phone : '',
-    area: user ? user.addressinfo.area : '',
-    houseNo: user ? user.addressinfo.houseNo : '',
-    name: user ? user.emergencycontact.name : '',
-    contact: user ? user.emergencycontact.contact : ''
+    username: user ? user.name : "",
+    email: user ? user.email : "",
+    phone: user ? user.phone : "",
+    area: user ? user.addressinfo.area : "",
+    houseNo: user ? user.addressinfo.houseNo : "",
+    name: user ? user.emergencycontact.name : "",
+    contact: user ? user.emergencycontact.contact : "",
   });
 
   const handleInputChange = (e) => {
@@ -35,25 +46,38 @@ export function UserModal() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setShowToast(false);
+    setLoading(true);
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/update:${user._id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/update/${user._id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        triggerToast("Network response was not ok", "danger");
+        throw new Error("");
       }
 
       const data = await response.json();
+      localStorage.setItem("token", data.token);
+      triggerToast(`${data.message || "Account login successful"} `, "success");
+
       // Handle successful response
-      console.log('Profile updated successfully:', data);
+      console.log("Profile updated successfully:", data);
     } catch (error) {
+      triggerToast("Error updating profile", "danger");
+
       // Handle error
-      console.error('Error updating profile:', error);
+      console.error("Error updating profile:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -62,12 +86,14 @@ export function UserModal() {
       <DialogTrigger asChild>
         <Button variant="outline">Edit Profile</Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      {showToast && <Toast message={toastMessage} type={toastType} />}
+      <DialogContent className="sm:max-w-[60%]">
         <form onSubmit={handleSubmit}>
           <DialogHeader>
             <DialogTitle>Edit profile</DialogTitle>
             <DialogDescription>
-              Make changes to your profile here. Click save when you&apos;re done.
+              Make changes to your profile here. Click save when you&apos;re
+              done.
             </DialogDescription>
           </DialogHeader>
           <div className="grid gap-4 py-4">
@@ -77,7 +103,7 @@ export function UserModal() {
               </Label>
               <Input
                 id="name"
-                value={formData.name}
+                value={formData.username}
                 onChange={handleInputChange}
                 className="col-span-3"
               />
@@ -131,8 +157,8 @@ export function UserModal() {
                 Emergency Contact Name
               </Label>
               <Input
-                id="emergencyContactName"
-                value={formData.emergencyContactName}
+                id="name"
+                value={formData.name}
                 onChange={handleInputChange}
                 className="col-span-3"
               />
@@ -142,15 +168,27 @@ export function UserModal() {
                 Contact
               </Label>
               <Input
-                id="emergencyContact"
-                value={formData.emergencyContact}
+                id="contact"
+                value={formData.contact}
                 onChange={handleInputChange}
                 className="col-span-3"
               />
             </div>
           </div>
-          <DialogFooter>
-            <Button type="submit">Save changes</Button>
+          <DialogFooter className="w-full ">
+            <Button
+            variant="outline"
+            disabled={loading}
+             type="submit" 
+             className="w-full">
+              {loading ? (
+                <p className="flex items-center gap-2">
+                  <Loader size={30} /> Loading...
+                </p>
+              ) : (
+                "Save changes"
+              )}
+            </Button>
           </DialogFooter>
         </form>
       </DialogContent>
