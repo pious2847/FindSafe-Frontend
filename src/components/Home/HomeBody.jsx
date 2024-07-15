@@ -1,7 +1,10 @@
+import BentoGrid from './bentogrid'
+
 function HomeBody() {
   return (
     <>
-      <div className="flex flex-col  gap-32 policiescard">
+    <BentoGrid/>
+      {/* <div className="flex flex-col  gap-32 policiescard">
         <div className="container  flex gap-10  w-[95%] p-8 align-middle rounded-lg shadow-sm shadow-black   boldercontainers">
           <div className="flex flex-wrap">
             <h2
@@ -56,7 +59,7 @@ function HomeBody() {
           </div>
           
         </div>
-      </div>
+      </div> */}
     </>
   );
 }

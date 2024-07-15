@@ -8,6 +8,7 @@ import TextAnimation from "@/components/animations/textanimation";
 import { Link, useNavigate } from 'react-router-dom';
 import Checkbox from '@mui/material/Checkbox';
 import Toast from "@/components/toastmsg";
+import { Loader } from "@/components/loader";
 
 
 const StyledInput = styled(Input)(({ theme }) => `
@@ -236,7 +237,7 @@ const LoginPage = () => {
             onClick={handleSubmit}
             disabled={loading}
           >
-            {loading ? 'Loading...' : 'Login'}
+            {loading ? <p className="flex items-center gap-2"><Loader size={30}/> Loading...</p> : 'Login'}
           </Button>
           <br />
           <hr />
