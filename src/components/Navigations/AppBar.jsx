@@ -126,7 +126,7 @@ function AppBar() {
               </Link>   
             </Button>
             <div onClick={onLogoutClick}>
-            <Button variant='danger' className="logoutbtn">
+            <Button variant='danger' className="logoutbtn bg-red-600">
               Logout
             </Button>
             </div >

@@ -1,11 +1,9 @@
-import BentoGrid from './bentogrid'
 
 function HomeBody() {
   return (
     <>
-    <BentoGrid/>
-      {/* <div className="flex flex-col  gap-32 policiescard">
-        <div className="container  flex gap-10  w-[95%] p-8 align-middle rounded-lg shadow-sm shadow-black   boldercontainers">
+      <div className="flex flex-col  gap-32 policiescard">
+        <div className="container  flex gap-10  w-[95%] p-8 align-middle rounded-lg shadow-sm    boldercontainers">
           <div className="flex flex-wrap">
             <h2
               className="text-4xl flex-1 font-extrabold tracking-tight"
@@ -30,7 +28,7 @@ function HomeBody() {
             className="shadow-md shadow-black cardimg  rounded-lg object-cover  h-[350px]"
           />
         </div>
-        <div className="container  flex gap-10  w-[95%] p-8 align-middle rounded-lg shadow-sm shadow-black  boldercontainer">
+        <div className="container  flex gap-10  w-[95%] p-8 align-middle rounded-lg shadow-sm boldercontainer">
         <img
             src="security.jpg"
             className="shadow-md shadow-black cardimg  rounded-lg object-cover  h-[350px]"
@@ -59,7 +57,7 @@ function HomeBody() {
           </div>
           
         </div>
-      </div> */}
+      </div>
     </>
   );
 }
