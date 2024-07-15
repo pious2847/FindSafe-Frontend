@@ -1,4 +1,5 @@
-export const Loader = ({ size = 100, color = "#0047AB" }) => {
+// eslint-disable-next-line react/prop-types
+export const Loader = ({ size, color = "#0047AB" }) => {
     return (
       <svg width={size} height={size} viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
         <defs>
