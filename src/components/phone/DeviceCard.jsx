@@ -8,14 +8,14 @@ const DeviceCard = ({ device, onUpdateSuccess }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden transition duration-300 hover:shadow-xl">
-      <div className="relative h-48 bg-gray-200 dark:bg-gray-700">
+    <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg overflow-hidden transition duration-300 hover:shadow-xl">
+      <div className="relative h-48 bg-gray-200 dark:bg-gray-800">
         <img 
           src={device.image} 
           alt={device.devicename} 
           className="w-full h-full object-cover"
         />
-        <div className="absolute top-2 right-2 bg-white dark:bg-gray-800 rounded-full p-1 shadow">
+        <div className="absolute top-2 right-2 bg-white dark:bg-gray-900 rounded-full p-1 shadow">
           <FaCircle className={`text-sm ${
             device.mode === 'active' ? 'text-green-500' : 'text-red-500'
           }`} />
