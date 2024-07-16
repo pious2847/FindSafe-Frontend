@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useState, useEffect } from 'react';
 import { FormControl, useFormControlContext } from "@mui/base/FormControl";
 import { Input, inputClasses } from "@mui/base/Input";
 import { styled } from "@mui/system";
@@ -39,9 +39,9 @@ const StyledInput = styled(Input)(({ theme }) => `
 
 const Label = styled(({ children, className }) => {
   const formControlContext = useFormControlContext();
-  const [dirty, setDirty] = React.useState(false);
+  const [dirty, setDirty] = useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (formControlContext?.filled) {
       setDirty(true);
     }
@@ -72,9 +72,9 @@ const Label = styled(({ children, className }) => {
 
 const HelperText = styled((props) => {
   const formControlContext = useFormControlContext();
-  const [dirty, setDirty] = React.useState(false);
+  const [dirty, setDirty] = useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (formControlContext?.filled) {
       setDirty(true);
     }
@@ -116,13 +116,13 @@ const grey = {
 };
 
 const LoginPage = () => {
-  const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
-  const [rememberMe, setRememberMe] = React.useState(false);
-  const [loading, setLoading] = React.useState(false);
-  const [showToast, setShowToast] = React.useState(false);
-  const [toastMessage, setToastMessage] = React.useState('');
-  const [toastType, setToastType] = React.useState('success');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [rememberMe, setRememberMe] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState('');
+  const [toastType, setToastType] = useState('success');
 
    const triggerToast = (message, type) => {
     setToastMessage(message);

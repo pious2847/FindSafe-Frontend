@@ -13,24 +13,35 @@ import { Button } from "../ui/button";
 import { fetchUserDevices } from "@/services/device";
 import { getUserId } from "@/auth/auth";
 import { useWebSocketCommand } from "@/services/websocketUtils";
+import Toast from "@/components/toastmsg";
+import { Loader } from "@/components/loader";
+
+
 
 const PhoneCard = () => {
     const [phones, setPhones] = useState([]);
     const { sendCommandToDevice, readyState,lastMessage } = useWebSocketCommand();
+    const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState('');
+  const [toastType, setToastType] = useState('success');
 
+   const triggerToast = (message, type) => {
+    setToastMessage(message);
+    setToastType(type);
+    setShowToast(true);
+  };
     const handleSendCommand = (deviceId) => {
+      setShowToast(false);
       if (readyState === WebSocket.OPEN) {
         sendCommandToDevice(deviceId, 'play_alarm');
-        alert('Alarm command sent successfully !!!')
+        triggerToast( 'Alarm command sent successfully !!!', 'success')
       } else {
         console.log('WebSocket is not connected');
-        alert('Alarm command fail refresh the page !!!')
-        // Provide user feedback that the connection is not ready
+      triggerToast(`Alarm command fail refresh the page !!! `, 'danger')
       }
     };
     useEffect(() => {
       if (lastMessage !== null) {
-        // Handle incoming messages
         console.log('Received message:', lastMessage.data);
       }
     }, [lastMessage]);
@@ -48,6 +59,12 @@ const PhoneCard = () => {
 
   return (
   <>
+     {showToast && (
+        <Toast 
+          message={toastMessage} 
+          type={toastType} 
+        />
+      )}
   {phones && phones.length > 0 ?
   (
     phones.map((phone, index) => (
@@ -88,7 +105,12 @@ const PhoneCard = () => {
         </AccordionItem>
       </Accordion>
     ))
-  ):(<p>No phones found Please wait</p>)}
+  ):(
+    <div className="flex w-full items-center justify-center h-full flex-col gap-3">
+      <Loader size={40}/>
+      <p>No phones found Please wait</p>
+    </div>
+  )}
   
   </>
    
