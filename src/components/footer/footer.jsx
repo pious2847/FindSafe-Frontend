@@ -1,13 +1,13 @@
 
 const Footer = () => {
   return (
-    <footer className="shadow-sm shadow-black py-12">
+    <footer className="shadow-lg  py-12">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="md:flex md:justify-between">
           <div className="mb-8 md:mb-0">
             <a href="/" className="flex items-center">
               <svg
-                className="h-8 w-8 text-white"
+                className="h-8 w-8 "
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -17,7 +17,7 @@ const Footer = () => {
               >
                 <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
               </svg>
-              <span className="ml-3 text-xl font-bold text-white">FindSafe</span>
+              <span className="ml-3 text-xl font-bold ">FindSafe</span>
             </a>
             <p className="mt-4 text-gray-600">
               Stay safe, stay connected with FindSafe.
@@ -25,62 +25,62 @@ const Footer = () => {
           </div>
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 md:grid-cols-4">
             <div>
-              <h3 className="text-sm font-semibold text-gray-600 uppercase tracking-wider">
+              <h3 className="text-sm font-semibold  uppercase tracking-wider">
                 Resources
               </h3>
               <ul className="mt-4 space-y-2">
                 <li>
-                  <a href="#" className="text-base text-gray-600 hover:text-white">
+                  <a href="#" className="text-base text-gray-600 ">
                     Documentation
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="text-base text-gray-600 hover:text-white">
+                  <a href="#" className="text-base text-gray-600 ">
                     Support
                   </a>
                 </li>
               </ul>
             </div>
             <div>
-              <h3 className="text-sm font-semibold text-gray-600 uppercase tracking-wider">
+              <h3 className="text-sm font-semibold  uppercase tracking-wider">
                 Company
               </h3>
               <ul className="mt-4 space-y-2">
                 <li>
-                  <a href="#" className="text-base text-gray-600 hover:text-white">
+                  <a href="#" className="text-base text-gray-600 ">
                     About
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="text-base text-gray-600 hover:text-white">
+                  <a href="#" className="text-base text-gray-600 ">
                     Careers
                   </a>
                 </li>
               </ul>
             </div>
             <div>
-              <h3 className="text-sm font-semibold text-gray-600 uppercase tracking-wider">
+              <h3 className="text-sm font-semibold  uppercase tracking-wider">
                 Legal
               </h3>
               <ul className="mt-4 space-y-2">
                 <li>
-                  <a href="#" className="text-base text-gray-600 hover:text-white">
+                  <a href="#" className="text-base text-gray-600 ">
                     Privacy Policy
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="text-base text-gray-600 hover:text-white">
+                  <a href="#" className="text-base text-gray-600 ">
                     Terms of Service
                   </a>
                 </li>
               </ul>
             </div>
             <div>
-              <h3 className="text-sm font-semibold text-gray-600 uppercase tracking-wider">
+              <h3 className="text-sm font-semibold  uppercase tracking-wider">
                 Social
               </h3>
               <div className="flex mt-4 space-x-4">
-                <a href="#" className="text-gray-600 hover:text-white">
+                <a href="#" className="text-gray-600 ">
                   <span className="sr-only">Facebook</span>
                   <svg
                     className="w-6 h-6"
@@ -95,7 +95,7 @@ const Footer = () => {
                     />
                   </svg>
                 </a>
-                <a href="#" className="text-gray-600 hover:text-white">
+                <a href="#" className="text-gray-600 ">
                   <span className="sr-only">Twitter</span>
                   <svg
                     className="w-6 h-6"
@@ -106,7 +106,7 @@ const Footer = () => {
                     <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
                   </svg>
                 </a>
-                <a href="#" className="text-gray-600 hover:text-white">
+                <a href="#" className="text-gray-600 ">
                   <span className="sr-only">Instagram</span>
                   <svg
                     className="w-6 h-6"

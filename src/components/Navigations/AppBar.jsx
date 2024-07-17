@@ -37,7 +37,7 @@ function AppBar() {
   };
   return (
     <>
-      <div className="appBar max-h-20 shadow-lg  fixed backdrop-blur-md z-[2]  w-full justify-between flex   align-middle p-5">
+      <div className="appBar max-h-20 shadow-lg  fixed backdrop-blur-md   w-full justify-between flex z-10   align-middle p-5">
         <Link to='/'>
         <h4 className=" text-lg font-medium flex gap-2 items-center"><Logo height={30} width={30}/> FindSafe</h4>
         </Link>

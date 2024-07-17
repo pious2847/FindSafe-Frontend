@@ -65,7 +65,7 @@ const Sidebar = ({children}) => {
               <NavLink to={item.url}>
               <div
                 className="relative group py-2 px-4 hover:bg-gray-700 cursor-pointer flex items-center"
-                onClick={toggleSidebar} >
+                 >
                 <item.icon
                   className={`text-2xl ${isOpen ? "mr-4" : "mx-auto"}`}
                 />

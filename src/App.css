@@ -143,15 +143,20 @@
     background: #020817;
     left: -500px;
     top: 0;
-    z-index: 1;
     backdrop-filter: blur(20px);
     overflow: scroll;
     padding: 10px;
+    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    z-index: 1000;
+    opacity: 0;
+    transform: translateX(-20px);
   }
 
 
   .mobileNav.active {
     left: 0; /* Show the mobile navigation menu when active */
+    opacity: 1;
+    transform: translateX(0);
   }
   .mobileNav::-webkit-scrollbar{
    width: 5px;
