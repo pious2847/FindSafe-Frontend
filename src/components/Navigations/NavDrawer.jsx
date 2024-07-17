@@ -88,12 +88,11 @@ const Sidebar = ({children}) => {
           <div className="flex items-center gap-2 ">
             <div className="innerNavUser flex items-center gap-2 ">
               <img
-                src="/herosection.png"
+                src={`https://ui-avatars.com/api/?name=${user.name}`}
                 alt=""
                 className="h-[25px] w-[25px] rounded-3xl shadow-xl"
               />
               {user ? <h3 className="text-sm font-thin">{user.name}</h3> : null}
-              {/* <h3 className="text-sm font-thin">Abdul Hafis Mohammed</h3> */}
             </div>
 
             <DropdownMenus />
