@@ -1,10 +1,10 @@
 
 function HomeBody() {
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto p-4 policiescard">
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {/* Live Tracking */}
-        <div className="col-span-1 md:col-span-2  rounded-lg shadow-md overflow-hidden bg-white dark:bg-gray-900">
+        <div className=" col-span-1 md:col-span-2  rounded-lg shadow-md overflow-hidden bg-white dark:bg-gray-900">
           <img src="https://picsum.photos/800/400?random=1" alt="Live Tracking" className="w-full h-48 object-cover" />
           <div className="p-6">
             <h2 className="text-3xl font-extrabold mb-4">Live Tracking</h2>
