@@ -17,8 +17,7 @@ import {
     DropdownMenuShortcut,
     DropdownMenuTrigger,
   } from "@/components/ui/dropdown-menu"
-  // import { HiAdjustmentsHorizontal } from "react-icons/hi2";
-  import { CiMenuKebab } from "react-icons/ci";
+  import { HiAdjustmentsHorizontal } from "react-icons/hi2";
   import { handleLogout } from "@/auth/auth";
   import { useNavigate, NavLink} from 'react-router-dom';
 
@@ -34,7 +33,7 @@ export default function DropdownMenus() {
     return (
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="outline" className='outline-none border-none hover: bg-transparent' ><CiMenuKebab className="size-6"/></Button>
+          <Button variant="outline" className='outline-none border-none hover: bg-transparent' ><HiAdjustmentsHorizontal className="size-6"/></Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-56">
           <DropdownMenuLabel>My Account</DropdownMenuLabel>
@@ -59,11 +58,13 @@ export default function DropdownMenus() {
             <span>Support</span>
           </DropdownMenuItem>
           <DropdownMenuSeparator />
-          <DropdownMenuItem>
-              <Settings className="mr-2 h-4 w-4" />
-              <span>Settings</span>
-              <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
+          <NavLink to='/dashboard/settings'>
+            <DropdownMenuItem>
+                <Settings className="mr-2 h-4 w-4" />
+                <span>Settings</span>
+                <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
             </DropdownMenuItem>
+            </NavLink>
           <DropdownMenuItem onClick={onLogoutClick}>
             <LogOut className="mr-2 h-4 w-4" />
             <span>Log out</span>

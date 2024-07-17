@@ -94,7 +94,6 @@ const Sidebar = ({children}) => {
               />
               {user ? <h3 className="text-sm font-thin">{user.name}</h3> : null}
             </div>
-
             <DropdownMenus />
           </div>
         </div>
