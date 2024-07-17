@@ -154,7 +154,7 @@
 
 
   .mobileNav.active {
-    left: 0; /* Show the mobile navigation menu when active */
+    left: 0; 
     opacity: 1;
     transform: translateX(0);
   }
@@ -162,8 +162,6 @@
    width: 5px;
   }
   
-
- 
    .NavigationMenuContent{
     width: 350px;
    }
@@ -246,14 +244,12 @@
     box-shadow: none !important;
     left: 14px;
     top: 22px;
-    /* background: none !important; */
     backdrop-filter: none;
    }
    .cancelSideNav{
     height: 100%;
     backdrop-filter: blur(20px) !important;
     overflow: auto;
-    /* box-shadow: -4px 0 6px -1px rgba(0, 0, 0, 0.507) !important; */
     left: 0;
     top: 0;
    }
