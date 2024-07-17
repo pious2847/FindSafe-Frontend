@@ -14,7 +14,7 @@ import SettingsPage from "./views/settings/settings";
 import LocationsDataPage from "./views/Locations/LocationsPage";
 import UserDashboard from "./views/Home/userDashboard";
 import UserProfile from "./views/profile/userProfile";
-import UserDevices from "./views/devices.jsx/UserDevices";
+import UserDevices from "./views/devices/UserDevices";
 import "./App.css";
 
 function App() {

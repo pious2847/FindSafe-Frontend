@@ -34,7 +34,7 @@ const DeviceCardPage = () => {
                 <DeviceCard key={device._id} device={device} onUpdateSuccess={handleUpdateSuccess} />
               ))
         ):(
-            <div className="flex w-full gap-3 h-screen items-center justify-center">
+            <div className="flex w-full gap-3 items-center justify-center">
                  <Loader size={30}/>
                  <p>Loading...</p>
             </div>
