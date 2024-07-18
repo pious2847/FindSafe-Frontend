@@ -151,8 +151,6 @@
     opacity: 0;
     transform: translateX(-20px);
   }
-
-
   .mobileNav.active {
     left: 0; 
     opacity: 1;
