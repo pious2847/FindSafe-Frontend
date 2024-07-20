@@ -19,7 +19,7 @@ import "./App.css";
 
 function App() {
   return (
-    <>
+    
       <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
         <Router>
           <Routes>
@@ -73,7 +73,7 @@ function App() {
           </Routes>
         </Router>
       </ThemeProvider>
-    </>
+   
   );
 }
 
