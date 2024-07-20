@@ -1,45 +1,53 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from "react";
+import { HiX } from "react-icons/hi";
 import {
-  HiX,
-} from "react-icons/hi";
-import { CiMenuFries,CiHome,CiUser,CiMobile1,CiMap,CiSettings } from "react-icons/ci";
+  CiMenuFries,
+  CiHome,
+  CiUser,
+  CiMobile1,
+  CiMap,
+  CiSettings,
+} from "react-icons/ci";
 import Footer from "../footer/footer";
 import DropdownMenus from "./dropdownmenu";
 import { getUser } from "@/auth/auth";
-import { NavLink} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
-
-const Sidebar = ({children}) => {
+const Sidebar = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleSidebar = () => setIsOpen(!isOpen);
   const { user } = getUser();
 
   const menuItems = [
-    { icon: CiHome, 
-      text: "Dashboard", 
-      section: "Home", 
-      url: '/dashboard' 
-    },
+    { icon: CiHome, text: "Dashboard", section: "Home", url: "/dashboard" },
     {
       icon: CiUser,
       text: "Profile",
       section: "Home",
-      url: '/dashboard/profile'
+      url: "/dashboard/profile",
     },
     {
       icon: CiMobile1,
       text: "Devices",
       section: "Home",
-      url: '/dashboard/devices'
+      url: "/dashboard/devices",
     },
 
-    { icon: CiMap, text: "Location Data", section: "Analytics", url: '/dashboard/locations'},
-    { icon: CiSettings, text: "Settings", section: "Settings" , url: '/dashboard/settings'},
+    {
+      icon: CiMap,
+      text: "Location Data",
+      section: "Analytics",
+      url: "/dashboard/locations",
+    },
+    {
+      icon: CiSettings,
+      text: "Settings",
+      section: "Settings",
+      url: "/dashboard/settings",
+    },
   ];
-
-
 
   return (
     <div className="flex overflow-hidden relative h-screen">
@@ -67,20 +75,18 @@ const Sidebar = ({children}) => {
                 </div>
               ) : null}
               <NavLink to={item.url}>
-              <div
-                className="relative group py-2 px-4 hover:bg-gray-700 cursor-pointer flex items-center"
-                 >
-                <item.icon
-                  className={`text-2xl ${isOpen ? "mr-4" : "mx-auto"}`}
-                />
-                {isOpen ? (
-                  <span>{item.text}</span>
-                ) : (
-                  <span className="absolute left-full ml-2 px-2 py-1 bg-gray-700 rounded-md text-sm invisible group-hover:visible whitespace-nowrap z-10">
-                    {item.text}
-                  </span>
-                )}
-              </div>
+                <div className="relative group py-2 px-4 hover:bg-gray-700 cursor-pointer flex items-center">
+                  <item.icon
+                    className={`text-2xl ${isOpen ? "mr-4" : "mx-auto"}`}
+                  />
+                  {isOpen ? (
+                    <span>{item.text}</span>
+                  ) : (
+                    <span className="absolute left-full ml-2 px-2 py-1 bg-gray-700 rounded-md text-sm invisible group-hover:visible whitespace-nowrap z-10">
+                      {item.text}
+                    </span>
+                  )}
+                </div>
               </NavLink>
             </React.Fragment>
           ))}
