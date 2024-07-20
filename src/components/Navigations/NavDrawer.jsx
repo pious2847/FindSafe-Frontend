@@ -17,7 +17,11 @@ const Sidebar = ({children}) => {
   const { user } = getUser();
 
   const menuItems = [
-    { icon: CiHome, text: "Dashboard", section: "Home", url: '/dashboard' },
+    { icon: CiHome, 
+      text: "Dashboard", 
+      section: "Home", 
+      url: '/dashboard' 
+    },
     {
       icon: CiUser,
       text: "Profile",
