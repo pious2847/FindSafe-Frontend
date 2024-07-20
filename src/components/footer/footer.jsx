@@ -30,7 +30,7 @@ const Footer = () => {
               </h3>
               <ul className="mt-4 space-y-2">
                 <li>
-                  <a href="#" className="text-base text-gray-600 ">
+                  <a href="/docs/installation" className="text-base text-gray-600 ">
                     Documentation
                   </a>
                 </li>
@@ -47,7 +47,7 @@ const Footer = () => {
               </h3>
               <ul className="mt-4 space-y-2">
                 <li>
-                  <a href="#" className="text-base text-gray-600 ">
+                  <a href="/about" className="text-base text-gray-600 ">
                     About
                   </a>
                 </li>

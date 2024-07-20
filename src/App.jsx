@@ -24,7 +24,7 @@ function App() {
         <Router>
           <Routes>
             <Route path="/" element={<MainPanel />} />
-            <Route path="/docs" element={<DocumentationPage />} />
+            <Route path="/docs/installation" element={<DocumentationPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/pricing" element={<PricingPage />} />
 

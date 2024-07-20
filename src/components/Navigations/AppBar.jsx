@@ -61,14 +61,12 @@ function AppBar() {
                             FindSafe
                           </div>
                           <p className="text-sm leading-tight text-muted-foreground">
-                            FindSafe simplifies security and fast development with an
-                            intuitive user interface, customizable themes, and
-                            advanced SEO tools..
+                          Discover the powerful features of the FindSafe app and learn how to leverage them for enhanced security and peace of mind...
                           </p>
                         </a>
                       </NavigationMenuLink>
                     </li>
-                    <ListItem href="/docs" title="Introduction">
+                    <ListItem href="/docs/installation" title="Introduction">
                       FindSafe: Your gateway to effortless mobile tracking and
                       management.
                     </ListItem>
@@ -87,7 +85,7 @@ function AppBar() {
 
               </NavigationMenuItem>
               <NavigationMenuItem className="menubarin">
-                <a href="/docs">
+                <a href="/docs/installation">
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                     Documentation
                   </NavigationMenuLink>
