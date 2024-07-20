@@ -18,7 +18,7 @@ const UserProfile = () => {
 
       <div className=" shadow rounded-lg p-8">
         <div className="flex justify-between items-center mb-6">
-          <h1 className="text-2xl font-bold text-gray-800">Personal Info</h1>
+          <h1 className="text-2xl font-bold ">Personal Info</h1>
           <UserModal />
         </div>
 
@@ -28,7 +28,7 @@ const UserProfile = () => {
           <InfoItem label="Contact" value={user?.phone} />
           <InfoItem label="Residential Area" value={user?.addressinfo?.area} />
           <InfoItem label="House No" value={user?.addressinfo?.houseNo} />
-          <InfoItem label="Emergency Contact Name" value={user?.emergencycontact?.name} />
+          <InfoItem label="Emergency Contact Personel" value={user?.emergencycontact?.name} />
           <InfoItem label="Emergency Contact" value={user?.emergencycontact?.contact} />
         </div>
       </div>
@@ -44,8 +44,8 @@ const UserProfile = () => {
 
 const InfoItem = ({ label, value }) => (
   <div className="flex flex-col">
-    <span className="text-sm font-medium text-gray-500">{label}</span>
-    <span className="mt-1 text-lg text-gray-800">{value || 'N/A'}</span>
+    <span className="text-sm font-medium text-gray-300">{label}</span>
+    <span className="mt-1 text-lg text-gray-500">{value || 'N/A'}</span>
   </div>
 );
 
