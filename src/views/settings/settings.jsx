@@ -5,7 +5,7 @@ import { UserModal } from "../../components/modal/usermodal";
 
 const SettingsPage = () => {
   return (
-    <div className="w-full mx-auto py-8 px-4">
+    <div className="w-full mx-auto py-8 px-4 settings">
       <h1 className="text-3xl font-bold mb-8">Settings</h1>
       
       <div className="bg-card rounded-lg shadow-md overflow-hidden">

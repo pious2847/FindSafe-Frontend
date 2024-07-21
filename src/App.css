@@ -263,4 +263,8 @@
    .cardsubimg{
     width: 75%;
    }
+   .settings{
+    padding-left: 0rem !important ;
+    padding-right: 0rem !important ;
+   }
 }

@@ -62,7 +62,7 @@ const DeviceModeModal = ({ isOpen, onClose, device, onUpdateSuccess }) => {
           type={toastType} 
         />
       )}
-      <div className="bg-white dark:bg-gray-900 rounded-lg p-6 w-full max-w-sm">
+      <div className="bg-white dark:bg-gray-950 rounded-lg p-6 w-full max-w-sm">
         <h2 className="text-xl font-semibold mb-4">Update Device Mode</h2>
         <div className="flex justify-between items-center mb-4">
           <span>Active</span>
