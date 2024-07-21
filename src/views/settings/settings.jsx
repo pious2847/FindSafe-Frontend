@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { FaPalette, FaUser, FaBell, FaLock, FaQuestionCircle } from "react-icons/fa";
 import { ModeToggle } from "@/components/mode-toggle";
-import { UserModal } from "../auth/usermodal";
+import { UserModal } from "../../components/modal/usermodal";
 
 const SettingsPage = () => {
   return (

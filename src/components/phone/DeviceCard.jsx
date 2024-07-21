@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { FaMobile, FaCircle } from 'react-icons/fa';
 import { MdModeEdit, MdDelete } from 'react-icons/md';
-import DeviceModeModal from '@/components/phone/devicemodal';
+import DeviceModeModal from '@/components/modal/devicemodal';
 import { useState,  } from 'react';
 
 const DeviceCard = ({ device, onUpdateSuccess }) => {

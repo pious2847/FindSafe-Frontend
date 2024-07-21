@@ -19,3 +19,23 @@ export const fetchUserDevices = async (userId) => {
     throw error; // Re-throw the error to handle it in the calling function
   }
 };
+
+export const DeleteUserDevice = async(deviceId) =>{
+  try{
+    const apiUrl = import.meta.env.VITE_API_URL;
+    if (!apiUrl) {
+      throw new Error('API URL is not defined');
+    }
+
+    const response = await axios.get(`${apiUrl}/deletedevice/${deviceId}`);
+
+    if (response.status != 200) {
+      return await response.data['message'] || ''
+    }
+    const data = await response.data['message'];
+    return data || '';
+  }catch(error){
+    console.error('Error fetching user devices:', error);
+    return 'Error deleting user devices'
+  }
+}

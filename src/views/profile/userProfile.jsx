@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { getUser } from "@/auth/auth";
-import { UserModal } from "../auth/usermodal";
+import { UserModal } from "../../components/modal/usermodal";
 
 const UserProfile = () => {
   const { user } = getUser();
