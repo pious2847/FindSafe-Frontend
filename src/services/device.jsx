@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const fetchUserDevices = async (userId) => {
   try {
     const apiUrl = import.meta.env.VITE_API_URL;
@@ -15,8 +16,9 @@ export const fetchUserDevices = async (userId) => {
     const data = await response.data['mobileDevices'];
     return data || [];
   } catch (error) {
-    console.error('Error fetching user devices:', error);
-    throw error; // Re-throw the error to handle it in the calling function
+    console.error('Error fetching user devices:', error.message);
+    // throw error; // Re-throw the error to handle it in the calling function
+    return error.message;
   }
 };
 
@@ -27,7 +29,7 @@ export const DeleteUserDevice = async(deviceId) =>{
       throw new Error('API URL is not defined');
     }
 
-    const response = await axios.get(`${apiUrl}/deletedevice/${deviceId}`);
+    const response = await axios.delete(`${apiUrl}/deletedevice/${deviceId}`);
 
     if (response.status != 200) {
       return await response.data['message'] || ''
@@ -35,7 +37,7 @@ export const DeleteUserDevice = async(deviceId) =>{
     const data = await response.data['message'];
     return data || '';
   }catch(error){
-    console.error('Error fetching user devices:', error);
+    console.error('Error fetching user devices:', error.message);
     return 'Error deleting user devices'
   }
 }

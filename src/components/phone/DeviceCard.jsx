@@ -2,10 +2,12 @@
 import { FaMobile, FaCircle } from 'react-icons/fa';
 import { MdModeEdit, MdDelete } from 'react-icons/md';
 import DeviceModeModal from '@/components/modal/devicemodal';
+import DeviceModal from '../modal/alertmodal';
 import { useState,  } from 'react';
 
 const DeviceCard = ({ device, onUpdateSuccess }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDeviceModalOpen, setIsDeviceModalOpen] = useState(false);
 
   return (
     <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg overflow-hidden transition duration-300 hover:shadow-xl">
@@ -40,12 +42,20 @@ const DeviceCard = ({ device, onUpdateSuccess }) => {
             >
               <MdModeEdit />
             </button>
-            <button className="p-2 bg-red-100 text-red-600 rounded-full hover:bg-red-200 transition duration-300">
+            <button
+            onClick={() => setIsDeviceModalOpen(true)}
+             className="p-2 bg-red-100 text-red-600 rounded-full hover:bg-red-200 transition duration-300">
               <MdDelete />
             </button>
           </div>
         </div>
       </div>
+      <DeviceModal 
+        isOpen={isDeviceModalOpen}
+        onClose={() => setIsDeviceModalOpen(false)}
+        device={device}
+        onUpdateSuccess={onUpdateSuccess}
+      />
       <DeviceModeModal 
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
