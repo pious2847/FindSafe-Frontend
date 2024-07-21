@@ -5,7 +5,6 @@ import { fetchUserDevices } from "@/services/device";
 import { getUserId } from "@/auth/auth";
 import { Loader } from '../loader';
 import DeviceCard from './DeviceCard';
-import { SkeletonCard } from '../skeletonCard';
 
 const DeviceCardPage = () => {
     const [devices, setPhones] = useState([]);
@@ -34,20 +33,10 @@ const DeviceCardPage = () => {
                 <DeviceCard key={device._id} device={device} onUpdateSuccess={handleUpdateSuccess} />
               ))
         ):(
-          <div className="flex flex-col gap-3 w-full items-center justify-center">
-            <div className="flex w-full flex-grow gap-4">
-              <SkeletonCard/>
-              <SkeletonCard/>
-              <SkeletonCard/>
-              <SkeletonCard/>
-            </div>
             <div className="flex w-full gap-3 items-center justify-center">
                  <Loader size={30}/>
                  <p>Loading...</p>
-            </div>
-          </div>
-            
-           
+            </div>            
         )
        }
       </div>
