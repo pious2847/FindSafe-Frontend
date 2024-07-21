@@ -75,14 +75,14 @@ const Sidebar = ({ children }) => {
                 </div>
               ) : null}
               <NavLink to={item.url}>
-                <div className="relative group py-2 px-4 hover:bg-gray-700 cursor-pointer flex items-center">
+                <div className="relative group py-2 px-4 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-white cursor-pointer flex items-center">
                   <item.icon
                     className={`text-2xl ${isOpen ? "mr-4" : "mx-auto"}`}
                   />
                   {isOpen ? (
                     <span>{item.text}</span>
                   ) : (
-                    <span className="absolute left-full ml-2 px-2 py-1 bg-gray-700 rounded-md text-sm invisible group-hover:visible whitespace-nowrap z-10">
+                    <span className="absolute left-full ml-2 px-2 py-1 bg-slate-400 dark:text-gray-300 dark:bg-gray-700 rounded-md text-sm invisible group-hover:visible whitespace-nowrap z-10">
                       {item.text}
                     </span>
                   )}

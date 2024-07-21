@@ -46,7 +46,7 @@ const DeviceModal = ({ isOpen, onClose, device, onUpdateSuccess }) => {
           type={toastType} 
         />
       )}
-  <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-30">
+  <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-30 " onClick={onClose}>
   <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg overflow-hidden transition duration-300 hover:shadow-x w-[450px]">
     <div className="p-6">
       <h2 className="text-lg font-semibold mb-2">Are you absolutely sure?</h2>

@@ -55,14 +55,14 @@ const DeviceModeModal = ({ isOpen, onClose, device, onUpdateSuccess }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" onClick={onClose}>
         {showToast && (
         <Toast 
           message={toastMessage} 
           type={toastType} 
         />
       )}
-      <div className="bg-white dark:bg-gray-800 rounded-lg p-6 w-full max-w-sm">
+      <div className="bg-white dark:bg-gray-900 rounded-lg p-6 w-full max-w-sm">
         <h2 className="text-xl font-semibold mb-4">Update Device Mode</h2>
         <div className="flex justify-between items-center mb-4">
           <span>Active</span>
@@ -82,7 +82,7 @@ const DeviceModeModal = ({ isOpen, onClose, device, onUpdateSuccess }) => {
             checked={!isActive}
             onChange={() => setIsActive(false)}
             className={`${
-              !isActive ? 'bg-red-600' : 'bg-gray-200'
+              !isActive ? 'bg-red-600' : 'bg-gray-400'
             } relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2`}
           >
             <span className={`${!isActive ? 'translate-x-6' : 'translate-x-1'} inline-block h-4 w-4 transform rounded-full bg-white transition-transform`} />
