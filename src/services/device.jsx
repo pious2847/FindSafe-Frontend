@@ -16,7 +16,7 @@ export const fetchUserDevices = async (userId) => {
     const data = await response.data['mobileDevices'];
     return data || [];
   } catch (error) {
-    console.error('Error fetching user devices:', error.message);
+    // console.error('Error fetching user devices:', error.message);
     // throw error; // Re-throw the error to handle it in the calling function
     return error.message;
   }
@@ -37,7 +37,7 @@ export const DeleteUserDevice = async(deviceId) =>{
     const data = await response.data['message'];
     return data || '';
   }catch(error){
-    console.error('Error fetching user devices:', error.message);
+    // console.error('Error fetching user devices:', error.message);
     return 'Error deleting user devices'
   }
 }
