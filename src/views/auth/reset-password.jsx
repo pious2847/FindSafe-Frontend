@@ -25,8 +25,8 @@ const ResetPassword = () => {
   
   // Get data from navigation state
   const email = location.state?.email;
-  const resetToken = location.state?.resetToken;
-  const userId = location.state?.userId;
+  const resetToken = location.state?.resetToken?.toString();
+  const userId = location.state?.userId?.toString();
 
   const triggerToast = (message, type) => {
     setToastMessage(message);
