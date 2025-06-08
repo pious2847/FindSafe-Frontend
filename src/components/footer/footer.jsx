@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin, Shield } from 'lucide-react';
 import { Logo } from '../logo';
 import GlassCard from '@/components/glass/GlassCard';
@@ -94,12 +95,21 @@ const Footer = () => {
                   { label: "Status Page", href: "#" },
                 ].map((link, index) => (
                   <li key={index}>
-                    <a
-                      href={link.href}
-                      className="text-white/70 hover:text-neon-cyan transition-colors duration-300 text-sm"
-                    >
-                      {link.label}
-                    </a>
+                    {link.href.startsWith('#') ? (
+                      <a
+                        href={link.href}
+                        className="text-white/70 hover:text-neon-cyan transition-colors duration-300 text-sm"
+                      >
+                        {link.label}
+                      </a>
+                    ) : (
+                      <Link
+                        to={link.href}
+                        className="text-white/70 hover:text-neon-cyan transition-colors duration-300 text-sm"
+                      >
+                        {link.label}
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -116,12 +126,21 @@ const Footer = () => {
                   { label: "Partners", href: "#" },
                 ].map((link, index) => (
                   <li key={index}>
-                    <a
-                      href={link.href}
-                      className="text-white/70 hover:text-neon-purple transition-colors duration-300 text-sm"
-                    >
-                      {link.label}
-                    </a>
+                    {link.href.startsWith('#') ? (
+                      <a
+                        href={link.href}
+                        className="text-white/70 hover:text-neon-purple transition-colors duration-300 text-sm"
+                      >
+                        {link.label}
+                      </a>
+                    ) : (
+                      <Link
+                        to={link.href}
+                        className="text-white/70 hover:text-neon-purple transition-colors duration-300 text-sm"
+                      >
+                        {link.label}
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -132,18 +151,18 @@ const Footer = () => {
               <h3 className="text-lg font-semibold text-white mb-6">Legal & Social</h3>
               <ul className="space-y-3 mb-6">
                 {[
-                  { label: "Privacy Policy", href: "#" },
-                  { label: "Terms of Service", href: "#" },
-                  { label: "Cookie Policy", href: "#" },
-                  { label: "GDPR Compliance", href: "#" },
+                  { label: "Privacy Policy", href: "/privacy-policy" },
+                  { label: "Terms of Service", href: "/terms-of-service" },
+                  { label: "Data Usage", href: "/data-usage" },
+                  { label: "Data Protection", href: "/data-protection" },
                 ].map((link, index) => (
                   <li key={index}>
-                    <a
-                      href={link.href}
+                    <Link
+                      to={link.href}
                       className="text-white/70 hover:text-neon-green transition-colors duration-300 text-sm"
                     >
                       {link.label}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>

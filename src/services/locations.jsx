@@ -29,7 +29,7 @@ export const getLocationNames = async (latitude, longitude) => {
       };
     }
 
-    const Token = '2220506b0887c18d766a848e9818b703';
+    const Token = import.meta.env.VITE_POSITION_STACK_API_KEY;
     const PROXY_URL = import.meta.env.VITE_API_PROXY_URL;
     console.log('Fetched Response Token', Token);
 

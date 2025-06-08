@@ -9,6 +9,10 @@ import VerifyOTP from "./views/auth/verify-otp";
 import ForgotPassword from "./views/auth/forgot-password";
 import VerifyResetOTP from "./views/auth/verify-reset-otp";
 import ResetPassword from "./views/auth/reset-password";
+import PrivacyPolicy from "./views/legal/privacy-policy";
+import TermsOfService from "./views/legal/terms-of-service";
+import DataUsage from "./views/legal/data-usage";
+import DataProtection from "./views/legal/data-protection";
 import PricingPage from "./views/pricing/Pricing";
 import AboutPage from "./views/about/about";
 import DocumentationPage from "./views/docs/documentation";
@@ -46,6 +50,10 @@ function App() {
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/verify-reset-otp" element={<VerifyResetOTP />} />
             <Route path="/reset-password" element={<ResetPassword />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/terms-of-service" element={<TermsOfService />} />
+            <Route path="/data-usage" element={<DataUsage />} />
+            <Route path="/data-protection" element={<DataProtection />} />
           </Routes>
           <ToastContainer />
         </Router>
