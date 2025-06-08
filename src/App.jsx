@@ -5,6 +5,10 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import MainPanel from "./views/Home/home";
 import LoginPage from "./views/auth/login";
 import SignupPage from "./views/auth/signup";
+import VerifyOTP from "./views/auth/verify-otp";
+import ForgotPassword from "./views/auth/forgot-password";
+import VerifyResetOTP from "./views/auth/verify-reset-otp";
+import ResetPassword from "./views/auth/reset-password";
 import PricingPage from "./views/pricing/Pricing";
 import AboutPage from "./views/about/about";
 import DocumentationPage from "./views/docs/documentation";
@@ -15,6 +19,7 @@ import LocationsDataPage from "./views/Locations/LocationsPage";
 import UserDashboard from "./views/Home/userDashboard";
 import UserProfile from "./views/profile/userProfile";
 import UserDevices from "./views/devices/UserDevices";
+import { ToastContainer } from "./components/ui/enhanced-toast";
 import "./App.css";
 
 function App() {
@@ -28,48 +33,21 @@ function App() {
             <Route path="/pricing" element={<PricingPage />} />
 
             <Route
-              path="/dashboard"
+              path="/dashboard/*"
               element={
                 <ProtectedRoute>
-                  <Sidebar children={<UserDashboard />} />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/dashboard/profile"
-              element={
-                <ProtectedRoute>
-                  <Sidebar children={<UserProfile />} />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/dashboard/devices"
-              element={
-                <ProtectedRoute>
-                  <Sidebar children={<UserDevices />} />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/dashboard/locations"
-              element={
-                <ProtectedRoute>
-                  <Sidebar children={<LocationsDataPage />} />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/dashboard/settings"
-              element={
-                <ProtectedRoute>
-                  <Sidebar children={<SettingsPage />} />
+                  <Sidebar />
                 </ProtectedRoute>
               }
             />
             <Route path="/signup" element={<SignupPage />} />
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/verify-otp" element={<VerifyOTP />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/verify-reset-otp" element={<VerifyResetOTP />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
           </Routes>
+          <ToastContainer />
         </Router>
       </ThemeProvider>
   );

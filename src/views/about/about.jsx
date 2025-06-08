@@ -1,280 +1,336 @@
+import React from 'react';
+import { motion } from 'framer-motion';
 import AppBar from "@/components/Navigations/AppBar";
 import Footer from "@/components/footer/footer";
+import GlassCard from "@/components/glass/GlassCard";
+import AnimatedBackground from "@/components/backgrounds/AnimatedBackground";
+import {
+  CiLocationOn,
+  CiMobile1,
+  CiLock,
+  CiUser,
+  CiStar,
+  CiHeart
+} from "react-icons/ci";
+import { Shield } from 'lucide-react';
 
 const AboutPage = () => {
-  return (
-    <>
-      <AppBar />
-      <br />
-      <div className="pricingtag relative top-20">
-        {/* Hero Section */}
-        <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
-          <div className="max-w-xl sm:mx-auto lg:max-w-2xl">
-            <div className="flex flex-col mb-16 sm:text-center sm:mb-0">
-              <a href="/" className="mb-6 sm:mx-auto">
-                <div className="flex items-center justify-center w-12 h-12 rounded-full bg-indigo-50">
-                  <svg
-                    className="w-8 h-8 text-indigo-600"
-                    stroke="currentColor"
-                    viewBox="0 0 52 52"
-                  >
-                    <polygon
-                      strokeWidth="3"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      fill="none"
-                      points="29 13 14 29 25 29 23 39 38 23 27 23"
-                    />
-                  </svg>
-                </div>
-              </a>
-              <div className="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
-                <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight  sm:text-4xl md:mx-auto">
-                  <span className="relative inline-block">
-                    <svg
-                      viewBox="0 0 52 24"
-                      fill="currentColor"
-                      className="absolute top-0 left-0 z-0 hidden w-32 -mt-8 -ml-20 text-indigo-300 lg:w-32 lg:-ml-28 lg:-mt-10 sm:block"
-                    >
-                      <defs>
-                        <pattern
-                          id="70326c9b-008a-4ac7-8403-1370d96eee83"
-                          x="0"
-                          y="0"
-                          width=".135"
-                          height=".30"
-                        >
-                          <circle cx="1" cy="1" r=".7" />
-                        </pattern>
-                      </defs>
-                      <rect
-                        fill="url(#70326c9b-008a-4ac7-8403-1370d96eee83)"
-                        width="52"
-                        height="24"
-                      />
-                    </svg>
-                    <span className="relative">About -  FindSafe </span>
-                  </span>
-                </h2>
-                <p className="text-base text-gray-700 md:text-lg">
-                  Discover the story behind FindSafe, a cutting-edge mobile
-                  tracking app designed to keep you and your loved ones safe and
-                  secure.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
 
-        {/* Mission Section */}
-        <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
-          <div className="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
-            <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight  sm:text-4xl md:mx-auto">
-              Our Mission
-            </h2>
-            <p className="text-base text-gray-700 md:text-lg">
-              At FindSafe, our mission is to empower individuals and families
-              with cutting-edge technology that provides peace of mind and
-              enhances security. We believe in leveraging innovative solutions
-              to create a safer world for everyone.
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: "easeOut" },
+    },
+  };
+
+  return (
+    <div className="relative min-h-screen">
+      <AnimatedBackground variant="default" />
+      <AppBar />
+
+      <motion.div
+        className="relative z-10 pt-24"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        {/* Hero Section */}
+        <motion.div
+          className="px-4 py-20 mx-auto max-w-7xl"
+          variants={itemVariants}
+        >
+          <GlassCard className="p-12 text-center" variant="primary" glow>
+            <motion.div
+              className="mb-8"
+              animate={{ rotate: 360 }}
+              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+            >
+              <div className="w-20 h-20 mx-auto bg-neon-cyan/20 rounded-full border border-neon-cyan/30 flex items-center justify-center">
+                <Shield className="text-4xl text-neon-cyan" />
+              </div>
+            </motion.div>
+
+            <motion.h1
+              className="text-5xl md:text-6xl font-bold mb-6"
+              animate={{
+                textShadow: [
+                  "0 0 20px #00ffff",
+                  "0 0 40px #00ffff",
+                  "0 0 20px #00ffff"
+                ]
+              }}
+              transition={{ duration: 2, repeat: Infinity }}
+            >
+              <span className="text-white">About</span>{" "}
+              <span className="text-neon-cyan">FindSafe</span>
+            </motion.h1>
+
+            <p className="text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
+              Discover the story behind FindSafe, a cutting-edge device security platform
+              powered by advanced AI and military-grade encryption, designed to protect
+              what matters most to you.
             </p>
+          </GlassCard>
+        </motion.div>
+
+        {/* Mission & Vision Section */}
+        <motion.div
+          className="px-4 py-20 mx-auto max-w-7xl"
+          variants={itemVariants}
+        >
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <GlassCard className="p-8" variant="secondary">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="p-3 bg-neon-purple/20 rounded-xl border border-neon-purple/30">
+                  <CiHeart className="text-2xl text-neon-purple" />
+                </div>
+                <h2 className="text-3xl font-bold text-white">Our Mission</h2>
+              </div>
+              <p className="text-white/80 text-lg leading-relaxed">
+                At FindSafe, our mission is to empower individuals and families with
+                cutting-edge technology that provides unparalleled peace of mind. We believe
+                in leveraging AI-driven innovation and military-grade security to create
+                a safer digital world for everyone.
+              </p>
+            </GlassCard>
+
+            <GlassCard className="p-8" variant="primary">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="p-3 bg-neon-cyan/20 rounded-xl border border-neon-cyan/30">
+                  <CiStar className="text-2xl text-neon-cyan" />
+                </div>
+                <h2 className="text-3xl font-bold text-white">Our Vision</h2>
+              </div>
+              <p className="text-white/80 text-lg leading-relaxed">
+                To become the world's most trusted device security platform, where advanced
+                technology meets human-centered design. We envision a future where digital
+                security is seamless, intelligent, and accessible to everyone.
+              </p>
+            </GlassCard>
           </div>
-        </div>
+        </motion.div>
 
         {/* Features Section */}
-        <div className="px-4 py-16 mx-auto bg-gray-100 sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
-          <div className="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
-            <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl md:mx-auto">
-              Key Features
+        <motion.div
+          className="px-4 py-20 mx-auto max-w-7xl"
+          variants={itemVariants}
+        >
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-white mb-6">
+              Advanced Security Features
             </h2>
+            <p className="text-xl text-white/70 max-w-3xl mx-auto">
+              Discover the cutting-edge technologies that make FindSafe the most
+              comprehensive device security platform available today.
+            </p>
           </div>
-          <div className="grid gap-8 row-gap-5 md:row-gap-8 lg:grid-cols-3">
-            <div className="p-5 duration-300 transform bg-white border-2 border-dashed rounded shadow-sm hover:-translate-y-2">
-              <div className="flex items-center justify-center w-12 h-12 mb-4 rounded-full bg-indigo-50">
-                <svg
-                  className="w-8 h-8 text-indigo-600"
-                  stroke="currentColor"
-                  viewBox="0 0 52 52"
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              {
+                icon: CiLocationOn,
+                title: "Real-time Tracking",
+                description: "Military-grade GPS tracking with sub-meter accuracy and real-time location updates.",
+                color: "text-neon-cyan",
+                bgColor: "bg-cyan-500/20",
+                borderColor: "border-cyan-500/30"
+              },
+              {
+                icon: CiLock,
+                title: "Remote Device Lock",
+                description: "Instantly secure your device with biometric locks and encrypted access controls.",
+                color: "text-neon-purple",
+                bgColor: "bg-purple-500/20",
+                borderColor: "border-purple-500/30"
+              },
+              {
+                icon: Shield,
+                title: "Data Protection",
+                description: "Advanced encryption and secure data wiping to protect your sensitive information.",
+                color: "text-neon-green",
+                bgColor: "bg-green-500/20",
+                borderColor: "border-green-500/30"
+              },
+              {
+                icon: CiMobile1,
+                title: "Smart Alerts",
+                description: "AI-powered notifications and customizable alarm systems for enhanced security.",
+                color: "text-neon-pink",
+                bgColor: "bg-pink-500/20",
+                borderColor: "border-pink-500/30"
+              }
+            ].map((feature, index) => (
+              <motion.div
+                key={index}
+                variants={itemVariants}
+                custom={index}
+                whileHover={{ scale: 1.05, y: -5 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <GlassCard
+                  className={`p-6 h-full ${feature.bgColor} ${feature.borderColor}`}
+                  hover={true}
                 >
-                  <polygon
-                    strokeWidth="3"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    fill="none"
-                    points="29 13 14 29 25 29 23 39 38 23 27 23"
-                  />
-                </svg>
-              </div>
-              <h6 className="mb-2 font-semibold leading-5 text-gray-900">
-                Real-time Tracking
-              </h6>
-              <p className="mb-3 text-sm text-gray-900">
-                Stay connected with your loved ones through real-time location
-                tracking, providing you with peace of mind and enhanced
-                security.
-              </p>
-            </div>
-            <div className="p-5 duration-300 transform bg-white border-2 border-dashed rounded shadow-sm hover:-translate-y-2">
-              <div className="flex items-center justify-center w-12 h-12 mb-4 rounded-full bg-indigo-50">
-                <svg
-                  className="w-8 h-8 text-indigo-600"
-                  stroke="currentColor"
-                  viewBox="0 0 52 52"
-                >
-                  <polygon
-                    strokeWidth="3"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    fill="none"
-                    points="29 13 14 29 25 29 23 39 38 23 27 23"
-                  />
-                </svg>
-              </div>
-              <h6 className="mb-2 font-semibold leading-5 text-gray-900">
-                Real-time Device Disable
-              </h6>
-              <p className="mb-3 text-sm text-gray-900">
-                Protect your device and data from unauthorized access by
-                remotely disabling the device in case of loss or theft. This
-                feature ensures that your sensitive information remains secure
-                and inaccessible to others.
-              </p>
-            </div>
-            <div className="p-5 duration-300 transform bg-white border-2 border-dashed rounded shadow-sm hover:-translate-y-2">
-              <div className="flex items-center justify-center w-12 h-12 mb-4 rounded-full bg-indigo-50">
-                <svg
-                  className="w-8 h-8 text-indigo-600"
-                  stroke="currentColor"
-                  viewBox="0 0 52 52"
-                >
-                  <polygon
-                    strokeWidth="3"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    fill="none"
-                    points="29 13 14 29 25 29 23 39 38 23 27 23"
-                  />
-                </svg>
-              </div>
-              <h6 className="mb-2 font-semibold leading-5 text-gray-900">
-                Remote Wipe of Data
-              </h6>
-              <p className="mb-3 text-sm text-gray-900">
-                In the event of device theft or loss, you can remotely wipe all
-                data from the device, preventing sensitive information from
-                falling into the wrong hands. This feature provides an
-                additional layer of security and privacy protection.
-              </p>
-            </div>
-            <div className="p-5 duration-300 transform bg-white border-2 border-dashed rounded shadow-sm hover:-translate-y-2">
-              <div className="flex items-center justify-center w-12 h-12 mb-4 rounded-full bg-indigo-50">
-                <svg
-                  className="w-8 h-8 text-indigo-600"
-                  stroke="currentColor"
-                  viewBox="0 0 52 52"
-                >
-                  <polygon
-                    strokeWidth="3"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    fill="none"
-                    points="29 13 14 29 25 29 23 39 38 23 27 23"
-                  />
-                </svg>
-              </div>
-              <h6 className="mb-2 font-semibold leading-5 text-gray-900">
-                Remote Alarm Playing
-              </h6>
-              <p className="mb-3 text-sm text-gray-900">
-                If you misplace your device, you can trigger a loud alarm
-                remotely to help locate it. This feature can be particularly
-                useful in crowded or noisy environments, making it easier to
-                find your device quickly.
-              </p>
-            </div>
-            {/* Add more feature cards as needed */}
+                  <div className="text-center">
+                    <motion.div
+                      className={`w-16 h-16 mx-auto mb-4 rounded-xl ${feature.bgColor} border ${feature.borderColor} flex items-center justify-center`}
+                      animate={{
+                        boxShadow: [
+                          `0 0 20px ${feature.color.replace('text-', '').replace('-', '')}`,
+                          `0 0 30px ${feature.color.replace('text-', '').replace('-', '')}`,
+                          `0 0 20px ${feature.color.replace('text-', '').replace('-', '')}`
+                        ]
+                      }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                    >
+                      <feature.icon className={`text-3xl ${feature.color}`} />
+                    </motion.div>
+
+                    <h3 className="text-xl font-bold text-white mb-3">
+                      {feature.title}
+                    </h3>
+
+                    <p className="text-white/70 text-sm leading-relaxed">
+                      {feature.description}
+                    </p>
+                  </div>
+                </GlassCard>
+              </motion.div>
+            ))}
           </div>
-        </div>
+        </motion.div>
         {/* Team Section */}
-        <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
-          <div className="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
-            <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight  sm:text-4xl md:mx-auto">
-              Our Team
+        <motion.div
+          className="px-4 py-20 mx-auto max-w-7xl"
+          variants={itemVariants}
+        >
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-white mb-6">
+              Meet Our Expert Team
             </h2>
+            <p className="text-xl text-white/70 max-w-3xl mx-auto">
+              Our world-class team of security experts, engineers, and designers
+              are dedicated to protecting your digital life with cutting-edge innovation.
+            </p>
           </div>
-          <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
-            <div>
-              <div className="relative overflow-hidden transition duration-300 transform rounded shadow-lg lg:hover:-translate-y-2 hover:shadow-2xl">
-                <img
-                  className="object-cover w-full h-56 md:h-64 xl:h-80"
-                  src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=3&amp;h=750&amp;w=1260"
-                  alt="Person"
-                />
-                <div className="absolute inset-0 flex flex-col justify-center px-5 py-4 text-center transition-opacity duration-300 bg-black bg-opacity-75 opacity-0 hover:opacity-100">
-                  <p className="mb-1 text-lg font-bold text-gray-100">
-                    John Doe
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              {
+                name: "Alex Chen",
+                role: "CEO & Founder",
+                image: "https://ui-avatars.com/api/?name=Alex+Chen&background=00ffff&color=000&size=128",
+                specialty: "Cybersecurity Expert"
+              },
+              {
+                name: "Sarah Rodriguez",
+                role: "CTO",
+                image: "https://ui-avatars.com/api/?name=Sarah+Rodriguez&background=8b5cf6&color=fff&size=128",
+                specialty: "AI & Machine Learning"
+              },
+              {
+                name: "Marcus Johnson",
+                role: "Lead Security Engineer",
+                image: "https://ui-avatars.com/api/?name=Marcus+Johnson&background=00ff88&color=000&size=128",
+                specialty: "Encryption & Privacy"
+              },
+              {
+                name: "Emily Zhang",
+                role: "UX/UI Designer",
+                image: "https://ui-avatars.com/api/?name=Emily+Zhang&background=ff00ff&color=000&size=128",
+                specialty: "Human-Centered Design"
+              }
+            ].map((member, index) => (
+              <motion.div
+                key={index}
+                variants={itemVariants}
+                custom={index}
+                whileHover={{ scale: 1.05, y: -10 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <GlassCard className="p-6 text-center" variant="dark" hover={true}>
+                  <motion.div
+                    className="relative mb-6"
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ type: "spring", stiffness: 400 }}
+                  >
+                    <img
+                      className="w-24 h-24 mx-auto rounded-full border-4 border-neon-cyan/50 shadow-lg"
+                      src={member.image}
+                      alt={member.name}
+                    />
+                    <motion.div
+                      className="absolute -bottom-2 -right-2 w-6 h-6 bg-neon-green rounded-full border-2 border-white/20"
+                      animate={{ scale: [1, 1.2, 1] }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                    />
+                  </motion.div>
+
+                  <h3 className="text-xl font-bold text-white mb-2">
+                    {member.name}
+                  </h3>
+
+                  <p className="text-neon-cyan font-medium mb-2">
+                    {member.role}
                   </p>
-                  <p className="mb-4 text-xs text-gray-100">Co-Founder & CEO</p>
-                </div>
-              </div>
-            </div>
-            <div>
-              <div className="relative overflow-hidden transition duration-300 transform rounded shadow-lg lg:hover:-translate-y-2 hover:shadow-2xl">
-                <img
-                  className="object-cover w-full h-56 md:h-64 xl:h-80"
-                  src="https://images.pexels.com/photos/2381069/pexels-photo-2381069.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
-                  alt="Person"
-                />
-                <div className="absolute inset-0 flex flex-col justify-center px-5 py-4 text-center transition-opacity duration-300 bg-black bg-opacity-75 opacity-0 hover:opacity-100">
-                  <p className="mb-1 text-lg font-bold text-gray-100">
-                    Jane Smith
+
+                  <p className="text-white/70 text-sm">
+                    {member.specialty}
                   </p>
-                  <p className="mb-4 text-xs text-gray-100">
-                    Chief Technology Officer
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div>
-              <div className="relative overflow-hidden transition duration-300 transform rounded shadow-lg lg:hover:-translate-y-2 hover:shadow-2xl">
-                <img
-                  className="object-cover w-full h-56 md:h-64 xl:h-80"
-                  src="https://images.pexels.com/photos/3785097/pexels-photo-3785097.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
-                  alt="Person"
-                />
-                <div className="absolute inset-0 flex flex-col justify-center px-5 py-4 text-center transition-opacity duration-300 bg-black bg-opacity-75 opacity-0 hover:opacity-100">
-                  <p className="mb-1 text-lg font-bold text-gray-100">
-                    Michael Johnson
-                  </p>
-                  <p className="mb-4 text-xs text-gray-100">Lead Developer</p>
-                </div>
-              </div>
-            </div>
-            <div>
-              <div className="relative overflow-hidden transition duration-300 transform rounded shadow-lg lg:hover:-translate-y-2 hover:shadow-2xl">
-                <img
-                  className="object-cover w-full h-56 md:h-64 xl:h-80"
-                  src="https://images.pexels.com/photos/3931603/pexels-photo-3931603.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
-                  alt="Person"
-                />
-                <div className="absolute inset-0 flex flex-col justify-center px-5 py-4 text-center transition-opacity duration-300 bg-black bg-opacity-75 opacity-0 hover:opacity-100">
-                  <p className="mb-1 text-lg font-bold text-gray-100">
-                    Emily Davis
-                  </p>
-                  <p className="mb-4 text-xs text-gray-100">Product Manager</p>
-                </div>
-              </div>
-            </div>
+                </GlassCard>
+              </motion.div>
+            ))}
           </div>
-        </div>
-      </div>
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-      <Footer/>
-    </>
+        </motion.div>
+
+        {/* Stats Section */}
+        <motion.div
+          className="px-4 py-20 mx-auto max-w-7xl"
+          variants={itemVariants}
+        >
+          <GlassCard className="p-12" variant="primary" glow>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+              {[
+                { number: "10K+", label: "Protected Devices" },
+                { number: "99.9%", label: "Uptime Guarantee" },
+                { number: "24/7", label: "Expert Support" },
+                { number: "256-bit", label: "Encryption Standard" },
+              ].map((stat, index) => (
+                <div key={index}>
+                  <motion.div
+                    className="text-4xl font-bold text-neon-cyan mb-2"
+                    animate={{
+                      textShadow: [
+                        "0 0 10px #00ffff",
+                        "0 0 20px #00ffff",
+                        "0 0 10px #00ffff"
+                      ]
+                    }}
+                    transition={{ duration: 2, repeat: Infinity, delay: index * 0.2 }}
+                  >
+                    {stat.number}
+                  </motion.div>
+                  <div className="text-white/70">{stat.label}</div>
+                </div>
+              ))}
+            </div>
+          </GlassCard>
+        </motion.div>
+      </motion.div>
+
+      <Footer />
+    </div>
   );
 };
 

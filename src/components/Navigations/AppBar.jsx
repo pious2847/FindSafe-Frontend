@@ -1,26 +1,13 @@
-/* eslint-disable react/no-unknown-property */
-import * as React from "react";
-import { useState } from 'react';
-// import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import {
-  NavigationMenu,
-  NavigationMenuList,
-  NavigationMenuItem,
-  NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
-  NavigationMenuContent,
-  NavigationMenuLink,
-} from "@/components/ui/navigation-menu";
-import { cn } from "@/lib/utils";
-import { ModeToggle } from "../mode-toggle";
-import { Button } from "@/components/ui/button";
-import { CiMenuFries } from "react-icons/ci";
+import { Menu, Home, BookOpen, DollarSign, User } from "lucide-react";
 import { isAuthenticated, handleLogout } from "@/auth/auth";
-import { useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Logo } from "../logo";
-
+import GlassButton from "@/components/glass/GlassButton";
+import GlassCard from "@/components/glass/GlassCard";
+import { ModeToggle } from "../mode-toggle";
 
 function AppBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -32,147 +19,170 @@ function AppBar() {
 
   const onLogoutClick = () => {
     handleLogout();
-    navigate('/login')
-
+    navigate('/login');
   };
-  return (
-      <div className="appBar max-h-20 shadow-lg  fixed backdrop-blur-md   w-full justify-between flex z-10   align-middle p-5">
-        <Link to='/'>
-        <h4 className=" text-lg font-medium flex gap-2 items-center"><Logo height={30} width={30}/> FindSafe</h4>
-        </Link>
-        <div className= {`flex justify-between mobileNav ${isMenuOpen ? 'active' : ''} backdrop-blur-md  `}>
-          <NavigationMenu className="nav-conent flex">
-            <NavigationMenuList className="nav-conent flex">
-              <NavigationMenuItem className="menubarin ">
-                <NavigationMenuTrigger >Getting started</NavigationMenuTrigger>
-               <div  id='NavigationMenuContainer'>
-               <NavigationMenuContent>
-                  <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr] NavigationMenuContent">
-                    <li className="row-span-3">
-                      <NavigationMenuLink asChild>
-                        <a
-                          className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
-                          href="/"
-                        >
-                          {/* <img src="vite.svg" alt="" className="h-20 w-20" /> */}
-                          <Logo height={60} width={60}/>
-                          <div className="mb-2 mt-4 text-lg font-medium">
-                            FindSafe
-                          </div>
-                          <p className="text-sm leading-tight text-muted-foreground">
-                          Discover the powerful features of the FindSafe app and learn how to leverage them for enhanced security and peace of mind...
-                          </p>
-                        </a>
-                      </NavigationMenuLink>
-                    </li>
-                    <ListItem href="/docs/installation" title="Introduction">
-                      FindSafe: Your gateway to effortless mobile tracking and
-                      management.
-                    </ListItem>
-                    <ListItem href="/docs/installation" title="Installation">
-                      How to install App and set your app account.
-                    </ListItem>
-                    <ListItem
-                      href="/docs/primitives/typography"
-                      title="Usage"
-                    >
-                      Styles for headings, paragraphs, lists...etc
-                    </ListItem>
-                  </ul>
-                </NavigationMenuContent>
-               </div>
 
-              </NavigationMenuItem>
-              <NavigationMenuItem className="menubarin">
-                <a href="/docs/installation">
-                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    Documentation
-                  </NavigationMenuLink>
-                </a>
-              </NavigationMenuItem>
-              <NavigationMenuItem className="menubarin">
-                <a href="/pricing">
-                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    Pricing
-                  </NavigationMenuLink>
-                </a>
-              </NavigationMenuItem>
-              <NavigationMenuItem className="menubarin">
-                <a href="/about">
-                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    About
-                  </NavigationMenuLink>
-                </a>
-              </NavigationMenuItem>
-            </NavigationMenuList>
-          </NavigationMenu>
-          <br />
-          <div className="flex align-middle gap-5 ModeToggle ">
-            <ModeToggle  id='modebtn' />
-            {!isAuthenticated() ? 
-              <Button>
-              <Link to="/login" >
-              Get Started - it’s Free
-              </Link>   
-            </Button>
-            :
-            <div className="flex align-middle gap-5">
-               <Button>
-              <Link to="/dashboard" className="sm: p-2 ">
-              Dashboard
-              </Link>   
-            </Button>
-            <div onClick={onLogoutClick}>
-            <Button variant='danger' className="logoutbtn bg-red-600 text-white">
-              Logout
-            </Button>
-            </div >
+  const navItems = [
+    { href: "/", label: "Home", icon: Home },
+    { href: "/docs/installation", label: "Docs", icon: BookOpen },
+    { href: "/pricing", label: "Pricing", icon: DollarSign },
+    { href: "/about", label: "About", icon: User },
+  ];
+
+  return (
+    <motion.div 
+      className="fixed top-0 left-0 right-0 z-50 p-4"
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
+      <GlassCard className="max-w-7xl mx-auto px-6 py-4 bg-black/20" variant="dark">
+        <div className="flex items-center justify-between">
+          {/* Logo */}
+          <Link to="/">
+            <motion.div 
+              className="flex items-center gap-3"
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+              >
+                <Logo height={32} width={32} />
+              </motion.div>
+              <motion.h1 
+                className="text-xl font-bold text-neon-cyan"
+                animate={{ 
+                  textShadow: [
+                    "0 0 10px #00ffff",
+                    "0 0 20px #00ffff", 
+                    "0 0 10px #00ffff"
+                  ]
+                }}
+                transition={{ duration: 2, repeat: Infinity }}
+              >
+                FindSafe
+              </motion.h1>
+            </motion.div>
+          </Link>
+
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center gap-8">
+            <nav className="flex items-center gap-6">
+              {navItems.map((item, index) => (
+                <motion.div
+                  key={item.href}
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                >
+                  <Link
+                    to={item.href}
+                    className="flex items-center gap-2 px-3 py-2 rounded-lg text-white/80 hover:text-neon-cyan transition-all duration-300 hover:bg-white/10"
+                  >
+                    <item.icon className="text-lg" />
+                    <span className="font-medium">{item.label}</span>
+                  </Link>
+                </motion.div>
+              ))}
+            </nav>
+
+            {/* Auth Buttons */}
+            <div className="flex items-center gap-4">
+              <ModeToggle />
+              
+              {!isAuthenticated() ? (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.3 }}
+                >
+                  <GlassButton variant="primary" glow>
+                    <Link to="/login">Get Started</Link>
+                  </GlassButton>
+                </motion.div>
+              ) : (
+                <div className="flex items-center gap-3">
+                  <GlassButton variant="ghost">
+                    <Link to="/dashboard">Dashboard</Link>
+                  </GlassButton>
+                  <GlassButton variant="danger" onClick={onLogoutClick}>
+                    Logout
+                  </GlassButton>
+                </div>
+              )}
             </div>
-           
-           
-            }
-                   
-            
           </div>
+
+          {/* Mobile Menu Button */}
+          <motion.button
+            className="md:hidden p-2 rounded-lg bg-white/10 border border-white/20 text-white hover:bg-white/20 transition-all"
+            onClick={toggleMenu}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <motion.div
+              animate={{ rotate: isMenuOpen ? 90 : 0 }}
+              transition={{ duration: 0.2 }}
+            >
+              <Menu size={24} />
+            </motion.div>
+          </motion.button>
         </div>
-        <div className={`menuicon   ${isMenuOpen ? 'active' : ''}`} onClick={toggleMenu}>
-        <CiMenuFries   size={25} fontWeight={900}/>
-        </div>
-      </div>
+
+        {/* Mobile Menu */}
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.div
+              className="md:hidden mt-4 pt-4 border-t border-white/20"
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className="space-y-3">
+                {navItems.map((item, index) => (
+                  <motion.div
+                    key={item.href}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                  >
+                    <Link
+                      to={item.href}
+                      className="flex items-center gap-3 px-4 py-3 rounded-lg text-white/80 hover:text-neon-cyan transition-all duration-300 hover:bg-white/10"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      <item.icon className="text-lg" />
+                      <span className="font-medium">{item.label}</span>
+                    </Link>
+                  </motion.div>
+                ))}
+                
+                <div className="pt-4 border-t border-white/20 space-y-3">
+                  {!isAuthenticated() ? (
+                    <GlassButton variant="primary" className="w-full" glow>
+                      <Link to="/login">Get Started</Link>
+                    </GlassButton>
+                  ) : (
+                    <div className="space-y-2">
+                      <GlassButton variant="ghost" className="w-full">
+                        <Link to="/dashboard">Dashboard</Link>
+                      </GlassButton>
+                      <GlassButton variant="danger" className="w-full" onClick={onLogoutClick}>
+                        Logout
+                      </GlassButton>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </GlassCard>
+    </motion.div>
   );
 }
-
-const ListItem = React.forwardRef(
-  ({ className, title, children, href, ...props }, ref) => {
-    return (
-      <li>
-        <NavigationMenuLink asChild>
-          <a
-            ref={ref}
-            className={cn(
-              "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
-              className
-            )}
-            href={href}
-            {...props}
-          >
-            <div className="text-sm font-medium leading-none">{title}</div>
-            <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-              {children}
-            </p>
-          </a>
-        </NavigationMenuLink>
-      </li>
-    );
-  }
-);
-ListItem.displayName = "ListItem";
-
-ListItem.propTypes = {
-  className: PropTypes.string,
-  title: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired,
-  href: PropTypes.string.isRequired,
-};
 
 export default AppBar;

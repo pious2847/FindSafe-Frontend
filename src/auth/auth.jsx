@@ -22,9 +22,17 @@ export const getUserId = () => {
   return localStorage.getItem("userId");
 };
 export const getUser = () => {
-  const jwt = localStorage.getItem("token");
-  const user = jwtDecode(jwt);
-  return user;
+  try {
+    const jwt = localStorage.getItem("token");
+    if (!jwt) {
+      return null;
+    }
+    const user = jwtDecode(jwt);
+    return user;
+  } catch (error) {
+    console.error('Error decoding JWT:', error);
+    return null;
+  }
 };
 
 export const handleLogout = () => {

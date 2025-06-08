@@ -32,9 +32,18 @@ const LocationsTable = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const userId = getUserId();
-      const fetchedPhones = await fetchUserDevices(userId);
-      setPhones(fetchedPhones);
+      try {
+        const userId = getUserId();
+        if (!userId) {
+          console.warn('No user ID found');
+          return;
+        }
+        const fetchedPhones = await fetchUserDevices(userId);
+        setPhones(fetchedPhones || []);
+      } catch (error) {
+        console.error('Error fetching user devices:', error);
+        setPhones([]);
+      }
     };
 
     fetchData();
@@ -45,11 +54,13 @@ const LocationsTable = () => {
       setIsLoading(true);
       const fetchedLocations = await fetchDeviceLocationsWithNames(deviceId);
       console.log("Fetched Locations", fetchedLocations);
-      setLocations(fetchedLocations);
+      setLocations(fetchedLocations || []);
       setCurrentPage(1);
     } catch (error) {
-      console.error("Error fetching location name:", error);
-      throw error;
+      console.error("Error fetching location data:", error);
+      // Set empty array on error instead of throwing
+      setLocations([]);
+      setCurrentPage(1);
     } finally {
       setIsLoading(false);
     }

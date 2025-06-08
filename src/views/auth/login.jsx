@@ -1,121 +1,17 @@
-import { useState, useEffect } from 'react';
-import { FormControl, useFormControlContext } from "@mui/base/FormControl";
-import { Input, inputClasses } from "@mui/base/Input";
-import { styled } from "@mui/system";
-import clsx from "clsx";
-import { Button } from "@/components/ui/button"
-import TextAnimation from "@/components/animations/textanimation";
-import { Link, useNavigate } from 'react-router-dom';
-import Checkbox from '@mui/material/Checkbox';
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { CiMail, CiLock } from 'react-icons/ci';
 import Toast from "@/components/toastmsg";
 import { Loader } from "@/components/loader";
-
-
-const StyledInput = styled(Input)(({ theme }) => `
-  .${inputClasses.input} {
-    width: 100%;
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-size: 0.875rem;
-    font-weight: 400;
-    line-height: 1.5;
-    padding: 8px 12px;
-    border-radius: 8px;
-    color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-    background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
-    border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-    box-shadow: 0px 2px 2px ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
-  
-    &:hover {
-      border-color: ${blue[400]};
-    }
-  
-    &:focus {
-      outline: 0;
-      border-color: ${blue[400]};
-      box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[600] : blue[200]};
-    }
-  }
-`);
-
-const Label = styled(({ children, className }) => {
-  const formControlContext = useFormControlContext();
-  const [dirty, setDirty] = useState(false);
-
-  useEffect(() => {
-    if (formControlContext?.filled) {
-      setDirty(true);
-    }
-  }, [formControlContext]);
-
-  if (formControlContext === undefined) {
-    return <p>{children}</p>;
-  }
-
-  const { error, required, filled } = formControlContext;
-  const showRequiredError = dirty && required && !filled;
-
-  return (
-    <p className={clsx(className, error || showRequiredError ? 'invalid' : '')}>
-      {children}
-      {required ? ' *' : ''}
-    </p>
-  );
-})`
-  font-family: 'IBM Plex Sans', sans-serif;
-  font-size: 0.875rem;
-  margin-bottom: 4px;
-
-  &.invalid {
-    color: red;
-  }
-`;
-
-const HelperText = styled((props) => {
-  const formControlContext = useFormControlContext();
-  const [dirty, setDirty] = useState(false);
-
-  useEffect(() => {
-    if (formControlContext?.filled) {
-      setDirty(true);
-    }
-  }, [formControlContext]);
-
-  if (formControlContext === undefined) {
-    return null;
-  }
-
-  const { required, filled } = formControlContext;
-  const showRequiredError = dirty && required && !filled;
-
-  return showRequiredError ? <p {...props}>This field is required.</p> : null;
-})`
-  font-family: 'IBM Plex Sans', sans-serif;
-  font-size: 0.875rem;
-`;
-
-const blue = {
-  100: '#DAECFF',
-  200: '#b6daff',
-  400: '#3399FF',
-  500: '#007FFF',
-  600: '#0072E5',
-  900: '#003A75',
-};
-
-const grey = {
-  50: '#F3F6F9',
-  100: '#E5EAF2',
-  200: '#DAE2ED',
-  300: '#C7D0DD',
-  400: '#B0B8C4',
-  500: '#9DA8B7',
-  600: '#6B7A90',
-  700: '#434D5B',
-  800: '#303740',
-  900: '#1C2025',
-};
+import GlassCard from "@/components/glass/GlassCard";
+import GlassButton from "@/components/glass/GlassButton";
+import GlassInput from "@/components/glass/GlassInput";
+import AnimatedBackground from "@/components/backgrounds/AnimatedBackground";
 
 const LoginPage = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
@@ -123,32 +19,56 @@ const LoginPage = () => {
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
   const [toastType, setToastType] = useState('success');
+  const [errors, setErrors] = useState({});
 
-   const triggerToast = (message, type) => {
+  const triggerToast = (message, type) => {
     setToastMessage(message);
     setToastType(type);
     setShowToast(true);
   };
 
-  const navigate = useNavigate();
+  // Handle success messages from other pages
+  useEffect(() => {
+    if (location.state?.message) {
+      triggerToast(location.state.message, 'success');
+      if (location.state.email) {
+        setEmail(location.state.email);
+      }
+      // Clear the state to prevent showing the message again
+      window.history.replaceState({}, document.title);
+    }
+  }, [location.state]);
 
-  const handleEmailChange = (event) => {
-    setEmail(event.target.value);
+  const validateForm = () => {
+    const newErrors = {};
+    
+    if (!email) {
+      newErrors.email = 'Email is required';
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      newErrors.email = 'Email is invalid';
+    }
+    
+    if (!password) {
+      newErrors.password = 'Password is required';
+    } else if (password.length < 6) {
+      newErrors.password = 'Password must be at least 6 characters';
+    }
+    
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
-
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
-  };
-
-  const handleRememberMeChange = (event) => {
-    setRememberMe(event.target.checked);
-  };
-
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    
+    if (!validateForm()) {
+      return;
+    }
+    
     setLoading(true);
     setShowToast(false);
+    setErrors({});
+    
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/login`, {
         method: 'POST',
@@ -173,77 +93,178 @@ const LoginPage = () => {
     } catch (error) {
       console.log(error);
       triggerToast(`An error occurred during login `, 'danger')
-
-      // setErrorMessage('An error occurred during login');
     } finally {
       setLoading(false);
     }
   };
 
+  const containerVariants = {
+    hidden: { opacity: 0, scale: 0.9 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut",
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
+  };
+
   return (
-    <div className="w-[100vw] h-[100vh] flex justify-center flex-col items-center">
-       {showToast && (
+    <div className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
+      <AnimatedBackground variant="auth" />
+      
+      {showToast && (
         <Toast 
           message={toastMessage} 
           type={toastType} 
         />
       )}
-      <br />
-      <br />
-      <TextAnimation />
-      <br />
-      <div className="formContainer max-w-md w-full rounded-lg shadow-sm shadow-black p-8">
-        <div className="flex flex-col gap-6">
 
-         
-          <FormControl required>
-            <Label>Email</Label>
-            <StyledInput
-              placeholder="Enter your email here"
-              value={email}
-              onChange={handleEmailChange}
-              disabled={loading}
-            />
-            <HelperText />
-          </FormControl>
-          <FormControl required>
-            <Label>Password</Label>
-            <StyledInput
-              type="password"
-              placeholder="Enter your password here"
-              value={password}
-              onChange={handlePasswordChange}
-              disabled={loading}
-            />
-            <HelperText />
-          </FormControl>
-          <div className="flex justify-between">
-            <div className="flex items-center">
-              <Checkbox
-                checked={rememberMe}
-                onChange={handleRememberMeChange}
-                inputProps={{ 'aria-label': 'Remember Me' }}
-                disabled={loading}
-              />
-              <span>Remember Me</span>
-            </div>
-            <Link to="/forgot-password">
-              <p>Forgot Password?</p>
-            </Link>
-          </div>
-          <Button
-            variant="outline"
-            className="w-[100%] bg-slate-900 p-2 rounded-md"
-            onClick={handleSubmit}
-            disabled={loading}
+      <motion.div
+        className="w-full max-w-md relative z-10"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        {/* Logo/Brand Section */}
+        <motion.div 
+          className="text-center mb-8"
+          variants={itemVariants}
+        >
+          <motion.h1 
+            className="text-4xl font-bold text-neon-cyan mb-2"
+            animate={{ 
+              textShadow: [
+                "0 0 10px #00ffff",
+                "0 0 20px #00ffff", 
+                "0 0 10px #00ffff"
+              ]
+            }}
+            transition={{ duration: 2, repeat: Infinity }}
           >
-            {loading ? <p className="flex items-center gap-2"><Loader size={30}/> Loading...</p> : 'Login'}
-          </Button>
-          <br />
-          <hr />
-          <p>Don’t have an account? <Link to='/signup' className="text-blue-500">Sign Up</Link></p>
-        </div>
-      </div>
+            FindSafe
+          </motion.h1>
+          <p className="text-white/70 text-lg">Secure Device Management</p>
+        </motion.div>
+
+        {/* Login Form */}
+        <motion.div variants={itemVariants}>
+          <GlassCard className="p-8" variant="primary" glow>
+            <motion.div variants={itemVariants}>
+              <h2 className="text-2xl font-bold text-white mb-6 text-center">
+                Welcome Back
+              </h2>
+            </motion.div>
+
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <motion.div variants={itemVariants}>
+                <GlassInput
+                  label="Email Address"
+                  type="email"
+                  placeholder="Enter your email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  icon={CiMail}
+                  error={errors.email}
+                  disabled={loading}
+                  variant="primary"
+                />
+              </motion.div>
+
+              <motion.div variants={itemVariants}>
+                <GlassInput
+                  label="Password"
+                  type="password"
+                  placeholder="Enter your password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  icon={CiLock}
+                  error={errors.password}
+                  disabled={loading}
+                  variant="primary"
+                />
+              </motion.div>
+
+              <motion.div 
+                className="flex items-center justify-between"
+                variants={itemVariants}
+              >
+                <label className="flex items-center gap-2 text-white/70 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={rememberMe}
+                    onChange={(e) => setRememberMe(e.target.checked)}
+                    className="w-4 h-4 rounded border-white/20 bg-white/10 text-neon-cyan focus:ring-neon-cyan"
+                    disabled={loading}
+                  />
+                  <span className="text-sm">Remember me</span>
+                </label>
+                
+                <Link 
+                  to="/forgot-password" 
+                  className="text-sm text-neon-cyan hover:text-neon-purple transition-colors"
+                >
+                  Forgot password?
+                </Link>
+              </motion.div>
+
+              <motion.div variants={itemVariants}>
+                <GlassButton
+                  type="submit"
+                  variant="primary"
+                  size="lg"
+                  className="w-full"
+                  disabled={loading}
+                  loading={loading}
+                  glow={true}
+                >
+                  {loading ? 'Signing In...' : 'Sign In'}
+                </GlassButton>
+              </motion.div>
+            </form>
+
+            <motion.div 
+              className="mt-6 pt-6 border-t border-white/10 text-center"
+              variants={itemVariants}
+            >
+              <p className="text-white/70">
+                Don't have an account?{' '}
+                <Link 
+                  to="/signup" 
+                  className="text-neon-cyan hover:text-neon-purple transition-colors font-medium"
+                >
+                  Sign up
+                </Link>
+              </p>
+            </motion.div>
+          </GlassCard>
+        </motion.div>
+
+        {/* Additional Features */}
+        <motion.div 
+          className="mt-8 text-center"
+          variants={itemVariants}
+        >
+          <div className="flex items-center justify-center gap-4 text-white/50 text-sm">
+            <span>Secure</span>
+            <span>•</span>
+            <span>Encrypted</span>
+            <span>•</span>
+            <span>Protected</span>
+          </div>
+        </motion.div>
+      </motion.div>
     </div>
   );
 };

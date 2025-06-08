@@ -1,132 +1,26 @@
-import * as React from "react";
-import { FormControl, useFormControlContext } from "@mui/base/FormControl";
-import { Input, inputClasses } from "@mui/base/Input";
-import { styled } from "@mui/system";
-import clsx from "clsx";
-import TextAnimation from "@/components/animations/textanimation";
-import { Link , useNavigate} from 'react-router-dom';
-import { Button } from "@/components/ui/button"
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import { Link, useNavigate } from 'react-router-dom';
+import { CiMail, CiLock, CiUser } from 'react-icons/ci';
 import Toast from "@/components/toastmsg";
 import { Loader } from "@/components/loader";
-
-const StyledInput = styled(Input)(
-  ({ theme }) => `
-  
-  .${inputClasses.input} {
-    width: 100%;
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-size: 0.875rem;
-    font-weight: 400;
-    line-height: 1.5;
-    padding: 8px 12px;
-    border-radius: 8px;
-    color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-    background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
-    border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-    box-shadow: 0px 2px 2px ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
-  
-    &:hover {
-      border-color: ${blue[400]};
-    }
-  
-    &:focus {
-      outline: 0;
-      border-color: ${blue[400]};
-      box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[600] : blue[200]};
-    }
-  }
-`,
-);
-
-const Label = styled(({ children, className }) => {
-  const formControlContext = useFormControlContext();
-  const [dirty, setDirty] = React.useState(false);
-
-  React.useEffect(() => {
-    if (formControlContext?.filled) {
-      setDirty(true);
-    }
-  }, [formControlContext]);
-
-  if (formControlContext === undefined) {
-    return <p>{children}</p>;
-  }
-
-  const { error, required, filled } = formControlContext;
-  const showRequiredError = dirty && required && !filled;
-
-  return (
-    <p className={clsx(className, error || showRequiredError ? 'invalid' : '')}>
-      {children}
-      {required ? ' *' : ''}
-    </p>
-  );
-})`
-  font-family: 'IBM Plex Sans', sans-serif;
-  font-size: 0.875rem;
-  margin-bottom: 4px;
-
-  &.invalid {
-    color: red;
-  }
-`;
-
-const HelperText = styled((props) => {
-  const formControlContext = useFormControlContext();
-  const [dirty, setDirty] = React.useState(false);
-
-  React.useEffect(() => {
-    if (formControlContext?.filled) {
-      setDirty(true);
-    }
-  }, [formControlContext]);
-
-  if (formControlContext === undefined) {
-    return null;
-  }
-
-  const { required, filled } = formControlContext;
-  const showRequiredError = dirty && required && !filled;
-
-  return showRequiredError ? <p {...props}>This field is required.</p> : null;
-})`
-  font-family: 'IBM Plex Sans', sans-serif;
-  font-size: 0.875rem;
-`;
-
-const blue = {
-  100: '#DAECFF',
-  200: '#b6daff',
-  400: '#3399FF',
-  500: '#007FFF',
-  600: '#0072E5',
-  900: '#003A75',
-};
-
-const grey = {
-  50: '#F3F6F9',
-  100: '#E5EAF2',
-  200: '#DAE2ED',
-  300: '#C7D0DD',
-  400: '#B0B8C4',
-  500: '#9DA8B7',
-  600: '#6B7A90',
-  700: '#434D5B',
-  800: '#303740',
-  900: '#1C2025',
-};
+import GlassCard from "@/components/glass/GlassCard";
+import GlassButton from "@/components/glass/GlassButton";
+import GlassInput from "@/components/glass/GlassInput";
+import AnimatedBackground from "@/components/backgrounds/AnimatedBackground";
 
 const SignUpPage = () => {
-  const [username, setUsername] = React.useState('');
-  const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
-  const [errorMessage, setErrorMessage] = React.useState('');
-  const [loading, setLoading] = React.useState(false);
-  const [showToast, setShowToast] = React.useState(false);
-  const [toastMessage, setToastMessage] = React.useState('');
-  const [toastType, setToastType] = React.useState('success');
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState('');
+  const [toastType, setToastType] = useState('success');
+  const [errors, setErrors] = useState({});
 
-   const triggerToast = (message, type) => {
+  const triggerToast = (message, type) => {
     setToastMessage(message);
     setToastType(type);
     setShowToast(true);
@@ -134,118 +28,253 @@ const SignUpPage = () => {
 
   const navigate = useNavigate();
 
-  const handleUsernameChange = (event) => {
-    setUsername(event.target.value);
-  };
-  const handleEmailChange = (event) => {
-    setEmail(event.target.value);
-  };
-
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
-  };
-
-
-
-  const handleDismissError = () => {
-    setErrorMessage('');
+  const validateForm = () => {
+    const newErrors = {};
+    
+    if (!username) {
+      newErrors.username = 'Username is required';
+    } else if (username.length < 3) {
+      newErrors.username = 'Username must be at least 3 characters';
+    }
+    
+    if (!email) {
+      newErrors.email = 'Email is required';
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      newErrors.email = 'Email is invalid';
+    }
+    
+    if (!password) {
+      newErrors.password = 'Password is required';
+    } else if (password.length < 6) {
+      newErrors.password = 'Password must be at least 6 characters';
+    }
+    
+    if (!confirmPassword) {
+      newErrors.confirmPassword = 'Please confirm your password';
+    } else if (password !== confirmPassword) {
+      newErrors.confirmPassword = 'Passwords do not match';
+    }
+    
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    
+    if (!validateForm()) {
+      return;
+    }
+    
     setLoading(true);
     setShowToast(false);
+    setErrors({});
+    
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/signup`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ username ,email, password }),
+        body: JSON.stringify({ username, email, password }),
       });
 
       if (response.status === 200) {
         const data = await response.json();
-        navigate('/login');
-        triggerToast(`${data.message || 'Account registed successful please login'} `, 'success')
+        triggerToast(`${data.message || 'Account registered successfully! Please verify your email'} `, 'success');
+        // Redirect to OTP verification page
+        setTimeout(() => {
+          navigate('/verify-otp', {
+            state: {
+              email: email.toLowerCase(),
+              userId: data.userId
+            }
+          });
+        }, 1500);
       } else {
         const errorData = await response.json();
-        triggerToast(`${errorData.message || 'An error occurred during login'} `, 'danger')
-
+        triggerToast(`${errorData.message || 'An error occurred during registration'} `, 'danger')
       }
     } catch (error) {
       console.log(error);
-      triggerToast(`An error occurred during login `, 'danger')
-      
-    }finally {
-    setLoading(false);
-  }
+      triggerToast(`An error occurred during registration `, 'danger')
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const containerVariants = {
+    hidden: { opacity: 0, scale: 0.9 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut",
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
   };
 
   return (
-    <div className="w-[100vw] h-[100vh] flex justify-center flex-col items-center">
-       {showToast && (
+    <div className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
+      <AnimatedBackground variant="auth" />
+      
+      {showToast && (
         <Toast 
           message={toastMessage} 
           type={toastType} 
         />
       )}
-      <br />
-      <br />
-      <TextAnimation />
-      <br />
-      <div className="formContainer max-w-md w-full  rounded-lg shadow-2xl p-8">
-        <div className="flex flex-col gap-6">
-          {errorMessage && (
-            <div className="flex justify-between items-center bg-red-500 text-white p-2 rounded">
-              <p className="text-xs">{errorMessage}</p>
-              <button onClick={handleDismissError} className="ml-4 text-xl font-bold">&times;</button>
-            </div>
-          )}
-            <FormControl required>
-            <Label>Username</Label>
-            <StyledInput
-              placeholder="Enter your username here"
-              value={username}
-              onChange={handleUsernameChange}
-              disabled={loading}
-            />
-            <HelperText />
-          </FormControl>
-          <FormControl required>
-            <Label>Email</Label>
-            <StyledInput
-              placeholder="Enter your email here"
-              value={email}
-              onChange={handleEmailChange}
-              disabled={loading}
-            />
-            <HelperText />
-          </FormControl>
-          <FormControl required>
-            <Label>Password</Label>
-            <StyledInput
-              type="password"
-              placeholder="Enter your password here"
-              value={password}
-              onChange={handlePasswordChange}
-              disabled={loading}
-            />
-            <HelperText />
-          </FormControl>
 
-          <Button
-            variant="outline"
-            className="w-[100%] p-2  bg-slate-900 rounded-md text-white"
-            onClick={handleSubmit}
-            disabled={loading}
+      <motion.div
+        className="w-full max-w-md relative z-10"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        {/* Logo/Brand Section */}
+        <motion.div 
+          className="text-center mb-8"
+          variants={itemVariants}
+        >
+          <motion.h1 
+            className="text-4xl font-bold text-neon-purple mb-2"
+            animate={{ 
+              textShadow: [
+                "0 0 10px #8b5cf6",
+                "0 0 20px #8b5cf6", 
+                "0 0 10px #8b5cf6"
+              ]
+            }}
+            transition={{ duration: 2, repeat: Infinity }}
           >
-            {loading ? <p className="flex items-center gap-2"><Loader size={30}/> Loading...</p> : 'Register'}
-          </Button>
-          <hr />
-          <p>Already have an account <Link to='/login' className="text-blue-500" >Login?</Link></p>
-        </div>
-      </div>
+            FindSafe
+          </motion.h1>
+          <p className="text-white/70 text-lg">Join the Security Revolution</p>
+        </motion.div>
+
+        {/* Signup Form */}
+        <motion.div variants={itemVariants}>
+          <GlassCard className="p-8" variant="secondary" glow>
+            <motion.div variants={itemVariants}>
+              <h2 className="text-2xl font-bold text-white mb-6 text-center">
+                Create Account
+              </h2>
+            </motion.div>
+
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <motion.div variants={itemVariants}>
+                <GlassInput
+                  label="Username"
+                  type="text"
+                  placeholder="Choose a username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  icon={CiUser}
+                  error={errors.username}
+                  disabled={loading}
+                  variant="secondary"
+                />
+              </motion.div>
+
+              <motion.div variants={itemVariants}>
+                <GlassInput
+                  label="Email Address"
+                  type="email"
+                  placeholder="Enter your email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  icon={CiMail}
+                  error={errors.email}
+                  disabled={loading}
+                  variant="secondary"
+                />
+              </motion.div>
+
+              <motion.div variants={itemVariants}>
+                <GlassInput
+                  label="Password"
+                  type="password"
+                  placeholder="Create a password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  icon={CiLock}
+                  error={errors.password}
+                  disabled={loading}
+                  variant="secondary"
+                />
+              </motion.div>
+
+              <motion.div variants={itemVariants}>
+                <GlassInput
+                  label="Confirm Password"
+                  type="password"
+                  placeholder="Confirm your password"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  icon={CiLock}
+                  error={errors.confirmPassword}
+                  disabled={loading}
+                  variant="secondary"
+                />
+              </motion.div>
+
+              <motion.div variants={itemVariants}>
+                <GlassButton
+                  type="submit"
+                  variant="secondary"
+                  size="lg"
+                  className="w-full"
+                  disabled={loading}
+                  loading={loading}
+                  glow={true}
+                >
+                  {loading ? 'Creating Account...' : 'Create Account'}
+                </GlassButton>
+              </motion.div>
+            </form>
+
+            <motion.div 
+              className="mt-6 pt-6 border-t border-white/10 text-center"
+              variants={itemVariants}
+            >
+              <p className="text-white/70">
+                Already have an account?{' '}
+                <Link 
+                  to="/login" 
+                  className="text-neon-purple hover:text-neon-cyan transition-colors font-medium"
+                >
+                  Sign in
+                </Link>
+              </p>
+            </motion.div>
+          </GlassCard>
+        </motion.div>
+
+        {/* Security Features */}
+        <motion.div 
+          className="mt-8 text-center"
+          variants={itemVariants}
+        >
+          <div className="flex items-center justify-center gap-4 text-white/50 text-sm">
+            <span>256-bit Encryption</span>
+            <span>•</span>
+            <span>Zero-Knowledge</span>
+            <span>•</span>
+            <span>GDPR Compliant</span>
+          </div>
+        </motion.div>
+      </motion.div>
     </div>
   );
 };
